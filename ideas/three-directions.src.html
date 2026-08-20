@@ -1,0 +1,1652 @@
+<title>Forge, Stitch, Finish</title>
+<style>
+/* ============================================================
+   SHELL — direction switcher chrome
+   Each direction below commits to its own single visual world
+   (dark forge / marine split / chalk race). Theme-switching is
+   deliberately not applied: the palette IS the brand proposal.
+   Every ground is painted explicitly so nothing borrows the host.
+   ============================================================ */
+:root{
+  --shell-bg:#0d0e10;
+  --shell-fg:#e7e4df;
+  --shell-dim:#8b8f96;
+  --shell-line:#26282c;
+  --mono:Consolas,"SF Mono",Menlo,"DejaVu Sans Mono",monospace;
+  --sans:"Segoe UI",-apple-system,BlinkMacSystemFont,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--shell-bg);
+  color:var(--shell-fg);
+  font-family:var(--sans);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+
+/* ---- switcher bar ---- */
+.shell{
+  position:fixed;inset:0 0 auto 0;z-index:9999;
+  background:rgba(13,14,16,.92);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--shell-line);
+}
+.shell-in{
+  max-width:1400px;margin:0 auto;padding:0 20px;
+  height:52px;display:flex;align-items:center;gap:22px;
+}
+.shell-mark{
+  font-family:var(--mono);font-size:10px;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--shell-dim);
+  white-space:nowrap;
+}
+.shell-mark b{color:var(--shell-fg);font-weight:600}
+.shell-tabs{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
+.shell-tab{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--shell-dim);
+  background:transparent;border:1px solid var(--shell-line);
+  padding:8px 13px;border-radius:2px;cursor:pointer;
+  transition:color .2s,border-color .2s,background .2s;
+  white-space:nowrap;
+}
+.shell-tab:hover{color:var(--shell-fg);border-color:#3d4046}
+.shell-tab[aria-selected="true"]{
+  color:#0d0e10;background:var(--shell-fg);border-color:var(--shell-fg);
+}
+.shell-tab:focus-visible{outline:2px solid #ff5a1f;outline-offset:2px}
+.stage{padding-top:52px}
+.dir[hidden]{display:none}
+
+/* shared: fake browser-chrome-free full bleed sections */
+.sec{position:relative}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+
+/* annotation chips — design-note callouts, not part of the site */
+.note{
+  position:absolute;z-index:60;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.13em;
+  text-transform:uppercase;padding:5px 9px;border-radius:2px;
+  background:rgba(13,14,16,.82);color:#c9cdd3;border:1px solid rgba(255,255,255,.16);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  pointer-events:none;
+}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+}
+
+/* ============================================================
+   01 — FORGE
+   heat · the moment metal becomes something
+   ============================================================ */
+.d-forge{
+  --void:#08090a;
+  --plate:#15171a;
+  --gun:#2b2f35;
+  --ash:#9aa1aa;
+  --molten:#ff5a1f;
+  --hot:#ffe9ce;
+  --disp:Impact,Haettenschweiler,"Arial Narrow Bold","Franklin Gothic Heavy",sans-serif;
+  background:var(--void);color:var(--ash);
+}
+.d-forge ::selection{background:var(--molten);color:#08090a}
+
+/* nav */
+.fg-nav{
+  position:sticky;top:52px;z-index:80;
+  background:linear-gradient(180deg,rgba(8,9,10,.95),rgba(8,9,10,.55) 70%,transparent);
+  padding:18px 0 26px;
+}
+.fg-nav .wrap{display:flex;align-items:center;gap:30px}
+.fg-logo{
+  font-family:var(--disp);font-size:22px;letter-spacing:.02em;
+  text-transform:uppercase;color:var(--hot);line-height:1;
+}
+.fg-logo i{color:var(--molten);font-style:normal}
+.fg-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.fg-links a{
+  font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ash);text-decoration:none;position:relative;padding:4px 0;
+}
+.fg-links a::after{
+  content:"";position:absolute;left:0;bottom:0;height:1px;width:0;
+  background:var(--molten);box-shadow:0 0 8px var(--molten);transition:width .32s cubic-bezier(.2,.8,.2,1);
+}
+.fg-links a:hover{color:var(--hot)}
+.fg-links a:hover::after{width:100%}
+
+/* hero */
+.fg-hero{
+  position:relative;min-height:calc(100vh - 52px);margin-top:-96px;
+  display:flex;align-items:center;overflow:hidden;
+  background:var(--void);
+}
+.fg-hero-img{
+  position:absolute;inset:0;
+  background:url("data:image/jpeg;base64,__IMG_A__") center 30%/cover no-repeat;
+  filter:grayscale(1) contrast(1.35) brightness(.42);
+  transform:scale(1.06);
+  animation:fgDrift 26s ease-in-out infinite alternate;
+}
+@keyframes fgDrift{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.14) translate3d(-1.5%,-1.5%,0)}}
+.fg-hero-veil{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(120% 80% at 22% 62%,rgba(255,90,31,.20),transparent 58%),
+    linear-gradient(90deg,rgba(8,9,10,.94) 0%,rgba(8,9,10,.72) 46%,rgba(8,9,10,.30) 100%),
+    linear-gradient(0deg,var(--void) 2%,transparent 42%);
+}
+.fg-sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.fg-hero .wrap{position:relative;z-index:5;width:100%;padding-top:96px}
+.fg-eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--molten);margin-bottom:22px;
+  opacity:0;animation:fgFade .8s ease 2.4s forwards;
+}
+.fg-h1{
+  position:relative;margin:0;line-height:.82;
+  font-family:var(--disp);font-weight:400;
+  font-size:clamp(58px,12.4vw,196px);
+  letter-spacing:-.012em;text-transform:uppercase;
+}
+.fg-h1 span{display:block}
+.fg-h1-row{position:relative;display:block;height:1em}
+/* default 100% so the headline is fully legible with no JS,
+   in a background tab, or if rAF never fires. The cut animation
+   starts by pulling it back to 0% and sweeping it open. */
+.fg-h1-base,.fg-h1-hot{
+  position:absolute;inset:0;white-space:nowrap;
+  -webkit-mask-image:linear-gradient(90deg,#000 0,#000 var(--cut,100%),transparent var(--cut,100%));
+  mask-image:linear-gradient(90deg,#000 0,#000 var(--cut,100%),transparent var(--cut,100%));
+}
+.fg-h1-base{
+  color:transparent;
+  background:linear-gradient(178deg,#dfe3e8 0%,#8d949c 34%,#4a4f56 68%,#2a2e33 100%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.fg-h1-hot{
+  color:transparent;opacity:var(--heat,0);
+  background:linear-gradient(178deg,var(--hot) 0%,#ffb066 30%,var(--molten) 62%,#c22f00 100%);
+  -webkit-background-clip:text;background-clip:text;
+  filter:drop-shadow(0 0 26px rgba(255,90,31,.62));
+}
+.fg-cutline{
+  position:absolute;top:-4%;bottom:-4%;width:2px;
+  left:var(--cut,0%);
+  background:linear-gradient(180deg,transparent,var(--hot) 18%,#fff 50%,var(--hot) 82%,transparent);
+  box-shadow:0 0 12px 3px rgba(255,150,60,.9),0 0 46px 14px rgba(255,90,31,.55);
+  opacity:var(--cutting,0);
+}
+.fg-sub{
+  margin:30px 0 0;max-width:34ch;
+  font-size:clamp(15px,1.55vw,19px);line-height:1.62;color:#c3c8ce;
+  opacity:0;animation:fgFade .8s ease 2.65s forwards;
+}
+.fg-sub b{color:var(--hot);font-weight:600}
+@keyframes fgFade{to{opacity:1}}
+.fg-cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px;opacity:0;animation:fgFade .8s ease 2.9s forwards}
+.fg-scroll{
+  position:absolute;left:0;right:0;bottom:26px;z-index:6;
+  font-family:var(--mono);font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:#6f757d;
+}
+.fg-scroll .wrap{display:flex;justify-content:space-between;align-items:center;padding-top:0}
+
+/* heat button */
+.btn-fg{
+  --mx:50%;--my:50%;
+  position:relative;overflow:hidden;isolation:isolate;
+  font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--hot);text-decoration:none;cursor:pointer;
+  padding:17px 30px;border:1px solid #454a51;border-radius:2px;
+  background:linear-gradient(180deg,#2f343a,#1b1e22);
+  transition:color .25s,border-color .35s,transform .12s;
+}
+.btn-fg::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:0;
+  background:radial-gradient(circle 150px at var(--mx) var(--my),#fff2dd 0%,var(--molten) 26%,#a12800 58%,transparent 78%);
+  transition:opacity .38s ease;
+}
+.btn-fg:hover{color:#180a02;border-color:var(--molten)}
+.btn-fg:hover::before{opacity:1}
+.btn-fg:active{transform:translateY(1px)}
+.btn-fg:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+.btn-fg.ghost{background:transparent;border-color:#33383e;color:var(--ash)}
+.btn-fg.ghost:hover{color:#180a02}
+
+/* torch-cut divider */
+.fg-cut-edge{position:relative;height:26px;background:var(--void)}
+.fg-cut-edge::before{
+  content:"";position:absolute;left:0;right:0;top:50%;height:1px;
+  background:linear-gradient(90deg,transparent,#3a3f46 8%,#3a3f46 92%,transparent);
+}
+.fg-cut-edge::after{
+  content:"";position:absolute;left:6%;top:50%;width:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--molten),var(--hot),var(--molten),transparent);
+  box-shadow:0 0 14px 3px rgba(255,90,31,.75);
+  transition:width 1.5s cubic-bezier(.24,.9,.26,1);
+}
+.fg-cut-edge.lit::after{width:88%}
+
+/* services */
+.fg-services{padding:clamp(80px,10vw,140px) 0 40px;background:var(--void)}
+.fg-sec-head{display:flex;align-items:baseline;gap:20px;margin-bottom:58px;flex-wrap:wrap}
+.fg-sec-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--molten)}
+.fg-sec-title{
+  font-family:var(--disp);font-size:clamp(34px,5.4vw,72px);line-height:.92;
+  text-transform:uppercase;color:#eef1f4;margin:0;letter-spacing:-.01em;
+}
+.fg-svc{
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(24px,5vw,72px);align-items:center;
+  padding:clamp(40px,6vw,74px) 0;border-top:1px solid #1d2024;
+  opacity:0;transform:translateY(34px);
+  transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1);
+}
+.fg-svc.in{opacity:1;transform:none}
+.fg-svc-n{font-family:var(--mono);font-size:11px;letter-spacing:.28em;color:#5d636b;margin-bottom:16px}
+.fg-svc h3{
+  font-family:var(--disp);font-size:clamp(30px,4.6vw,58px);line-height:.96;
+  text-transform:uppercase;margin:0 0 16px;color:#eef1f4;letter-spacing:-.005em;
+}
+.fg-svc p{margin:0 0 22px;line-height:1.68;max-width:44ch;color:#a8aeb6;font-size:15.5px}
+.fg-svc-tags{display:flex;gap:8px;flex-wrap:wrap}
+.fg-tag{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;
+  color:#8d949c;border:1px solid #2a2e33;padding:6px 10px;border-radius:2px;
+}
+.fg-svc-vis{
+  position:relative;aspect-ratio:16/10;border:1px solid #22262b;overflow:hidden;
+  background:linear-gradient(145deg,#1b1e22,#0d0f11);
+}
+.fg-svc-vis .glow{
+  position:absolute;inset:0;
+  background:radial-gradient(70% 60% at 50% 108%,rgba(255,90,31,.34),transparent 62%);
+}
+.fg-svc-vis .scan{
+  position:absolute;left:0;right:0;height:1px;top:0;
+  background:linear-gradient(90deg,transparent,var(--molten),transparent);
+  box-shadow:0 0 12px 2px rgba(255,90,31,.6);
+  animation:fgScan 4.2s linear infinite;
+}
+@keyframes fgScan{0%{top:-2%;opacity:0}12%{opacity:1}88%{opacity:1}100%{top:102%;opacity:0}}
+.fg-svc-vis .grid{
+  position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(#ffffff0d 1px,transparent 1px),linear-gradient(90deg,#ffffff0d 1px,transparent 1px);
+  background-size:34px 34px;
+}
+.fg-svc-vis img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.2) brightness(.62)}
+.fg-svc-vis .cap{
+  position:absolute;left:14px;bottom:12px;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:#c9cdd3;
+}
+
+/* cta slab */
+.fg-cta{
+  position:relative;overflow:hidden;margin-top:60px;
+  background:linear-gradient(120deg,#1a0d05,#0b0c0d 62%);
+  border-top:1px solid #2a2e33;border-bottom:1px solid #2a2e33;
+  padding:clamp(64px,9vw,118px) 0;
+}
+.fg-cta::before{
+  content:"";position:absolute;left:-10%;top:-40%;width:60%;height:180%;
+  background:radial-gradient(closest-side,rgba(255,90,31,.30),transparent 72%);
+  animation:fgBreathe 7s ease-in-out infinite alternate;
+}
+@keyframes fgBreathe{from{opacity:.55;transform:translateX(0)}to{opacity:1;transform:translateX(16%)}}
+.fg-cta .wrap{position:relative;display:flex;gap:36px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.fg-cta h2{
+  font-family:var(--disp);font-size:clamp(36px,6.4vw,88px);line-height:.9;
+  text-transform:uppercase;margin:0;color:#fff;letter-spacing:-.01em;
+}
+.fg-cta p{margin:14px 0 0;color:#bfc4ca;max-width:40ch;line-height:1.62}
+
+/* mission */
+.fg-mission{padding:clamp(80px,10vw,140px) 0;background:var(--void)}
+.fg-mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,6vw,80px);align-items:start}
+.fg-mission blockquote{
+  margin:0;font-family:var(--disp);text-transform:uppercase;
+  font-size:clamp(26px,3.5vw,46px);line-height:1.02;color:#e9edf1;letter-spacing:-.005em;
+}
+.fg-mission blockquote em{color:var(--molten);font-style:normal}
+.fg-mission p{line-height:1.72;color:#a8aeb6;margin:0 0 18px;font-size:15.5px}
+.fg-stats{display:flex;gap:34px;margin-top:32px;flex-wrap:wrap}
+.fg-stat-n{font-family:var(--disp);font-size:44px;color:var(--hot);line-height:1}
+.fg-stat-l{font-family:var(--mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:#6f757d;margin-top:8px}
+
+/* footer */
+.fg-foot{border-top:1px solid #1d2024;padding:56px 0 40px;background:#0a0b0c}
+.fg-foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.3fr;gap:40px}
+.fg-foot h4{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#6f757d;margin:0 0 16px}
+.fg-foot a{color:#a8aeb6;text-decoration:none;font-size:14px;display:block;padding:5px 0;transition:color .2s}
+.fg-foot a:hover{color:var(--molten)}
+.fg-news{display:flex;gap:0;margin-top:12px;max-width:340px}
+.fg-news input{
+  flex:1;min-width:0;background:#131518;border:1px solid #2a2e33;border-right:0;color:#e7e4df;
+  padding:13px 14px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;border-radius:2px 0 0 2px;
+}
+.fg-news input::placeholder{color:#5d636b}
+.fg-news input:focus{outline:none;border-color:var(--molten)}
+.fg-news button{border-radius:0 2px 2px 0;padding:13px 18px}
+.fg-social{display:flex;gap:10px;margin-top:18px}
+.fg-social a{
+  width:38px;height:38px;display:grid;place-items:center;border:1px solid #2a2e33;border-radius:2px;
+  font-family:var(--mono);font-size:10px;color:#8d949c;transition:all .25s;
+}
+.fg-social a:hover{border-color:var(--molten);color:var(--molten);box-shadow:0 0 16px rgba(255,90,31,.3)}
+.fg-legal{
+  margin-top:44px;padding-top:22px;border-top:1px solid #17191c;
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#5d636b;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+
+/* ============================================================
+   02 — STITCH x STEEL
+   soft against hard · the two halves of the business
+   ============================================================ */
+.d-stitch{
+  --abyss:#0b1620;
+  --hull:#132734;
+  --alu:#c2c7cc;
+  --alu-d:#7d858c;
+  --tan:#a06a38;
+  --bone:#efe7d8;
+  --thread:#e2571f;
+  --serif:"Bodoni MT",Didot,"Didot LT STD","Playfair Display",Georgia,"Times New Roman",serif;
+  background:var(--abyss);color:var(--bone);
+}
+.d-stitch ::selection{background:var(--tan);color:var(--bone)}
+
+.st-nav{position:sticky;top:52px;z-index:80;background:linear-gradient(180deg,rgba(11,22,32,.96),rgba(11,22,32,0));padding:18px 0 30px}
+.st-nav .wrap{display:flex;align-items:center;gap:30px}
+.st-logo{font-family:var(--serif);font-size:23px;letter-spacing:.01em;color:var(--bone)}
+.st-logo i{font-style:italic;color:var(--tan)}
+.st-links{display:flex;gap:26px;margin-left:auto;align-items:center}
+.st-links a{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.19em;text-transform:uppercase;
+  color:#9fb0bd;text-decoration:none;padding:5px 0;position:relative;
+}
+.st-links a::after{
+  content:"";position:absolute;left:0;bottom:0;width:100%;height:2px;
+  background-image:linear-gradient(90deg,var(--thread) 55%,transparent 55%);
+  background-size:7px 2px;transform:scaleX(0);transform-origin:left;
+  transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.st-links a:hover{color:var(--bone)}
+.st-links a:hover::after{transform:scaleX(1)}
+
+/* hero — draggable material seam */
+.st-hero{
+  position:relative;min-height:calc(100vh - 52px);margin-top:-100px;
+  overflow:hidden;background:var(--abyss);cursor:ew-resize;
+}
+.st-side{position:absolute;inset:0}
+.st-soft{
+  background:url("data:image/jpeg;base64,__IMG_B__") center/cover no-repeat;
+  clip-path:polygon(0 0,calc(var(--seam,50%) + 5%) 0,calc(var(--seam,50%) - 5%) 100%,0 100%);
+}
+.st-soft::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(11,22,32,.90),rgba(160,106,56,.30) 70%,rgba(11,22,32,.55));
+}
+.st-hard{
+  clip-path:polygon(calc(var(--seam,50%) + 5%) 0,100% 0,100% 100%,calc(var(--seam,50%) - 5%) 100%);
+  background:
+    repeating-linear-gradient(96deg,rgba(255,255,255,.055) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(96deg,rgba(0,0,0,.10) 0 2px,transparent 2px 5px),
+    linear-gradient(118deg,#8e969d 0%,#5c656d 22%,#aab2b9 40%,#4e575f 58%,#939ba2 78%,#3f474e 100%);
+}
+.st-hard::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(115deg,rgba(11,22,32,.62),rgba(11,22,32,.30) 60%,rgba(11,22,32,.72));
+}
+.st-seamsvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:6}
+.st-hero .wrap{position:relative;z-index:8;padding-top:120px;min-height:calc(100vh - 52px);display:flex;flex-direction:column;justify-content:center}
+.st-eyebrow{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.32em;text-transform:uppercase;
+  color:var(--bone);margin-bottom:24px;opacity:.75;
+}
+.st-h1{position:relative;margin:0;font-family:var(--serif);font-weight:400;line-height:.9;
+  font-size:clamp(50px,10vw,158px);letter-spacing:-.02em}
+.st-h1-row{position:relative;display:block;height:1.02em}
+.st-h1-a,.st-h1-b{position:absolute;inset:0;white-space:nowrap}
+.st-h1-a{
+  color:var(--bone);
+  clip-path:polygon(0 0,calc(var(--seam,50%) + 5%) 0,calc(var(--seam,50%) - 5%) 100%,0 100%);
+  text-shadow:0 2px 30px rgba(0,0,0,.6);
+}
+.st-h1-b{
+  clip-path:polygon(calc(var(--seam,50%) + 5%) 0,100% 0,100% 100%,calc(var(--seam,50%) - 5%) 100%);
+  color:transparent;
+  background:linear-gradient(176deg,#f4f7f9 0%,#aeb6bd 28%,#6c757d 52%,#dfe4e8 70%,#5a636b 100%);
+  -webkit-background-clip:text;background-clip:text;
+}
+.st-h1 em{font-style:italic}
+.st-sub{margin:30px 0 0;max-width:38ch;font-size:clamp(15px,1.5vw,19px);line-height:1.68;color:#d6cec0}
+.st-cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+.st-handle{
+  position:absolute;z-index:9;top:50%;left:var(--seam,50%);transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(239,231,216,.10);border:1px solid rgba(239,231,216,.42);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-family:var(--mono);font-size:13px;color:var(--bone);pointer-events:none;
+}
+.st-hint{
+  position:absolute;left:0;right:0;bottom:26px;z-index:9;
+  font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#8fa2b0;
+}
+.st-hint .wrap{display:flex;justify-content:space-between;padding-top:0;min-height:0;flex-direction:row}
+
+/* stitched + machined buttons */
+.btn-st{
+  font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;padding:16px 28px;border-radius:40px;
+  transition:transform .16s cubic-bezier(.2,.8,.2,1),box-shadow .3s,background .3s,color .3s;
+}
+.btn-st.soft{
+  background:var(--tan);color:#1a0d04;border:0;position:relative;
+  box-shadow:inset 0 0 0 2px rgba(239,231,216,0),0 8px 22px rgba(0,0,0,.42);
+}
+.btn-st.soft::after{
+  content:"";position:absolute;inset:5px;border-radius:34px;
+  border:1.5px dashed rgba(26,13,4,.5);
+  transition:inset .2s,border-color .3s;
+}
+.btn-st.soft:hover{box-shadow:0 3px 10px rgba(0,0,0,.5);transform:translateY(2px)}
+.btn-st.soft:hover::after{inset:4px;border-color:rgba(26,13,4,.85)}
+.btn-st.hard{
+  position:relative;overflow:hidden;color:var(--bone);
+  background:linear-gradient(180deg,#4f5860,#2b333a);
+  border:1px solid #6d767e;border-radius:3px;
+}
+.btn-st.hard::before{
+  content:"";position:absolute;top:0;bottom:0;width:55%;left:-70%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.42),transparent);
+  transition:left .62s cubic-bezier(.2,.8,.2,1);
+}
+.btn-st.hard:hover::before{left:120%}
+.btn-st:focus-visible{outline:2px solid var(--thread);outline-offset:3px}
+
+/* services */
+.st-services{padding:clamp(80px,10vw,140px) 0;background:var(--abyss)}
+.st-sec-head{max-width:52ch;margin-bottom:60px}
+.st-sec-kicker{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--tan);margin-bottom:18px}
+.st-sec-title{font-family:var(--serif);font-size:clamp(32px,5vw,64px);line-height:1.02;margin:0;color:var(--bone);letter-spacing:-.015em}
+.st-sec-title em{font-style:italic;color:var(--alu)}
+.st-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.st-card{
+  position:relative;overflow:hidden;padding:34px 30px 30px;min-height:400px;
+  display:flex;flex-direction:column;border-radius:4px;
+  opacity:0;transform:translateY(30px);
+  transition:opacity .85s cubic-bezier(.2,.8,.2,1),transform .85s cubic-bezier(.2,.8,.2,1);
+}
+.st-card.in{opacity:1;transform:none}
+/* upholstery — quilted + piped */
+.st-card.uph{
+  background:
+    repeating-linear-gradient(45deg,rgba(255,255,255,.035) 0 1px,transparent 1px 44px),
+    repeating-linear-gradient(-45deg,rgba(255,255,255,.035) 0 1px,transparent 1px 44px),
+    linear-gradient(160deg,#8a5a30,#4a2f18);
+  box-shadow:inset 0 0 0 6px rgba(239,231,216,.06),inset 0 0 60px rgba(0,0,0,.5);
+}
+.st-card.uph::before{
+  content:"";position:absolute;inset:13px;border-radius:2px;
+  border:1.5px dashed rgba(239,231,216,.30);pointer-events:none;
+}
+/* fabrication — weld beads */
+.st-card.fab{
+  background:
+    repeating-linear-gradient(94deg,rgba(255,255,255,.05) 0 1px,transparent 1px 4px),
+    linear-gradient(160deg,#5a636b,#252c33);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.55);
+}
+.st-card.fab::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:7px;
+  background:repeating-radial-gradient(circle at 6px 3px,#c8ced4 0 3.2px,#7c848c 3.4px 6px);
+  opacity:.85;
+}
+/* powder coat — gloss sweep */
+.st-card.pow{
+  background:linear-gradient(160deg,#20404f,#0f2130);
+  box-shadow:inset 0 0 60px rgba(0,0,0,.5);
+}
+.st-card.pow::before{
+  content:"";position:absolute;top:-30%;left:-40%;width:60%;height:170%;
+  transform:rotate(18deg);
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.16),transparent);
+  transition:left .9s cubic-bezier(.2,.8,.2,1);
+}
+.st-card.pow:hover::before{left:110%}
+.st-card-n{font-family:var(--mono);font-size:10px;letter-spacing:.26em;color:rgba(239,231,216,.6);position:relative}
+.st-card h3{font-family:var(--serif);font-size:34px;line-height:1.04;margin:14px 0 14px;color:var(--bone);position:relative}
+.st-card p{margin:0;line-height:1.66;color:rgba(239,231,216,.82);font-size:14.5px;position:relative}
+.st-card .st-card-foot{margin-top:auto;padding-top:24px;position:relative;display:flex;align-items:center;gap:10px}
+.st-card-link{
+  font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--bone);text-decoration:none;border-bottom:1px solid rgba(239,231,216,.4);padding-bottom:4px;
+}
+.st-card-link:hover{border-color:var(--thread);color:var(--thread)}
+
+/* cta */
+.st-cta{position:relative;padding:clamp(64px,9vw,118px) 0;background:var(--hull);overflow:hidden}
+.st-cta::before{
+  content:"";position:absolute;inset:0;opacity:.5;
+  background:repeating-linear-gradient(45deg,rgba(239,231,216,.05) 0 1px,transparent 1px 26px);
+}
+.st-cta .wrap{position:relative;display:flex;gap:36px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.st-cta h2{font-family:var(--serif);font-size:clamp(34px,5.6vw,74px);line-height:.98;margin:0;color:var(--bone);letter-spacing:-.015em}
+.st-cta h2 em{font-style:italic;color:var(--tan)}
+.st-cta p{margin:14px 0 0;color:#b9c6d0;max-width:38ch;line-height:1.66}
+
+/* mission */
+.st-mission{padding:clamp(80px,10vw,140px) 0;background:var(--abyss)}
+.st-mission-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(30px,6vw,84px);align-items:center}
+.st-mission blockquote{margin:0;font-family:var(--serif);font-size:clamp(26px,3.6vw,48px);line-height:1.14;color:var(--bone);letter-spacing:-.015em}
+.st-mission blockquote em{font-style:italic;color:var(--tan)}
+.st-mission p{line-height:1.74;color:#b0bcc6;margin:22px 0 0;font-size:15.5px;max-width:46ch}
+.st-swatchbar{display:flex;gap:0;margin-top:34px;border:1px solid rgba(239,231,216,.18);border-radius:3px;overflow:hidden;max-width:420px}
+.st-swatchbar div{flex:1;height:52px;position:relative}
+.st-swatchbar span{
+  position:absolute;left:8px;bottom:7px;font-family:var(--mono);font-size:8px;
+  letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.72);
+}
+.st-mission-vis{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px}
+.st-mission-vis img{width:100%;height:100%;object-fit:cover;filter:saturate(.5) contrast(1.1) brightness(.86)}
+.st-mission-vis::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(160,106,56,.24),rgba(11,22,32,.6));
+}
+.st-mission-cap{
+  position:absolute;left:16px;bottom:14px;z-index:3;
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--bone);
+}
+
+/* footer */
+.st-foot{border-top:1px solid rgba(239,231,216,.12);padding:56px 0 40px;background:#091219}
+.st-foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.3fr;gap:40px}
+.st-foot h4{font-family:var(--mono);font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:#7e8f9c;margin:0 0 16px}
+.st-foot a{color:#b0bcc6;text-decoration:none;font-size:14px;display:block;padding:5px 0}
+.st-foot a:hover{color:var(--tan)}
+.st-news{display:flex;margin-top:12px;max-width:340px}
+.st-news input{
+  flex:1;min-width:0;background:#0e1c26;border:1px solid rgba(239,231,216,.18);border-right:0;color:var(--bone);
+  padding:13px 14px;font-family:var(--mono);font-size:11px;border-radius:40px 0 0 40px;
+}
+.st-news input::placeholder{color:#6f8090}
+.st-news input:focus{outline:none;border-color:var(--tan)}
+.st-news button{border-radius:0 40px 40px 0;padding:13px 22px}
+.st-social{display:flex;gap:10px;margin-top:18px}
+.st-social a{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;
+  border:1px dashed rgba(239,231,216,.34);font-family:var(--mono);font-size:10px;color:#b0bcc6;transition:all .25s;
+}
+.st-social a:hover{border-style:solid;border-color:var(--tan);color:var(--tan)}
+.st-legal{
+  margin-top:44px;padding-top:22px;border-top:1px solid rgba(239,231,216,.08);
+  font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#6f8090;
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+
+/* ============================================================
+   03 — THE FINISH
+   the name was always the concept · surface + finish line
+   ============================================================ */
+.d-finish{
+  --chalk:#f7f7f5;
+  --ink:#0b0b0c;
+  --smoke:#6a6c70;
+  --rule:#d9d9d4;
+  --accent:#ff4d00;
+  --wide:"Arial Black","Arial Bold",Arial,Helvetica,sans-serif;
+  background:var(--chalk);color:var(--ink);
+}
+.d-finish ::selection{background:var(--accent);color:#fff}
+
+.fn-strip{position:fixed;top:52px;left:0;right:0;height:3px;z-index:90;background:var(--rule)}
+.fn-strip i{display:block;height:100%;width:var(--prog,0%);background:var(--ink);transition:width .1s linear}
+.fn-strip i::after{content:"";float:right;width:26px;height:100%;background:repeating-linear-gradient(90deg,var(--accent) 0 4px,#fff 4px 8px)}
+
+.fn-nav{position:sticky;top:55px;z-index:80;background:rgba(247,247,245,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.fn-nav .wrap{display:flex;align-items:center;gap:30px;height:66px}
+.fn-logo{font-family:var(--wide);font-size:17px;letter-spacing:-.02em;text-transform:uppercase;display:inline-block;transform:scaleX(1.14);transform-origin:left}
+.fn-logo i{font-style:normal;color:var(--accent)}
+.fn-links{display:flex;gap:4px;margin-left:auto;align-items:center}
+.fn-links a{
+  position:relative;overflow:hidden;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--ink);text-decoration:none;padding:9px 13px;border-radius:2px;
+  transition:color .3s;z-index:0;
+}
+.fn-links a::before{
+  content:"";position:absolute;inset:0;z-index:-1;background:var(--ink);
+  transform:scaleX(0);transform-origin:left;transition:transform .34s cubic-bezier(.2,.8,.2,1);
+}
+.fn-links a:hover{color:var(--chalk)}
+.fn-links a:hover::before{transform:scaleX(1)}
+
+/* hero */
+.fn-hero{position:relative;overflow:hidden;padding:clamp(40px,6vw,70px) 0 clamp(50px,7vw,90px);background:var(--chalk)}
+.fn-kinetic{
+  position:absolute;top:clamp(120px,20vw,240px);left:0;right:0;z-index:0;
+  font-family:var(--wide);font-size:clamp(90px,19vw,300px);line-height:.8;
+  text-transform:uppercase;white-space:nowrap;color:transparent;
+  -webkit-text-stroke:1.5px rgba(11,11,12,.13);
+  transform:skewY(calc(var(--vel,0) * .28deg));
+  transition:transform .4s cubic-bezier(.2,.8,.2,1);
+  pointer-events:none;user-select:none;
+}
+.fn-kinetic span{display:inline-block;animation:fnMarquee 22s linear infinite;padding-right:.2em}
+@keyframes fnMarquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.fn-hero .wrap{position:relative;z-index:3}
+.fn-hero-top{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;flex-wrap:wrap;margin-bottom:30px}
+.fn-eyebrow{font-family:var(--mono);font-size:10.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--smoke)}
+.fn-eyebrow b{color:var(--accent)}
+.fn-h1{
+  margin:0;font-family:var(--wide);text-transform:uppercase;
+  font-size:clamp(42px,8.6vw,132px);line-height:.86;letter-spacing:-.035em;
+  transform:skewY(calc(var(--vel,0) * .16deg));transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.fn-h1 .thin{
+  display:block;font-family:var(--sans);font-weight:300;text-transform:none;
+  font-size:clamp(17px,2.1vw,29px);letter-spacing:-.01em;color:var(--smoke);margin-top:16px;line-height:1.3;
+}
+.fn-h1 mark{background:none;color:var(--accent)}
+
+/* the finishing object */
+.fn-stage{position:relative;margin-top:34px;display:grid;grid-template-columns:1.55fr .95fr;gap:clamp(20px,3.4vw,42px);align-items:stretch}
+.fn-obj{
+  position:relative;overflow:hidden;border-radius:3px;aspect-ratio:4/3;
+  background:#1a1a1a;box-shadow:0 26px 60px -22px rgba(11,11,12,.44);
+}
+.fn-obj-base{position:absolute;inset:0;background-size:cover;background-position:center;transition:filter .5s}
+.fn-tiles{position:absolute;inset:0;display:grid}
+.fn-tiles div{opacity:0;transition:opacity .34s ease;background-repeat:no-repeat}
+.fn-obj-frame{
+  position:absolute;inset:0;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16);
+}
+.fn-obj-tag{
+  position:absolute;left:0;bottom:0;z-index:4;display:flex;align-items:stretch;
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+}
+.fn-obj-tag b{background:var(--ink);color:var(--chalk);padding:11px 14px;font-weight:400}
+.fn-obj-tag em{background:var(--accent);color:#fff;padding:11px 14px;font-style:normal;transition:background .3s}
+.fn-obj-checker{
+  position:absolute;right:0;top:0;z-index:4;width:56px;height:26px;
+  background:repeating-conic-gradient(var(--ink) 0 25%,transparent 0 50%) 0 0/13px 13px;
+}
+.fn-side{display:flex;flex-direction:column;gap:14px}
+.fn-panel{border:1px solid var(--rule);border-radius:3px;padding:22px;background:#fff}
+.fn-panel h4{margin:0 0 6px;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--smoke)}
+.fn-panel p{margin:0;font-size:14.5px;line-height:1.62;color:#3c3e42}
+.fn-swatches{display:flex;gap:9px;margin-top:14px;flex-wrap:wrap}
+.fn-sw{
+  width:40px;height:40px;border-radius:50%;border:2px solid transparent;cursor:pointer;
+  padding:0;position:relative;transition:transform .22s cubic-bezier(.2,.8,.2,1),box-shadow .22s;
+  box-shadow:inset 0 -6px 12px rgba(0,0,0,.28),inset 0 5px 9px rgba(255,255,255,.42);
+}
+.fn-sw:hover{transform:translateY(-4px) scale(1.07)}
+.fn-sw[aria-pressed="true"]{border-color:var(--ink);transform:translateY(-3px)}
+.fn-sw:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.fn-side .fn-panel.dark{background:var(--ink);border-color:var(--ink);color:var(--chalk);flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.fn-side .fn-panel.dark h4{color:#8a8d92}
+.fn-side .fn-panel.dark p{color:#c9cbcf}
+.fn-bignum{font-family:var(--wide);font-size:clamp(38px,5vw,62px);line-height:.9;letter-spacing:-.03em;color:var(--accent);transition:color .3s}
+
+/* gloss buttons */
+.btn-fn{
+  --mx:50%;--my:50%;
+  position:relative;overflow:hidden;isolation:isolate;display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--mono);font-size:11px;letter-spacing:.19em;text-transform:uppercase;
+  text-decoration:none;cursor:pointer;padding:16px 28px;border-radius:40px;border:0;
+  color:#fff;background:var(--accent);
+  box-shadow:inset 0 -7px 14px rgba(0,0,0,.24),inset 0 6px 11px rgba(255,255,255,.34),0 9px 22px -8px rgba(11,11,12,.5);
+  transition:transform .14s cubic-bezier(.2,.8,.2,1),box-shadow .28s,background .3s;
+}
+.btn-fn::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .3s;
+  background:radial-gradient(circle 90px at var(--mx) var(--my),rgba(255,255,255,.55),transparent 70%);
+}
+.btn-fn::after{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:0;
+  background:repeating-conic-gradient(rgba(255,255,255,.4) 0 25%,transparent 0 50%) var(--mx) var(--my)/14px 14px;
+  transition:opacity .35s;
+}
+.btn-fn:hover{transform:translateY(-2px)}
+.btn-fn:hover::before{opacity:1}
+.btn-fn:hover::after{opacity:.5}
+.btn-fn:active{transform:translateY(1px) scale(.985)}
+.btn-fn:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.btn-fn.dark{background:var(--ink);color:var(--chalk)}
+.btn-fn.line{
+  background:transparent;color:var(--ink);border:1.5px solid var(--ink);
+  box-shadow:none;
+}
+.btn-fn.line:hover{background:var(--ink);color:var(--chalk)}
+
+/* services */
+.fn-services{padding:clamp(70px,9vw,120px) 0;background:var(--chalk);border-top:1px solid var(--rule)}
+.fn-sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:46px}
+.fn-sec-title{
+  font-family:var(--wide);font-size:clamp(30px,5.2vw,74px);line-height:.88;margin:0;
+  text-transform:uppercase;letter-spacing:-.035em;
+  transform:skewY(calc(var(--vel,0) * .12deg));transition:transform .4s cubic-bezier(.2,.8,.2,1);
+}
+.fn-sec-title mark{background:none;color:var(--accent)}
+.fn-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fn-card{
+  position:relative;overflow:hidden;background:#fff;border:1px solid var(--rule);border-radius:3px;
+  padding:26px 24px 24px;display:flex;flex-direction:column;min-height:330px;
+  opacity:0;transform:translateY(26px);
+  transition:opacity .8s cubic-bezier(.2,.8,.2,1),transform .8s cubic-bezier(.2,.8,.2,1),border-color .3s,box-shadow .3s;
+}
+.fn-card.in{opacity:1;transform:none}
+.fn-card:hover{border-color:var(--accent);box-shadow:0 18px 40px -20px rgba(11,11,12,.35)}
+.fn-card::before{
+  content:"";position:absolute;left:0;right:0;top:0;height:5px;background:var(--accent);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1);
+}
+.fn-card:hover::before{transform:scaleX(1)}
+.fn-card-flag{
+  position:absolute;right:16px;top:16px;width:30px;height:20px;opacity:.14;
+  background:repeating-conic-gradient(var(--ink) 0 25%,transparent 0 50%) 0 0/10px 10px;
+}
+.fn-card h3{
+  font-family:var(--wide);text-transform:uppercase;font-size:clamp(21px,2.5vw,30px);
+  line-height:.94;letter-spacing:-.03em;margin:0 0 12px;
+}
+.fn-card p{margin:0;font-size:14.5px;line-height:1.64;color:#4a4d51}
+.fn-card-spec{
+  margin-top:auto;padding-top:22px;display:flex;flex-direction:column;gap:7px;
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--smoke);
+}
+.fn-card-spec span{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--rule);padding-top:7px}
+.fn-card-spec b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
+
+/* cta */
+.fn-cta{position:relative;overflow:hidden;background:var(--ink);color:var(--chalk);padding:clamp(60px,8vw,110px) 0}
+.fn-cta-check{
+  position:absolute;inset:0;opacity:.05;
+  background:repeating-conic-gradient(#fff 0 25%,transparent 0 50%) 0 0/58px 58px;
+  animation:fnSlide 18s linear infinite;
+}
+@keyframes fnSlide{to{background-position:116px 0}}
+.fn-cta .wrap{position:relative;display:flex;gap:36px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.fn-cta h2{
+  font-family:var(--wide);text-transform:uppercase;font-size:clamp(34px,6.2vw,90px);
+  line-height:.86;letter-spacing:-.038em;margin:0;
+}
+.fn-cta h2 mark{background:none;color:var(--accent)}
+.fn-cta p{margin:16px 0 0;color:#a9acb1;max-width:38ch;line-height:1.62}
+
+/* mission */
+.fn-mission{padding:clamp(70px,9vw,120px) 0;background:var(--chalk)}
+.fn-mission-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.fn-mission blockquote{
+  margin:0;font-family:var(--wide);text-transform:uppercase;
+  font-size:clamp(24px,3.4vw,44px);line-height:.96;letter-spacing:-.035em;
+}
+.fn-mission blockquote mark{background:none;color:var(--accent)}
+.fn-mission p{line-height:1.72;color:#4a4d51;margin:22px 0 0;font-size:15.5px;max-width:46ch}
+.fn-badges{display:flex;gap:10px;margin-top:28px;flex-wrap:wrap}
+.fn-badge{
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;
+  border:1px solid var(--rule);border-radius:40px;padding:9px 15px;color:#4a4d51;background:#fff;
+}
+.fn-mission-vis{position:relative;aspect-ratio:1/1;overflow:hidden;border-radius:3px;background:#1a1a1a}
+.fn-mission-vis img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15)}
+.fn-mission-vis::after{
+  content:"";position:absolute;inset:0;mix-blend-mode:color;background:var(--accent);opacity:.55;transition:background .3s;
+}
+.fn-mission-cap{
+  position:absolute;left:0;bottom:0;z-index:3;background:var(--ink);color:var(--chalk);
+  font-family:var(--mono);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;padding:9px 13px;
+}
+
+/* footer */
+.fn-foot{background:var(--chalk);border-top:1px solid var(--rule);padding:52px 0 36px}
+.fn-foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1.3fr;gap:40px}
+.fn-foot h4{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--smoke);margin:0 0 14px}
+.fn-foot a{color:#3c3e42;text-decoration:none;font-size:14px;display:block;padding:5px 0}
+.fn-foot a:hover{color:var(--accent)}
+.fn-news{display:flex;margin-top:12px;max-width:340px}
+.fn-news input{
+  flex:1;min-width:0;background:#fff;border:1.5px solid var(--rule);border-right:0;color:var(--ink);
+  padding:13px 14px;font-family:var(--mono);font-size:11px;border-radius:40px 0 0 40px;
+}
+.fn-news input::placeholder{color:#9b9ea3}
+.fn-news input:focus{outline:none;border-color:var(--accent)}
+.fn-news button{border-radius:0 40px 40px 0;padding:14px 22px}
+.fn-social{display:flex;gap:9px;margin-top:16px}
+.fn-social a{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;border:1.5px solid var(--rule);
+  font-family:var(--mono);font-size:10px;color:#4a4d51;transition:all .25s;
+}
+.fn-social a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.fn-legal{
+  margin-top:42px;padding-top:20px;border-top:1px solid var(--rule);
+  font-family:var(--mono);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--smoke);
+  display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+
+/* ---- responsive ---- */
+@media (max-width:1000px){
+  .fg-svc,.fg-mission-grid,.st-mission-grid,.fn-stage,.fn-mission-grid{grid-template-columns:1fr}
+  .st-cards,.fn-cards{grid-template-columns:1fr}
+  .fg-foot-grid,.st-foot-grid,.fn-foot-grid{grid-template-columns:1fr 1fr}
+  .fn-obj{aspect-ratio:16/10}
+}
+@media (max-width:680px){
+  .shell-in{height:auto;padding:10px 14px;flex-wrap:wrap;gap:10px}
+  .stage{padding-top:96px}
+  .fg-nav,.st-nav{top:96px}
+  .fn-strip{top:96px}
+  .fn-nav{top:99px}
+  .fg-links,.st-links,.fn-links{display:none}
+  .fg-foot-grid,.st-foot-grid,.fn-foot-grid{grid-template-columns:1fr}
+  .fg-hero,.st-hero{min-height:auto;padding-bottom:70px}
+  .st-hero .wrap{min-height:auto;padding-bottom:60px}
+  .note{display:none}
+}
+</style>
+
+<header class="shell">
+  <div class="shell-in">
+    <div class="shell-mark"><b>FLCC</b> &nbsp;Redesign&nbsp;/&nbsp;3 Homepage Directions</div>
+    <div class="shell-tabs" role="tablist" aria-label="Design directions">
+      <button class="shell-tab" role="tab" aria-selected="true" data-dir="forge">01 &nbsp;Forge</button>
+      <button class="shell-tab" role="tab" aria-selected="false" data-dir="stitch">02 &nbsp;Stitch &times; Steel</button>
+      <button class="shell-tab" role="tab" aria-selected="false" data-dir="finish">03 &nbsp;The Finish</button>
+    </div>
+  </div>
+</header>
+
+<main class="stage">
+
+<!-- ============================ 01 FORGE ============================ -->
+<div class="dir d-forge" id="dir-forge" role="tabpanel" aria-label="Direction 1: Forge">
+
+  <nav class="fg-nav">
+    <div class="wrap">
+      <div class="fg-logo">Finish<i>Lines</i></div>
+      <div class="fg-links">
+        <a href="#">Services</a><a href="#">Contact</a><a href="#">About</a><a href="#">Gallery</a>
+        <a href="#" aria-label="Shop">Shop&nbsp;(0)</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="fg-hero">
+    <div class="fg-hero-img" aria-hidden="true"></div>
+    <div class="fg-hero-veil" aria-hidden="true"></div>
+    <canvas class="fg-sparks" aria-hidden="true"></canvas>
+    <span class="note" style="top:118px;right:24px">Hero — plasma cut on load, re-cuts every 9s</span>
+    <div class="wrap">
+      <div class="fg-eyebrow">Apopka, Florida &nbsp;·&nbsp; Boats &amp; Vehicles &nbsp;·&nbsp; Est. Family-Run</div>
+      <h1 class="fg-h1">
+        <span class="fg-h1-row">
+          <span class="fg-h1-base">FinishLines</span>
+          <span class="fg-h1-hot" aria-hidden="true">FinishLines</span>
+        </span>
+        <span class="fg-h1-row">
+          <span class="fg-h1-base">Creative</span>
+          <span class="fg-h1-hot" aria-hidden="true">Creative</span>
+        </span>
+        <span class="fg-h1-row">
+          <span class="fg-h1-base">Concepts</span>
+          <span class="fg-h1-hot" aria-hidden="true">Concepts</span>
+          <span class="fg-cutline" aria-hidden="true"></span>
+        </span>
+      </h1>
+      <p class="fg-sub"><b>Fabrication &amp; Upholstery Services.</b> From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.</p>
+      <div class="fg-cta-row">
+        <a class="btn-fg" href="#">Start a Build</a>
+        <a class="btn-fg ghost" href="#">See the Gallery</a>
+      </div>
+    </div>
+    <div class="fg-scroll">
+      <div class="wrap"><span>Scroll — the cut follows</span><span>01 / Forge</span></div>
+    </div>
+  </section>
+
+  <div class="fg-cut-edge" data-cut></div>
+
+  <section class="fg-services">
+    <div class="wrap">
+      <div class="fg-sec-head">
+        <div class="fg-sec-kicker">What we do</div>
+        <h2 class="fg-sec-title">Three trades,<br>one roof</h2>
+      </div>
+
+      <article class="fg-svc" data-rise>
+        <div>
+          <div class="fg-svc-n">01 — Upholstery</div>
+          <h3>Marine-grade<br>interiors</h3>
+          <p>Transform your boat or vehicle interior with custom upholstery that combines comfort, style, and durability. Complete restorations and repairs in marine-grade materials, at competitive rates.</p>
+          <div class="fg-svc-tags"><span class="fg-tag">Boat Seating</span><span class="fg-tag">Vehicle Interiors</span><span class="fg-tag">Repairs</span><span class="fg-tag">Full Restoration</span></div>
+        </div>
+        <div class="fg-svc-vis">
+          <img src="data:image/jpeg;base64,__IMG_B__" alt="Sewing machine needle stitching marine-grade upholstery fabric">
+          <div class="glow"></div><div class="scan"></div>
+          <div class="cap">Stitch detail — marine vinyl</div>
+        </div>
+      </article>
+
+      <article class="fg-svc" data-rise>
+        <div>
+          <div class="fg-svc-n">02 — Fabrication</div>
+          <h3>Cut, formed<br>&amp; welded</h3>
+          <p>From custom metal projects to precision CNC work, our fabrication services deliver strength and creativity. Custom builds, repairs, and modifications that blend innovation with craftsmanship.</p>
+          <div class="fg-svc-tags"><span class="fg-tag">CNC Plasma</span><span class="fg-tag">Welding</span><span class="fg-tag">Custom Gates</span><span class="fg-tag">Modifications</span></div>
+        </div>
+        <div class="fg-svc-vis">
+          <img src="data:image/jpeg;base64,__IMG_C__" alt="CNC plasma-cut steel eagle set into a custom fabricated gate">
+          <div class="glow"></div><div class="scan"></div>
+          <div class="cap">CNC plasma — custom gate insert</div>
+        </div>
+      </article>
+
+      <article class="fg-svc" data-rise>
+        <div>
+          <div class="fg-svc-n">03 — Powder Coating</div>
+          <h3>A finish that<br>outlasts paint</h3>
+          <p>Our powder coating service provides a durable, corrosion-resistant finish at an affordable price. Unlike paint, powder coating lasts longer, resists chips, and requires minimal upkeep — in a range of colors and textures.</p>
+          <div class="fg-svc-tags"><span class="fg-tag">Gloss</span><span class="fg-tag">Matte</span><span class="fg-tag">Textured</span><span class="fg-tag">Marine Rated</span></div>
+        </div>
+        <div class="fg-svc-vis">
+          <img src="data:image/jpeg;base64,__IMG_A__" alt="Welder in a helmet working with a bright arc in the FLCC shop">
+          <div class="glow"></div><div class="scan"></div>
+          <div class="cap">In the shop — Apopka, FL</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="fg-cta">
+    <div class="wrap">
+      <div>
+        <h2>Set up<br>a call</h2>
+        <p>Tell us what you're building. We'll talk through materials, timeline, and cost — no obligation, no runaround.</p>
+      </div>
+      <div class="fg-cta-row"><a class="btn-fg" href="#">Book Now</a><a class="btn-fg ghost" href="#">Contact Us</a></div>
+    </div>
+  </section>
+
+  <section class="fg-mission">
+    <div class="wrap">
+      <div class="fg-mission-grid">
+        <blockquote>More than<br>just a shop —<br><em>a family-driven<br>business.</em></blockquote>
+        <div>
+          <p>At FLCC Fabrication &amp; Upholstery, we're built on craftsmanship, creativity, and precision. What started as a passion for rebuilding cars and boats grew into an established local business.</p>
+          <p>We deliver work that lasts, looks incredible, and exceeds expectations — whether it's a full boat interior, a restored classic, or a one-off custom gate.</p>
+          <div class="fg-stats">
+            <div><div class="fg-stat-n">4</div><div class="fg-stat-l">Trades in-house</div></div>
+            <div><div class="fg-stat-n">1</div><div class="fg-stat-l">Family, no subcontractors</div></div>
+            <div><div class="fg-stat-n">0</div><div class="fg-stat-l">Jobs too small</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fg-foot">
+    <div class="wrap">
+      <div class="fg-foot-grid">
+        <div>
+          <div class="fg-logo" style="margin-bottom:14px">Finish<i>Lines</i></div>
+          <p style="color:#8d949c;line-height:1.66;font-size:14px;margin:0;max-width:32ch">Fabrication &amp; Upholstery. Built by hand in Apopka, Florida.</p>
+          <div class="fg-social">
+            <a href="#" aria-label="TikTok">TT</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="Instagram">IG</a>
+          </div>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <a href="#">About Us</a><a href="#">Contact</a><a href="#">Shop</a><a href="#">Services</a>
+        </div>
+        <div>
+          <h4>News &amp; Updates</h4>
+          <p style="color:#8d949c;line-height:1.6;font-size:14px;margin:0">Sign up for build photos and shop news.</p>
+          <form class="fg-news" onsubmit="return false">
+            <input type="email" placeholder="EMAIL ADDRESS" aria-label="Email address">
+            <button class="btn-fg" type="submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+      <div class="fg-legal"><span>&copy; FinishLines Creative Concepts</span><span>Apopka, FL</span></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ======================= 02 STITCH x STEEL ======================= -->
+<div class="dir d-stitch" id="dir-stitch" role="tabpanel" aria-label="Direction 2: Stitch times Steel" hidden>
+
+  <nav class="st-nav">
+    <div class="wrap">
+      <div class="st-logo">Finish<i>Lines</i></div>
+      <div class="st-links">
+        <a href="#">Services</a><a href="#">Contact</a><a href="#">About</a><a href="#">Gallery</a>
+        <a href="#">Shop&nbsp;(0)</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="st-hero" id="st-hero">
+    <div class="st-side st-soft" aria-hidden="true"></div>
+    <div class="st-side st-hard" aria-hidden="true"></div>
+    <svg class="st-seamsvg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+      <line id="st-thread" x1="55" y1="0" x2="45" y2="100" stroke="rgba(239,231,216,.30)" stroke-width=".14" vector-effect="non-scaling-stroke"></line>
+      <line id="st-stitch" x1="55" y1="0" x2="45" y2="100" stroke="#efe7d8" stroke-width=".5" vector-effect="non-scaling-stroke"
+            stroke-dasharray="9 7" stroke-linecap="round" pathLength="100" stroke-dashoffset="100"></line>
+    </svg>
+    <span class="note" style="top:118px;right:24px">Drag anywhere — the material seam follows you</span>
+    <div class="st-handle" aria-hidden="true">&#8596;</div>
+    <div class="wrap">
+      <div class="st-eyebrow">Upholstery &nbsp;&times;&nbsp; Metal &nbsp;·&nbsp; Apopka, Florida</div>
+      <h1 class="st-h1">
+        <span class="st-h1-row">
+          <span class="st-h1-a">FinishLines</span>
+          <span class="st-h1-b" aria-hidden="true">FinishLines</span>
+        </span>
+        <span class="st-h1-row">
+          <span class="st-h1-a"><em>Creative</em></span>
+          <span class="st-h1-b" aria-hidden="true"><em>Creative</em></span>
+        </span>
+        <span class="st-h1-row">
+          <span class="st-h1-a">Concepts</span>
+          <span class="st-h1-b" aria-hidden="true">Concepts</span>
+        </span>
+      </h1>
+      <p class="st-sub"><strong style="color:var(--bone)">Fabrication &amp; Upholstery Services.</strong> From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.</p>
+      <div class="st-cta-row">
+        <a class="btn-st soft" href="#">Start a Build</a>
+        <a class="btn-st hard" href="#">See the Gallery</a>
+      </div>
+    </div>
+    <div class="st-hint">
+      <div class="wrap"><span>Soft &#8592; drag &#8594; Hard</span><span>02 / Stitch &times; Steel</span></div>
+    </div>
+  </section>
+
+  <section class="st-services">
+    <div class="wrap">
+      <div class="st-sec-head">
+        <div class="st-sec-kicker">What we do</div>
+        <h2 class="st-sec-title">One shop that works in <em>thread</em> and in <em>steel</em>.</h2>
+      </div>
+      <div class="st-cards">
+        <article class="st-card uph" data-rise>
+          <div class="st-card-n">01 &nbsp;Upholstery</div>
+          <h3>Marine-grade interiors</h3>
+          <p>Transform your boat or vehicle interior with custom upholstery that combines comfort, style, and durability. Complete restorations and repairs in marine-grade materials, at competitive rates.</p>
+          <div class="st-card-foot"><a class="st-card-link" href="#">Explore Upholstery</a></div>
+        </article>
+        <article class="st-card fab" data-rise>
+          <div class="st-card-n">02 &nbsp;Fabrication</div>
+          <h3>Cut, formed &amp; welded</h3>
+          <p>From custom metal projects to precision CNC work, our fabrication services deliver strength and creativity — custom builds, repairs, and modifications that blend innovation with craftsmanship.</p>
+          <div class="st-card-foot"><a class="st-card-link" href="#">Explore Fabrication</a></div>
+        </article>
+        <article class="st-card pow" data-rise>
+          <div class="st-card-n">03 &nbsp;Powder Coating</div>
+          <h3>A finish that outlasts paint</h3>
+          <p>A durable, corrosion-resistant finish at an affordable price. Unlike paint, powder coating lasts longer, resists chips, and requires minimal upkeep — in a range of colors and textures.</p>
+          <div class="st-card-foot"><a class="st-card-link" href="#">Explore Coating</a></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="st-cta">
+    <div class="wrap">
+      <div>
+        <h2>Set up <em>a call</em></h2>
+        <p>Tell us what you're building. We'll talk through materials, timeline, and cost — no obligation, no runaround.</p>
+      </div>
+      <div class="st-cta-row"><a class="btn-st soft" href="#">Book Now</a><a class="btn-st hard" href="#">Contact Us</a></div>
+    </div>
+  </section>
+
+  <section class="st-mission">
+    <div class="wrap">
+      <div class="st-mission-grid">
+        <div>
+          <blockquote>More than just a shop — <em>a family-driven business</em> built on craftsmanship, creativity, and precision.</blockquote>
+          <p>What started as a passion for rebuilding cars and boats grew into an established local business. We deliver work that lasts, looks incredible, and exceeds expectations.</p>
+          <div class="st-swatchbar" aria-label="Powder coat finishes">
+            <div style="background:#1f2a33"><span>Marine</span></div>
+            <div style="background:#a06a38"><span>Saddle</span></div>
+            <div style="background:#b6bcc2"><span>Alu</span></div>
+            <div style="background:#e2571f"><span>Thread</span></div>
+            <div style="background:#efe7d8"><span style="color:#4a3a28">Bone</span></div>
+          </div>
+        </div>
+        <figure class="st-mission-vis" style="margin:0">
+          <img src="data:image/jpeg;base64,__IMG_C__" alt="CNC plasma-cut steel eagle set into a custom fabricated gate">
+          <figcaption class="st-mission-cap">Custom gate — CNC cut &amp; welded in-house</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="st-foot">
+    <div class="wrap">
+      <div class="st-foot-grid">
+        <div>
+          <div class="st-logo" style="margin-bottom:14px">Finish<i>Lines</i></div>
+          <p style="color:#8fa2b0;line-height:1.66;font-size:14px;margin:0;max-width:32ch">Fabrication &amp; Upholstery. Built by hand in Apopka, Florida.</p>
+          <div class="st-social"><a href="#" aria-label="TikTok">TT</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="Instagram">IG</a></div>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <a href="#">About Us</a><a href="#">Contact</a><a href="#">Shop</a><a href="#">Services</a>
+        </div>
+        <div>
+          <h4>News &amp; Updates</h4>
+          <p style="color:#8fa2b0;line-height:1.6;font-size:14px;margin:0">Sign up for build photos and shop news.</p>
+          <form class="st-news" onsubmit="return false">
+            <input type="email" placeholder="EMAIL ADDRESS" aria-label="Email address">
+            <button class="btn-st hard" type="submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+      <div class="st-legal"><span>&copy; FinishLines Creative Concepts</span><span>Apopka, FL</span></div>
+    </div>
+  </footer>
+</div>
+
+<!-- ========================== 03 THE FINISH ========================== -->
+<div class="dir d-finish" id="dir-finish" role="tabpanel" aria-label="Direction 3: The Finish" hidden>
+
+  <div class="fn-strip" aria-hidden="true"><i></i></div>
+
+  <nav class="fn-nav">
+    <div class="wrap">
+      <div class="fn-logo">Finish<i>Lines</i></div>
+      <div class="fn-links">
+        <a href="#">Services</a><a href="#">Contact</a><a href="#">About</a><a href="#">Gallery</a><a href="#">Shop&nbsp;(0)</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="fn-hero">
+    <div class="fn-kinetic" aria-hidden="true"><span>Finish&nbsp;·&nbsp;Finish&nbsp;·&nbsp;Finish&nbsp;·&nbsp;Finish&nbsp;·&nbsp;Finish&nbsp;·&nbsp;Finish&nbsp;·&nbsp;</span></div>
+    <div class="wrap">
+      <div class="fn-hero-top">
+        <div class="fn-eyebrow">Apopka, Florida &nbsp;·&nbsp; Boats &amp; Vehicles &nbsp;·&nbsp; <b>Family-Run</b></div>
+        <div class="fn-eyebrow">03 / The Finish</div>
+      </div>
+      <h1 class="fn-h1">
+        Two kinds<br>of <mark>finish.</mark>
+        <span class="thin"><strong style="font-weight:600;color:var(--ink)">FinishLines Creative Concepts</strong> — Fabrication &amp; Upholstery. From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.</span>
+      </h1>
+
+      <div class="fn-stage">
+        <figure class="fn-obj" id="fn-obj" style="margin:0">
+          <div class="fn-obj-base" id="fn-base"></div>
+          <div class="fn-tiles" id="fn-tiles"></div>
+          <div class="fn-obj-frame"></div>
+          <div class="fn-obj-checker" aria-hidden="true"></div>
+          <figcaption class="fn-obj-tag"><b>Custom Gate / CNC Plasma</b><em id="fn-finish-name">Raw Steel</em></figcaption>
+        </figure>
+        <div class="fn-side">
+          <div class="fn-panel">
+            <h4>Powder coat the site</h4>
+            <p>Pick a finish. Every accent on this page changes with it — the same way it would change on your gate, your console, or your wheels.</p>
+            <div class="fn-swatches" role="group" aria-label="Powder coat colors">
+              <button class="fn-sw" style="background:#ff4d00" data-c="#ff4d00" aria-pressed="true" aria-label="Safety Orange"></button>
+              <button class="fn-sw" style="background:#d0021b" data-c="#d0021b" aria-pressed="false" aria-label="Candy Red"></button>
+              <button class="fn-sw" style="background:#0057ff" data-c="#0057ff" aria-pressed="false" aria-label="Electric Blue"></button>
+              <button class="fn-sw" style="background:#7fb200" data-c="#7fb200" aria-pressed="false" aria-label="Lime"></button>
+              <button class="fn-sw" style="background:#b87333" data-c="#b87333" aria-pressed="false" aria-label="Raw Copper"></button>
+            </div>
+          </div>
+          <div class="fn-panel dark">
+            <div>
+              <h4>Turnaround</h4>
+              <div class="fn-bignum" id="fn-num">3&ndash;5</div>
+              <p style="margin-top:8px">Typical days from drop-off to coated, cured, and ready for pickup.</p>
+            </div>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+              <a class="btn-fn" href="#">Start a Build</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-services">
+    <div class="wrap">
+      <div class="fn-sec-head">
+        <h2 class="fn-sec-title">Three trades.<br><mark>One roof.</mark></h2>
+        <a class="btn-fn line" href="#">All Services</a>
+      </div>
+      <div class="fn-cards">
+        <article class="fn-card" data-rise>
+          <div class="fn-card-flag" aria-hidden="true"></div>
+          <h3>Upholstery</h3>
+          <p>Transform your boat or vehicle interior with custom upholstery that combines comfort, style, and durability. Complete restorations and repairs in marine-grade materials.</p>
+          <div class="fn-card-spec">
+            <span>Materials <b>Marine Grade</b></span>
+            <span>Scope <b>Boats &amp; Vehicles</b></span>
+            <span>Service <b>Repair &amp; Full Rebuild</b></span>
+          </div>
+        </article>
+        <article class="fn-card" data-rise>
+          <div class="fn-card-flag" aria-hidden="true"></div>
+          <h3>Fabrication</h3>
+          <p>From custom metal projects to precision CNC work, our fabrication services deliver strength and creativity — custom builds, repairs, and modifications.</p>
+          <div class="fn-card-spec">
+            <span>Process <b>CNC Plasma</b></span>
+            <span>Joining <b>MIG / TIG Weld</b></span>
+            <span>Output <b>Gates, Frames, Parts</b></span>
+          </div>
+        </article>
+        <article class="fn-card" data-rise>
+          <div class="fn-card-flag" aria-hidden="true"></div>
+          <h3>Powder Coat</h3>
+          <p>A durable, corrosion-resistant finish at an affordable price. Unlike paint, it lasts longer, resists chips, and requires minimal upkeep — in a range of colors and textures.</p>
+          <div class="fn-card-spec">
+            <span>Finish <b>Gloss / Matte / Texture</b></span>
+            <span>Resists <b>Chips &amp; Corrosion</b></span>
+            <span>Upkeep <b>Minimal</b></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-cta">
+    <div class="fn-cta-check" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <h2>Set up<br><mark>a call.</mark></h2>
+        <p>Tell us what you're building. We'll talk through materials, timeline, and cost — no obligation, no runaround.</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn-fn" href="#">Book Now</a>
+        <a class="btn-fn dark" href="#" style="background:#fff;color:var(--ink)">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fn-mission">
+    <div class="wrap">
+      <div class="fn-mission-grid">
+        <div>
+          <blockquote>More than just a shop — <mark>a family-driven business.</mark></blockquote>
+          <p>At FLCC Fabrication &amp; Upholstery, we're built on craftsmanship, creativity, and precision. What started as a passion for rebuilding cars and boats grew into an established local business — delivering work that lasts, looks incredible, and exceeds expectations.</p>
+          <div class="fn-badges">
+            <span class="fn-badge">Family-Run</span><span class="fn-badge">No Subcontractors</span>
+            <span class="fn-badge">Boats &amp; Vehicles</span><span class="fn-badge">Apopka, FL</span>
+          </div>
+        </div>
+        <figure class="fn-mission-vis" style="margin:0">
+          <img src="data:image/jpeg;base64,__IMG_A__" alt="Welder in a helmet working with a bright arc in the FLCC shop">
+          <figcaption class="fn-mission-cap">In the shop &mdash; Apopka, FL</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <footer class="fn-foot">
+    <div class="wrap">
+      <div class="fn-foot-grid">
+        <div>
+          <div class="fn-logo" style="margin-bottom:16px">Finish<i>Lines</i></div>
+          <p style="color:#5c5f63;line-height:1.66;font-size:14px;margin:0;max-width:32ch">Fabrication &amp; Upholstery. Built by hand in Apopka, Florida.</p>
+          <div class="fn-social"><a href="#" aria-label="TikTok">TT</a><a href="#" aria-label="Facebook">FB</a><a href="#" aria-label="Instagram">IG</a></div>
+        </div>
+        <div>
+          <h4>Navigate</h4>
+          <a href="#">About Us</a><a href="#">Contact</a><a href="#">Shop</a><a href="#">Services</a>
+        </div>
+        <div>
+          <h4>News &amp; Updates</h4>
+          <p style="color:#5c5f63;line-height:1.6;font-size:14px;margin:0">Sign up for build photos and shop news.</p>
+          <form class="fn-news" onsubmit="return false">
+            <input type="email" placeholder="EMAIL ADDRESS" aria-label="Email address">
+            <button class="btn-fn" type="submit">Sign Up</button>
+          </form>
+        </div>
+      </div>
+      <div class="fn-legal"><span>&copy; FinishLines Creative Concepts</span><span>Apopka, FL</span></div>
+    </div>
+  </footer>
+</div>
+
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* ---------- direction switcher ---------- */
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".shell-tab"));
+  var panels = {forge:document.getElementById("dir-forge"),stitch:document.getElementById("dir-stitch"),finish:document.getElementById("dir-finish")};
+  var active = "forge";
+
+  function show(name){
+    active = name;
+    tabs.forEach(function(t){ t.setAttribute("aria-selected", String(t.dataset.dir===name)); });
+    Object.keys(panels).forEach(function(k){ panels[k].hidden = (k!==name); });
+    window.scrollTo(0,0);
+    if(name==="forge"){ startCut(); }
+    if(name==="finish"){ layoutTiles(); }
+    observeRises();
+  }
+  tabs.forEach(function(t){ t.addEventListener("click", function(){ show(t.dataset.dir); }); });
+
+  /* ---------- shared: rise-in on scroll ---------- */
+  var io = null;
+  function observeRises(){
+    if(io) io.disconnect();
+    io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    },{threshold:.18});
+    document.querySelectorAll("[data-rise]").forEach(function(el){
+      if(reduce){ el.classList.add("in"); } else { io.observe(el); }
+    });
+    document.querySelectorAll(".fg-cut-edge").forEach(function(el){
+      var o = new IntersectionObserver(function(en){ en.forEach(function(x){ if(x.isIntersecting){ x.target.classList.add("lit"); o.unobserve(x.target);} }); },{threshold:.5});
+      o.observe(el);
+    });
+  }
+
+  /* ---------- shared: cursor-tracking buttons ---------- */
+  document.addEventListener("pointermove", function(e){
+    var b = e.target.closest ? e.target.closest(".btn-fg,.btn-fn") : null;
+    if(!b) return;
+    var r = b.getBoundingClientRect();
+    b.style.setProperty("--mx",(e.clientX-r.left)+"px");
+    b.style.setProperty("--my",(e.clientY-r.top)+"px");
+  });
+
+  /* ==================================================================
+     01 FORGE — plasma cut + spark particle system
+     ================================================================== */
+  var hero = document.querySelector(".fg-hero");
+  var h1   = document.querySelector(".fg-h1");
+  var cv   = document.querySelector(".fg-sparks");
+  var ctx  = cv ? cv.getContext("2d") : null;
+  var parts = [], cutT = 0, cutting = false, heat = 0, raf = null, lastCut = 0;
+
+  var cvW = 0, cvH = 0;
+  function sizeCanvas(){
+    if(!cv) return false;
+    var r = hero.getBoundingClientRect(), d = Math.min(window.devicePixelRatio||1, 2);
+    /* laid-out yet? a hidden/zero-width pane would bake in a 1px canvas */
+    if(r.width < 2 || r.height < 2) return false;
+    if(r.width===cvW && r.height===cvH) return true;
+    cvW = r.width; cvH = r.height;
+    cv.width = r.width*d; cv.height = r.height*d;
+    ctx.setTransform(d,0,0,d,0,0);
+    return true;
+  }
+
+  function startCut(){
+    if(!hero || !h1) return;
+    /* no motion, or a background tab where rAF will not fire:
+       leave the headline in its finished, fully visible state */
+    if(reduce || document.visibilityState === "hidden"){
+      h1.style.setProperty("--cut","100%");
+      h1.style.setProperty("--cutting","0");
+      h1.style.setProperty("--heat","0");
+      return;
+    }
+    cutT = 0; cutting = true; heat = 1; lastCut = performance.now();
+    h1.style.setProperty("--cut","0%");
+    sizeCanvas();
+    if(!raf) raf = requestAnimationFrame(loop);
+  }
+
+  /* if the page was opened in a background tab, run the cut on first view */
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "visible" && active === "forge" && !reduce && !cutting){
+      startCut();
+    }
+  });
+
+  function emit(x,y,n){
+    for(var i=0;i<n;i++){
+      var a = (Math.random()*Math.PI) + Math.PI*0.5;
+      var s = 1.4 + Math.random()*6.2;
+      parts.push({
+        x:x, y:y,
+        vx:Math.cos(a)*s*(Math.random()<.5?-1:1)*1.5,
+        vy:Math.sin(a)*s - 2.4,
+        life:1, decay:.008+Math.random()*.022,
+        r:.5+Math.random()*1.7
+      });
+    }
+    if(parts.length>1400) parts.splice(0, parts.length-1400);
+  }
+
+  function loop(now){
+    raf = requestAnimationFrame(loop);
+    if(active!=="forge" || !ctx){ return; }
+    if(!sizeCanvas()){ return; }
+    var W = cvW, H = cvH;
+    ctx.clearRect(0,0,W,H);
+
+    /* advance the cut */
+    if(cutting){
+      cutT += 0.0072;
+      if(cutT>=1){ cutT=1; cutting=false; }
+      h1.style.setProperty("--cut",(cutT*100).toFixed(2)+"%");
+      h1.style.setProperty("--cutting","1");
+      /* emit at cut point, along the headline block */
+      var hr = h1.getBoundingClientRect(), cr = cv.getBoundingClientRect();
+      var px = hr.left - cr.left + hr.width*cutT;
+      var py = hr.top  - cr.top  + hr.height*(0.30 + 0.62*(0.5+0.5*Math.sin(cutT*11)));
+      emit(px,py, 7);
+    } else {
+      h1.style.setProperty("--cutting","0");
+      if(heat>0){ heat = Math.max(0, heat - 0.0075); }
+      if(now - lastCut > 9000){ startCut(); }
+    }
+    h1.style.setProperty("--heat", (cutting?1:heat).toFixed(3));
+
+    /* draw sparks */
+    ctx.globalCompositeOperation = "lighter";
+    for(var i=parts.length-1;i>=0;i--){
+      var p = parts[i];
+      p.vy += 0.13; p.vx *= 0.988; p.vy *= 0.994;
+      p.x += p.vx; p.y += p.vy;
+      p.life -= p.decay;
+      if(p.life<=0 || p.y>H+40){ parts.splice(i,1); continue; }
+      var l = p.life;
+      var g = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*4.5);
+      var col = l>.72 ? "255,246,224" : (l>.4 ? "255,168,68" : "214,58,0");
+      g.addColorStop(0,"rgba("+col+","+(l*0.95)+")");
+      g.addColorStop(1,"rgba("+col+",0)");
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*4.5,0,6.283); ctx.fill();
+      ctx.fillStyle = "rgba(255,252,244,"+(l*0.9)+")";
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*0.62,0,6.283); ctx.fill();
+    }
+    ctx.globalCompositeOperation = "source-over";
+  }
+
+  /* spark burst on forge button click */
+  document.addEventListener("click", function(e){
+    var b = e.target.closest ? e.target.closest(".btn-fg") : null;
+    if(!b || !cv || reduce || active!=="forge") return;
+    var cr = cv.getBoundingClientRect();
+    if(e.clientY < cr.top || e.clientY > cr.bottom) return;
+    emit(e.clientX-cr.left, e.clientY-cr.top, 46);
+  });
+
+  window.addEventListener("resize", function(){ sizeCanvas(); layoutTiles(); });
+
+  /* ==================================================================
+     02 STITCH x STEEL — draggable material seam
+     ================================================================== */
+  var stHero = document.getElementById("st-hero");
+  var thread = document.getElementById("st-thread");
+  var stitch = document.getElementById("st-stitch");
+  var seam = 50, seamTarget = 50, seamRAF = null;
+
+  function applySeam(){
+    seam += (seamTarget - seam) * 0.14;
+    if(Math.abs(seamTarget-seam) < 0.05){ seam = seamTarget; }
+    stHero.style.setProperty("--seam", seam.toFixed(2)+"%");
+    if(thread){
+      thread.setAttribute("x1",(seam+5).toFixed(2)); thread.setAttribute("x2",(seam-5).toFixed(2));
+      stitch.setAttribute("x1",(seam+5).toFixed(2)); stitch.setAttribute("x2",(seam-5).toFixed(2));
+    }
+    if(seam!==seamTarget){ seamRAF = requestAnimationFrame(applySeam); } else { seamRAF = null; }
+  }
+  if(stHero){
+    stHero.addEventListener("pointermove", function(e){
+      var r = stHero.getBoundingClientRect();
+      seamTarget = Math.max(14, Math.min(86, ((e.clientX-r.left)/r.width)*100));
+      if(!seamRAF && !reduce) seamRAF = requestAnimationFrame(applySeam);
+      if(reduce){ stHero.style.setProperty("--seam", seamTarget.toFixed(2)+"%"); }
+    });
+    stHero.addEventListener("pointerleave", function(){
+      seamTarget = 50;
+      if(!seamRAF && !reduce) seamRAF = requestAnimationFrame(applySeam);
+    });
+    /* draw the stitch line in when the hero is first seen */
+    if(stitch && !reduce){
+      stitch.style.transition = "stroke-dashoffset 2.2s cubic-bezier(.2,.8,.2,1)";
+      setTimeout(function(){ stitch.setAttribute("stroke-dashoffset","0"); }, 350);
+    } else if(stitch){ stitch.setAttribute("stroke-dashoffset","0"); }
+  }
+
+  /* ==================================================================
+     03 THE FINISH — checkered finish wipe, live accent, scroll velocity
+     ================================================================== */
+  var IMG_C = "data:image/jpeg;base64,__IMG_C__";
+  var objEl   = document.getElementById("fn-obj");
+  var baseEl  = document.getElementById("fn-base");
+  var tilesEl = document.getElementById("fn-tiles");
+  var nameEl  = document.getElementById("fn-finish-name");
+  var COLS = 12, ROWS = 9, tiles = [], fi = 0, wipeTimer = null;
+
+  var FINISHES = [
+    {n:"Raw Steel",  f:"grayscale(1) contrast(1.18) brightness(.92)", c:null},
+    {n:"Blasted",    f:"grayscale(1) contrast(.82) brightness(1.16)", c:null},
+    {n:"Powder Coat",f:"contrast(1.16) saturate(1.25) brightness(1)",  c:"accent"},
+    {n:"Chrome",     f:"grayscale(1) contrast(1.72) brightness(1.18)", c:"#cfe0ea"}
+  ];
+
+  function tileStyle(el, fin, x, y, w, h){
+    var accent = getComputedStyle(panels.finish).getPropertyValue("--accent").trim() || "#ff4d00";
+    var col = fin.c === "accent" ? accent : fin.c;
+    if(col){
+      el.style.backgroundImage = "linear-gradient("+col+","+col+"), url("+IMG_C+")";
+      el.style.backgroundSize = "100% 100%, "+w+"px "+h+"px";
+      el.style.backgroundPosition = "0 0, "+(-x)+"px "+(-y)+"px";
+      el.style.backgroundBlendMode = "color, normal";
+    } else {
+      el.style.backgroundImage = "url("+IMG_C+")";
+      el.style.backgroundSize = w+"px "+h+"px";
+      el.style.backgroundPosition = (-x)+"px "+(-y)+"px";
+      el.style.backgroundBlendMode = "normal";
+    }
+    el.style.filter = fin.f;
+  }
+
+  function buildTiles(){
+    if(!tilesEl) return;
+    tilesEl.innerHTML = "";
+    tilesEl.style.gridTemplateColumns = "repeat("+COLS+",1fr)";
+    tilesEl.style.gridTemplateRows = "repeat("+ROWS+",1fr)";
+    tiles = [];
+    for(var i=0;i<COLS*ROWS;i++){
+      var d = document.createElement("div");
+      tilesEl.appendChild(d); tiles.push(d);
+    }
+  }
+
+  function layoutTiles(){
+    if(!objEl || !tilesEl || panels.finish.hidden) return;
+    if(!tiles.length) buildTiles();
+    var r = objEl.getBoundingClientRect();
+    if(!r.width) return;
+    var tw = r.width/COLS, th = r.height/ROWS;
+    var nextFin = FINISHES[(fi+1)%FINISHES.length];
+    for(var i=0;i<tiles.length;i++){
+      var cx = (i%COLS)*tw, cy = Math.floor(i/COLS)*th;
+      tiles[i].dataset.x = cx; tiles[i].dataset.y = cy;
+      tileStyle(tiles[i], nextFin, cx, cy, r.width, r.height);
+    }
+    var cur = FINISHES[fi];
+    var accent = getComputedStyle(panels.finish).getPropertyValue("--accent").trim() || "#ff4d00";
+    var ccol = cur.c === "accent" ? accent : cur.c;
+    if(ccol){
+      baseEl.style.backgroundImage = "linear-gradient("+ccol+","+ccol+"), url("+IMG_C+")";
+      baseEl.style.backgroundSize = "cover, cover";
+      baseEl.style.backgroundBlendMode = "color, normal";
+    } else {
+      baseEl.style.backgroundImage = "url("+IMG_C+")";
+      baseEl.style.backgroundSize = "cover";
+      baseEl.style.backgroundBlendMode = "normal";
+    }
+    baseEl.style.filter = cur.f;
+  }
+
+  function wipe(){
+    if(panels.finish.hidden || reduce) return;
+    var next = (fi+1)%FINISHES.length;
+    nameEl.textContent = FINISHES[next].n;
+    /* checkerboard order: even squares first, then odd */
+    tiles.forEach(function(t,i){
+      var col = i%COLS, row = Math.floor(i/COLS);
+      var even = (col+row)%2===0;
+      var d = (even ? 0 : 260) + (col*22) + (row*10);
+      setTimeout(function(){ t.style.opacity = "1"; }, d);
+    });
+    setTimeout(function(){
+      fi = next;
+      layoutTiles();
+      tiles.forEach(function(t){ t.style.transition="none"; t.style.opacity="0"; });
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){ tiles.forEach(function(t){ t.style.transition=""; }); });
+      });
+    }, 1500);
+  }
+
+  /* accent swap */
+  document.querySelectorAll(".fn-sw").forEach(function(b){
+    b.addEventListener("click", function(){
+      document.querySelectorAll(".fn-sw").forEach(function(o){ o.setAttribute("aria-pressed","false"); });
+      b.setAttribute("aria-pressed","true");
+      panels.finish.style.setProperty("--accent", b.dataset.c);
+      layoutTiles();
+    });
+  });
+
+  /* scroll velocity + progress strip */
+  var lastY = window.scrollY, vel = 0;
+  window.addEventListener("scroll", function(){
+    var y = window.scrollY;
+    var dv = Math.max(-14, Math.min(14, (y-lastY)*0.34));
+    vel = vel*0.65 + dv*0.35;
+    lastY = y;
+    if(!panels.finish.hidden && !reduce){
+      panels.finish.style.setProperty("--vel", vel.toFixed(2));
+      var strip = panels.finish.querySelector(".fn-strip i");
+      var max = document.body.scrollHeight - window.innerHeight;
+      if(strip) strip.style.setProperty("--prog", (max>0 ? (y/max*100) : 0).toFixed(1)+"%");
+    }
+  }, {passive:true});
+  setInterval(function(){
+    vel *= 0.8;
+    if(!panels.finish.hidden && !reduce) panels.finish.style.setProperty("--vel", vel.toFixed(2));
+  }, 120);
+
+  /* ---------- boot ---------- */
+  observeRises();
+  startCut();
+  buildTiles();
+  setTimeout(layoutTiles, 60);
+  wipeTimer = setInterval(function(){ if(!panels.finish.hidden) wipe(); }, 5200);
+})();
+</script>

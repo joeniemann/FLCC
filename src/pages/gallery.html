@@ -1,0 +1,52 @@
+<!--@title Gallery — FinishLines Creative Concepts-->
+<!--@desc Boat upholstery, marine fabrication, gates, railings and vehicle interiors built by FLCC in Apopka, Florida.-->
+<!--@include nav-->
+
+<main id="main">
+
+  <section class="band band--dark phead">
+    <div class="wrap">
+      <div class="phead-grid">
+        <div data-reveal>
+          <div class="eyebrow">Our work</div>
+          <h1 class="h-display">Every one<br>of them ours</h1>
+          <p class="lede">Boats stripped to the frame and rebuilt. Aluminium cut, welded and polished. Gates that outlive the house. Filter by the kind of work you're here for — or scroll the lot.</p>
+        </div>
+        <div class="phead-stats" data-reveal data-reveal-delay="120">
+          <div class="phead-stat"><b>111</b><span>Projects shown</span></div>
+          <div class="phead-stat"><b>7</b><span>Kinds of work</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- non-sticky sentinel: the bar itself is sticky, so its own position stops
+       changing once stuck and can't be used to work out where to scroll to -->
+  <div id="gal-anchor" aria-hidden="true"></div>
+  <div class="gal-bar">
+    <div class="gal-bar-in">
+      <div id="gal-filters"></div>
+      <div class="gal-count" id="gal-count"></div>
+    </div>
+    <div class="gal-bar-in gal-bar-sub" id="gal-subfilters" hidden></div>
+  </div>
+
+  <section class="band band--dark gal-results" style="padding:0">
+    <div class="wrap">
+      <div class="masonry" id="masonry"
+           data-base="assets/gallery-thumbs/" data-full="assets/gallery/" data-ext=".webp"></div>
+      <p class="gal-empty" id="gal-empty">Nothing in this category yet — try another filter.</p>
+    </div>
+  </section>
+
+  <div class="lb" id="lb" data-open="false" role="dialog" aria-modal="true" aria-label="Project image">
+    <button class="lb-btn lb-close" type="button" aria-label="Close"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+    <button class="lb-btn lb-prev" type="button" aria-label="Previous"><i class="fa-solid fa-chevron-left" aria-hidden="true"></i></button>
+    <button class="lb-btn lb-next" type="button" aria-label="Next"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i></button>
+    <img id="lb-img" src="" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
+  </div>
+
+<!--@include cta-->
+</main>
+<!--@include foot-->

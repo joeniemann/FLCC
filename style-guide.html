@@ -1,0 +1,658 @@
+<title>FLCC Design System</title>
+<style>
+/* ============================================================
+   FLCC — style guide for the Cut & Sewn direction.
+   The guide obeys its own rules: one typeface, the real tokens,
+   every ground painted explicitly.
+   ============================================================ */
+:root{
+  --void:#08090A; --pitch:#050607; --panel:#0C0E10;
+  --line:#262B31; --line-soft:#1A1E23;
+  --molten:#FF5A1F; --flare:#FFB35C; --hot:#FFF6E6;
+  --vinyl:#E8762B; --vinyl-lt:#F79A4B; --vinyl-dk:#8F4212; --thread:#FFFFFF;
+  --chrome-hi:#F4F8FB; --chrome-mid:#9BA4AC; --chrome-lo:#2F353B;
+  --bone:#F6F1E9; --ash:#A8B0B8; --navy:#102532; --dim:#6F757D;
+  --chalk:#F7F5F1; --ink:#14161A;
+  --accent:var(--molten);
+  --font:Arial,"Helvetica Neue",Helvetica,"Liberation Sans",sans-serif;
+  --ease:cubic-bezier(.2,.8,.2,1);
+  --gutter:clamp(18px,4.5vw,104px);
+}
+@property --torch{ syntax:"<angle>"; initial-value:0deg; inherits:false }
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--void);color:var(--ash);
+  font-family:var(--font);-webkit-font-smoothing:antialiased;
+  line-height:1.6;overflow-x:hidden;
+}
+::selection{background:var(--molten);color:#08090A}
+h1,h2,h3,h4,p,ul,ol,figure,table{margin:0}
+.wrap{width:100%;margin:0 auto;padding:0 var(--gutter)}
+
+/* ---------- masthead ---------- */
+.top{border-bottom:1px solid var(--line);background:var(--pitch);padding:clamp(48px,7vw,86px) 0 clamp(34px,4vw,50px)}
+.eyebrow{font-size:16px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--molten);margin-bottom:20px}
+.eyebrow span{color:var(--vinyl)}
+h1{font-weight:700;text-transform:uppercase;letter-spacing:-.026em;font-size:clamp(34px,6.6vw,78px);line-height:.92;color:var(--bone);text-wrap:balance}
+h1 em{font-style:normal;color:transparent;
+  background:linear-gradient(177deg,#F4F8FB 0%,#9BA4AC 38%,#4A525A 66%,#DFE5EA 82%,#33383E 100%);
+  -webkit-background-clip:text;background-clip:text}
+.dek{margin-top:22px;max-width:66ch;font-size:clamp(14.5px,1.4vw,16.5px);color:var(--ash)}
+.meta{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.meta span{border:1px solid var(--line);border-radius:40px;padding:8px 14px;color:var(--dim)}
+
+/* ---------- sections ---------- */
+section{padding:clamp(46px,6vw,80px) 0;border-bottom:1px solid var(--line-soft)}
+.shead{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.snum{font-size:10px;font-weight:700;letter-spacing:.2em;color:var(--molten);font-variant-numeric:tabular-nums}
+h2{font-weight:700;text-transform:uppercase;letter-spacing:-.018em;font-size:clamp(22px,3vw,34px);line-height:1;color:#EEF1F4}
+.slede{max-width:66ch;margin-bottom:34px;font-size:14.5px;color:var(--ash)}
+h3.sub{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:32px 0 14px}
+
+/* ---------- colour ---------- */
+.group{margin-bottom:30px}
+.gname{font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--line-soft)}
+.swatches{display:grid;grid-template-columns:repeat(auto-fill,minmax(196px,1fr));gap:12px}
+.sw{border:1px solid var(--line);border-radius:3px;overflow:hidden;background:var(--panel)}
+.sw-chip{height:74px;position:relative}
+.sw-chip::after{content:"";position:absolute;inset:0;box-shadow:inset 0 -1px 0 rgba(255,255,255,.10)}
+.sw-body{padding:12px 13px 13px}
+.sw-name{font-size:12.5px;font-weight:700;color:var(--bone)}
+.sw-hex{font-size:11px;font-weight:700;letter-spacing:.09em;color:var(--chrome-mid);margin-top:3px;font-variant-numeric:tabular-nums}
+.sw-use{font-size:12px;color:var(--dim);margin-top:7px;line-height:1.5}
+
+/* ---------- specimens ---------- */
+.spec{border:1px solid var(--line);border-radius:3px;background:var(--panel);margin-bottom:12px;overflow:hidden}
+.spec-demo{padding:26px 22px;border-bottom:1px solid var(--line-soft);color:var(--bone)}
+.spec-meta{padding:11px 22px;display:flex;gap:22px;flex-wrap:wrap;font-size:10.5px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--dim)}
+.spec-meta b{color:var(--chrome-mid);font-weight:700}
+.d-display{font-weight:700;text-transform:uppercase;font-size:clamp(28px,4.4vw,58px);line-height:.94;letter-spacing:-.026em}
+.d-section{font-weight:700;text-transform:uppercase;font-size:34px;line-height:.98;letter-spacing:-.022em}
+.d-sub{font-weight:700;text-transform:uppercase;font-size:22px;line-height:1.06;letter-spacing:-.012em}
+.d-lede{font-size:18px;line-height:1.66;max-width:56ch;color:var(--ash)}
+.d-body{font-size:16px;line-height:1.62;max-width:64ch;color:#E4EAEF}
+.d-eyebrow{font-size:16px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--molten)}
+.d-label{font-size:9.5px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:var(--dim)}
+.d-btn{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:3px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{text-align:left;padding:11px 15px;border-bottom:1px solid var(--line-soft);font-size:13.5px;vertical-align:top}
+th{font-size:9.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);background:#0A0C0E;white-space:nowrap}
+td{color:var(--ash)}
+td b{color:var(--bone);font-weight:700}
+code{font-family:var(--font);font-weight:700;font-size:12.5px;color:var(--flare);background:rgba(255,90,31,.10);padding:2px 6px;border-radius:2px;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---------- surfaces demo ---------- */
+.surfaces{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.surf{border:1px solid var(--line);border-radius:3px;padding:26px 24px}
+.surf--dark{background:var(--void);color:var(--bone)}
+.surf--light{background:var(--chalk);color:var(--ink)}
+.surf h4{font-size:16px;font-weight:700;letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px}
+.surf--dark h4{color:var(--molten)}
+.surf--light h4{color:var(--vinyl)}
+.surf p{font-size:14px;margin-bottom:14px}
+.surf--dark p{color:var(--ash)}
+.surf--light p{color:#4A4F56}
+.surf-tok{font-size:11.5px;font-weight:700;letter-spacing:.06em;font-variant-numeric:tabular-nums;display:flex;flex-direction:column;gap:4px}
+.surf--dark .surf-tok{color:var(--dim)}
+.surf--light .surf-tok{color:#82888F}
+
+/* ---------- buttons ---------- */
+.btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-bottom:14px}
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--font);font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;cursor:pointer;border:0;
+  transition:transform .16s var(--ease),box-shadow .3s,color .3s,border-color .3s,background .3s}
+.btn--sewn{position:relative;padding:16px 28px;border-radius:40px;background:var(--vinyl);color:#1C0F05;box-shadow:0 9px 24px rgba(0,0,0,.32)}
+.btn--sewn::after{content:"";position:absolute;inset:5px;border-radius:34px;border:1.5px dashed rgba(28,15,5,.52);transition:inset .2s,border-color .3s}
+.btn--sewn:hover{transform:translateY(2px);box-shadow:0 3px 10px rgba(0,0,0,.38)}
+.btn--sewn:hover::after{inset:4px;border-color:rgba(28,15,5,.88)}
+.btn--heat{--mx:50%;--my:50%;position:relative;overflow:hidden;isolation:isolate;padding:17px 27px;border-radius:2px;border:1px solid #454A51;background:linear-gradient(180deg,#2F343A,#1B1E22);color:var(--hot)}
+.btn--heat::before{content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .38s;
+  background:radial-gradient(circle 150px at var(--mx) var(--my),#FFF2DD 0%,var(--molten) 26%,#A12800 58%,transparent 78%)}
+.btn--heat:hover{color:#180A02;border-color:var(--molten)}
+.btn--heat:hover::before{opacity:1}
+.btn--line{padding:16px 27px;border-radius:2px;background:transparent;border:1.5px solid var(--bone);color:var(--bone)}
+.btn--line:hover{background:var(--bone);color:var(--void)}
+.try{font-size:12.5px;color:var(--dim);margin-bottom:24px}
+
+/* ---------- card with torch hover ---------- */
+.values{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px}
+.value{position:relative;border:1px solid var(--line);border-radius:3px;padding:26px 24px;background:var(--panel);
+  transition:border-color .3s,box-shadow .35s var(--ease),transform .35s var(--ease)}
+a.value{text-decoration:none;display:block}
+a.value::before{content:"";position:absolute;inset:-1px;border-radius:inherit;pointer-events:none;padding:1.5px;
+  background:conic-gradient(from var(--torch),transparent 0 64%,var(--flare) 77%,#fff 86%,var(--molten) 93%,transparent 100%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .3s}
+a.value:hover,a.value:focus-visible{transform:translateY(-4px);border-color:var(--molten);
+  box-shadow:0 0 0 1px rgba(255,90,31,.30),0 0 30px rgba(255,90,31,.28),0 18px 44px -20px rgba(0,0,0,.65)}
+a.value:hover::before,a.value:focus-visible::before{opacity:1;animation:torchOrbit 2.4s linear infinite}
+a.value:hover .n{color:var(--hot)}
+@keyframes torchOrbit{ to{ --torch:360deg } }
+.value .n{font-size:20px;font-weight:700;letter-spacing:-.01em;color:var(--accent);margin-bottom:10px;line-height:1.15;transition:color .3s}
+.value h4{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.value p{font-size:14px;color:var(--ash)}
+
+/* ---------- plasma-cut headline demo ---------- */
+.cutdemo{border:1px solid var(--line);border-radius:3px;background:var(--pitch);padding:clamp(28px,5vw,54px) clamp(20px,4vw,40px);position:relative;overflow:hidden}
+.cutdemo::before{content:"";position:absolute;left:-8%;top:-45%;width:56%;height:190%;
+  background:radial-gradient(closest-side,rgba(255,90,31,.22),transparent 72%)}
+.cut-row{position:relative;display:inline-block;--cut:100%;--heat:0;--cutting:0;
+  font-weight:700;text-transform:uppercase;letter-spacing:-.028em;line-height:.9;font-size:clamp(30px,5.4vw,68px)}
+.cut-base,.cut-hot{-webkit-mask-image:linear-gradient(90deg,#000 0,#000 var(--cut),transparent var(--cut));
+  mask-image:linear-gradient(90deg,#000 0,#000 var(--cut),transparent var(--cut))}
+.cut-base{color:transparent;background:linear-gradient(178deg,#F4F8FB 0%,#9BA4AC 34%,#4A525A 68%,#2F353B 100%);
+  -webkit-background-clip:text;background-clip:text}
+.cut-hot{position:absolute;inset:0;white-space:nowrap;color:transparent;opacity:var(--heat);
+  background:linear-gradient(178deg,var(--hot) 0%,#FFB066 30%,var(--molten) 62%,#C22F00 100%);
+  -webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 26px rgba(255,90,31,.62))}
+.cut-line{position:absolute;top:-8%;bottom:-8%;width:2px;left:var(--cut);
+  background:linear-gradient(180deg,transparent,var(--hot) 18%,#fff 50%,var(--hot) 82%,transparent);
+  box-shadow:0 0 12px 3px rgba(255,150,60,.9),0 0 46px 14px rgba(255,90,31,.55);opacity:var(--cutting);pointer-events:none}
+
+/* ---------- materials ---------- */
+.mats{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.mat{border:1px solid var(--line);border-radius:3px;background:var(--panel);padding:22px}
+.mat h4{font-size:15px;font-weight:700;color:var(--bone);margin-bottom:4px}
+.mat .role{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin-bottom:16px}
+.mat svg{width:100%;height:auto;display:block;margin-bottom:16px}
+.mat svg text{font-family:var(--font);font-size:13.3px;font-weight:700;letter-spacing:.215em;text-anchor:middle}
+.mat ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:6px}
+.mat li{font-size:13px;color:var(--ash);padding-left:14px;position:relative}
+.mat li::before{content:"";position:absolute;left:0;top:8px;width:5px;height:5px;border-radius:50%;background:var(--molten)}
+.mat.soft li::before{background:var(--vinyl)}
+
+/* ---------- rules ---------- */
+.rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(272px,1fr));gap:14px}
+.rule{border:1px solid var(--line);border-left:2px solid var(--molten);border-radius:3px;background:var(--panel);padding:18px 20px}
+.rule.warn{border-left-color:var(--vinyl)}
+.rule.done{border-left-color:#4E9E6A}
+.rule h4{font-size:13.5px;font-weight:700;color:var(--bone);margin-bottom:7px}
+.rule p{font-size:13px;color:var(--ash)}
+
+footer{padding:40px 0 60px;color:var(--dim)}
+.foot-row{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:9.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="eyebrow">FinishLines Creative Concepts &nbsp;·&nbsp; <span>Cut &amp; Sewn</span></div>
+    <h1>One outline,<br><em>two tools</em></h1>
+    <p class="dek">The identity runs on a single premise: every surface belongs to either the plasma torch or the needle, and the seam between them is draggable. Fabrication holds the left — heat, chrome and white-hot light. Upholstery holds the right — marine vinyl, saddle orange and pure white thread. This guide documents the system as built across all five pages.</p>
+    <div class="meta">
+      <span>One typeface</span><span>Full-bleed layout</span><span>Dark &amp; light surfaces</span><span>HTML5 · CSS · Vanilla JS</span><span>No framework</span>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">01</div><h2>Colour</h2></div>
+    <p class="slede">Two heat families that never blend: molten for the torch, vinyl for the thread. Chrome and the neutrals are shared. Brand colours are fixed — they do not change between light and dark surfaces.</p>
+
+    <div class="group">
+      <div class="gname">Fabrication — plasma heat</div>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#FF5A1F"></div><div class="sw-body">
+          <div class="sw-name">Molten</div><div class="sw-hex">#FF5A1F</div>
+          <div class="sw-use">Torch orange. Kerf halo, heat flash, card hover border, focus rings, accent on dark.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFB35C"></div><div class="sw-body">
+          <div class="sw-name">Flare</div><div class="sw-hex">#FFB35C</div>
+          <div class="sw-use">Mid-flare in the torch bloom, the orbiting card head, inline code.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFF6E6"></div><div class="sw-body">
+          <div class="sw-name">White-hot</div><div class="sw-hex">#FFF6E6</div>
+          <div class="sw-use">Kerf line, torch core, text on heated buttons.</div></div></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="gname">Upholstery — marine vinyl</div>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#E8762B"></div><div class="sw-body">
+          <div class="sw-name">Vinyl</div><div class="sw-hex">#E8762B</div>
+          <div class="sw-use">The seat orange, sampled from the pontoon rebuild. Primary button, patch, accent on light.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#F79A4B"></div><div class="sw-body">
+          <div class="sw-name">Vinyl Light</div><div class="sw-hex">#F79A4B</div>
+          <div class="sw-use">Gradient top on the patch and sewn letterforms.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#8F4212"></div><div class="sw-body">
+          <div class="sw-name">Vinyl Dark</div><div class="sw-hex">#8F4212</div>
+          <div class="sw-use">Gradient base, shadowed lower edge.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#FFFFFF"></div><div class="sw-body">
+          <div class="sw-name">Thread</div><div class="sw-hex">#FFFFFF</div>
+          <div class="sw-use">All stitching, pure white with a halo. Never off-white — the halo does the softening.</div></div></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="gname">Chrome — cut steel</div>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#F4F8FB"></div><div class="sw-body">
+          <div class="sw-name">Chrome High</div><div class="sw-hex">#F4F8FB</div><div class="sw-use">Top stop of every steel gradient; the specular edge.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#9BA4AC"></div><div class="sw-body">
+          <div class="sw-name">Chrome Mid</div><div class="sw-hex">#9BA4AC</div><div class="sw-use">Body of the steel ramp; metadata text.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#2F353B"></div><div class="sw-body">
+          <div class="sw-name">Chrome Low</div><div class="sw-hex">#2F353B</div><div class="sw-use">Base of the ramp, plate shadow side, dark button field.</div></div></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="gname">Grounds &amp; neutrals</div>
+      <div class="swatches">
+        <div class="sw"><div class="sw-chip" style="background:#08090A"></div><div class="sw-body">
+          <div class="sw-name">Void</div><div class="sw-hex">#08090A</div><div class="sw-use">Dark-surface ground.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#050607"></div><div class="sw-body">
+          <div class="sw-name">Pitch</div><div class="sw-hex">#050607</div><div class="sw-use">Deepest ground — hero base, CTA band, footer.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#F7F5F1"></div><div class="sw-body">
+          <div class="sw-name">Chalk</div><div class="sw-hex">#F7F5F1</div><div class="sw-use">Light-surface ground — upholstery band, mission band.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#14161A"></div><div class="sw-body">
+          <div class="sw-name">Ink</div><div class="sw-hex">#14161A</div><div class="sw-use">Text on light surfaces; the powder-coating band's ground.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#F6F1E9"></div><div class="sw-body">
+          <div class="sw-name">Bone</div><div class="sw-hex">#F6F1E9</div><div class="sw-use">Warm off-white display type on dark.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#A8B0B8"></div><div class="sw-body">
+          <div class="sw-name">Ash</div><div class="sw-hex">#A8B0B8</div><div class="sw-use">Body copy on dark surfaces.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#102532"></div><div class="sw-body">
+          <div class="sw-name">Navy</div><div class="sw-hex">#102532</div><div class="sw-use">Marine ground; veil tint over upholstery photography.</div></div></div>
+        <div class="sw"><div class="sw-chip" style="background:#262B31"></div><div class="sw-body">
+          <div class="sw-name">Rule</div><div class="sw-hex">#262B31</div><div class="sw-use">Hairline borders on dark. Light surfaces use <code>#DCD8D1</code>.</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">02</div><h2>Surfaces</h2></div>
+    <p class="slede">The hero committed to a single dark world. Services needs dark (fabrication), light (upholstery) and mixed (powder coating), so surfaces became a band-level concern. <code>.band--dark</code> and <code>.band--light</code> redefine a small set of tokens; every component reads only those and never a raw colour. Add a band class and the whole section re-skins.</p>
+    <div class="surfaces">
+      <div class="surf surf--dark">
+        <h4>Dark</h4>
+        <p>The default. Hero, page headers, fabrication, gallery, CTA and footer.</p>
+        <div class="surf-tok">
+          <span>--bg &nbsp;#08090A</span><span>--bg-raised &nbsp;#0C0E10</span><span>--fg &nbsp;#F6F1E9</span>
+          <span>--fg-dim &nbsp;#A8B0B8</span><span>--rule &nbsp;#262B31</span><span>--accent &nbsp;#FF5A1F</span>
+        </div>
+      </div>
+      <div class="surf surf--light">
+        <h4>Light</h4>
+        <p>Upholstery and the mission bands. Same components, no overrides needed.</p>
+        <div class="surf-tok">
+          <span>--bg &nbsp;#F7F5F1</span><span>--bg-raised &nbsp;#FFFFFF</span><span>--fg &nbsp;#14161A</span>
+          <span>--fg-dim &nbsp;#4A4F56</span><span>--rule &nbsp;#DCD8D1</span><span>--accent &nbsp;#E8762B</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">03</div><h2>Typography</h2></div>
+    <p class="slede">One family, everywhere — a neutral grotesque matching the logo's letterforms. No mono, no serif, no second face. Hierarchy comes entirely from weight, size, case and tracking. The rule is deliberate: a condensed display face cannot also set body copy, so the system commits to the face that does both.</p>
+
+    <div class="spec">
+      <div class="spec-demo"><div class="d-display">Three trades, one roof</div></div>
+      <div class="spec-meta"><span>Display</span><span>Size <b>clamp(34, 6.6vw, 84px)</b></span><span>Weight <b>700</b></span><span>Leading <b>0.94</b></span><span>Tracking <b>−0.026em</b></span><span>Case <b>Upper</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><div class="d-section">Section heading</div></div>
+      <div class="spec-meta"><span>Section</span><span>Size <b>clamp(26, 4.2vw, 54px)</b></span><span>Weight <b>700</b></span><span>Leading <b>0.98</b></span><span>Tracking <b>−0.022em</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><div class="d-sub">Sub heading</div></div>
+      <div class="spec-meta"><span>Sub</span><span>Size <b>clamp(18, 2.1vw, 25px)</b></span><span>Weight <b>700</b></span><span>Leading <b>1.06</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><div class="d-eyebrow">What we do</div></div>
+      <div class="spec-meta"><span>Eyebrow</span><span>Size <b>16px</b></span><span>Weight <b>700</b></span><span>Tracking <b>0.22em</b></span><span>Colour <b>var(--accent)</b></span><span>Under 560px <b>0.14em</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><p class="d-lede">Cut, welded, coated and stitched in the same building, by the same family that quotes the job.</p></div>
+      <div class="spec-meta"><span>Lede</span><span>Size <b>clamp(15, 1.5vw, 18px)</b></span><span>Leading <b>1.66</b></span><span>Measure <b>56ch</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><p class="d-body">From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.</p></div>
+      <div class="spec-meta"><span>Body</span><span>Size <b>clamp(13.5, 1.35vw, 16px)</b></span><span>Weight <b>400</b></span><span>Leading <b>1.62</b></span><span>Measure <b>64ch</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><div class="d-label">Materials &nbsp;·&nbsp; Marine Grade</div></div>
+      <div class="spec-meta"><span>Label</span><span>Size <b>9.5px</b></span><span>Weight <b>700</b></span><span>Tracking <b>0.22em</b></span><span>Floor <b>9.5px site-wide</b></span></div>
+    </div>
+    <div class="spec">
+      <div class="spec-demo"><div class="d-btn">Set up a call</div></div>
+      <div class="spec-meta"><span>Button</span><span>Size <b>11px</b></span><span>Weight <b>700</b></span><span>Tracking <b>0.18em</b></span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">04</div><h2>Layout &amp; responsive</h2></div>
+    <p class="slede">Full-bleed. Nothing is capped to a fixed column — the gutter grows with the viewport instead, so the page fills the screen at any size. Readability is protected at the <b>text</b> level via measures, not by squeezing the layout into a narrow strip.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Token / rule</th><th>Value</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><b>--gutter</b></td><td><code>clamp(18px, 4.5vw, 104px)</code></td><td>18px on a phone, 104px on a desktop. Every wrapper uses it.</td></tr>
+          <tr><td><b>--gutter</b> above 2200px</td><td><code>clamp(104px, 6vw, 220px)</code></td><td>Keeps ultrawides from running edge to edge.</td></tr>
+          <tr><td><b>Band padding</b></td><td class="num"><code>clamp(48px, 7vw, 116px)</code></td><td>Vertical rhythm, fluid.</td></tr>
+          <tr><td><b>CTA padding</b></td><td class="num"><code>clamp(50px, 6vw, 70px)</code></td><td>Tighter than a full band — it is a strip, not a section.</td></tr>
+          <tr><td><b>Body measure</b></td><td class="num">64ch &nbsp;/&nbsp; lede 56ch</td><td>The only thing that stays capped as the layout widens.</td></tr>
+          <tr><td><b>Masonry</b></td><td><code>columns: 300px</code></td><td>Column <em>width</em>, not count — self-fills 2 up to 8+ with no breakpoints.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Breakpoints</h3>
+    <p class="slede">Type and spacing are fluid, so breakpoints only handle points where the <b>structure</b> changes.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Width</th><th>What changes</th></tr></thead>
+        <tbody>
+          <tr><td class="num"><b>1180px</b></td><td>Footer 4 → 2 columns. What We Do stops sitting beside its cards.</td></tr>
+          <tr><td class="num"><b>1024px</b></td><td>Two-column splits stack (services, about, contact). Page headers stack.</td></tr>
+          <tr><td class="num"><b>920px</b></td><td>Nav → burger drawer. Four links plus a pill CTA run out of room here, not at 760.</td></tr>
+          <tr><td class="num"><b>768px</b></td><td>Powder-coating split stacks; gallery tightens.</td></tr>
+          <tr><td class="num"><b>680px</b></td><td>Footer to 1 column; CTA stacks; nav height 68 → 60px.</td></tr>
+          <tr><td class="num"><b>560px</b></td><td>Gallery to 2 fixed columns; captions off; forms and info stack; micro-type comes back up.</td></tr>
+          <tr><td class="num"><b>460px</b></td><td>Button padding and stat sizes come in.</td></tr>
+          <tr><td class="num"><b>Short landscape</b></td><td><code>max-height:560px</code> — hero and split panels stop trying to fill the screen.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="slede" style="margin-top:22px">Verified with <code>tools/responsive-test.html</code> across <b>5 pages × 12 widths (360–2560px)</b>: no overflow, no element breaking the viewport, no type under 9.5px.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">05</div><h2>The mark</h2></div>
+    <p class="slede">The real supplied artwork — <code>assets/flcc-logo.svg</code> — not a reconstruction. Six closed contours: four letterforms and the ring supplied as two broken arcs, with the gaps around the letters already built into the file.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Property</th><th>Value</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><b>Source</b></td><td><code>assets/flcc-logo.svg</code> — viewBox 1024 × 1536</td><td>Supplied artwork, unmodified paths</td></tr>
+          <tr><td><b>Artwork bounds</b></td><td class="num">x 103.9–939.9, y 466–1054.5 &nbsp;(836 × 588, 1.42:1)</td><td>Measured, not assumed</td></tr>
+          <tr><td><b>Hero canvas</b></td><td class="num">viewBox 84 446 876 754</td><td>Logo plus the tagline lockup beneath it</td></tr>
+          <tr><td><b>Mark size</b></td><td><code>clamp(250px, 33vw, 470px)</code>, aspect 876/754</td><td>Aspect follows the artwork so it never letterboxes</td></tr>
+          <tr><td><b>Contours</b></td><td class="num">6 — F 903 · L 738 · C 943 · C 943 · top arc 1176 · bottom arc 1305</td><td>Lengths measured at runtime, so new artwork adapts</td></tr>
+          <tr><td><b>Ring</b></td><td>Two broken arcs, gaps built in</td><td>No clearance mask — the artwork already breaks around the letters</td></tr>
+          <tr><td><b>Paint order</b></td><td>Arc layer → letter layer</td><td>Letters paint over the arcs</td></tr>
+          <tr><td><b>Cut order</b></td><td>F → L → C → C → top arc → bottom arc</td><td>Inner features before the outline, as a CNC sequences</td></tr>
+          <tr><td><b>Traveller mapping</b></td><td>Read from the live <code>viewBox</code></td><td>Swapping the artwork cannot break the torch position</td></tr>
+          <tr><td><b>Seam angle</b></td><td class="num">travel ÷ height = 0.14</td><td>Solved from the hero's aspect ratio, so the diagonal reads the same on a phone as on an ultrawide</td></tr>
+          <tr><td><b>Sides</b></td><td>Fabrication left, upholstery right</td><td>Fixed convention across the whole site</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="sub">Header &amp; footer</h3>
+    <p class="slede">The same six paths at <code>viewBox 104 466 836 589</code>, with <code>fill="currentColor"</code> so one CSS <code>color</code> rule drives them. Height-led at 30px with width auto — the logo is 1.42:1, not square. Both are set to <code>var(--accent)</code>.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">06</div><h2>Materials</h2></div>
+    <p class="slede">The tagline is a physical object that changes with the seam. Both are drawn at the same footprint so the drag wipes cleanly between them, and sit 32 units below the logo rather than crossing its bottom arc.</p>
+    <div class="tw" style="margin-bottom:22px">
+      <table>
+        <thead><tr><th>Property</th><th>Value</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr><td><b>Plate</b></td><td class="num">836 × 94 &nbsp;(8.9 : 1)</td><td>Width matches the letter lockup; the ratio is what keeps it from reading as a thin strip</td></tr>
+          <tr><td><b>Text</b></td><td class="num">34.75px, 0.215em tracking — 83% of plate width</td><td>Fill ratio matters more than the absolute size</td></tr>
+          <tr><td><b>Emboss spread</b></td><td class="num">≤ 6% of cap height</td><td>Wider and the offset copies read as a second line of text rather than a bevel</td></tr>
+          <tr><td><b>Scaling rule</b></td><td>Scale every dimension by one factor</td><td>Height, type size and rivets scaled by the same 2.6125 as the width</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mats">
+      <div class="mat">
+        <h4>Steel plate</h4>
+        <div class="role">Fabrication — left</div>
+        <svg viewBox="0 0 320 40" role="img" aria-label="Riveted steel plate with raised lettering">
+          <defs>
+            <linearGradient id="gp" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#98A1A9"/><stop offset=".42" stop-color="#666F78"/>
+              <stop offset=".55" stop-color="#4C545C"/><stop offset="1" stop-color="#333A41"/></linearGradient>
+            <radialGradient id="gr" cx=".35" cy=".3" r=".8">
+              <stop offset="0" stop-color="#EEF2F5"/><stop offset=".55" stop-color="#98A1A9"/><stop offset="1" stop-color="#4A5158"/></radialGradient>
+          </defs>
+          <rect x="0" y="2" width="320" height="36" rx="2.5" fill="url(#gp)" stroke="#191D22" stroke-width="1.2"/>
+          <path d="M1.5 3.5 H318.5" stroke="#DFE6EC" stroke-opacity=".55" stroke-width="1.2"/>
+          <path d="M1.5 36.5 H318.5" stroke="#000" stroke-opacity=".45" stroke-width="1.2"/>
+          <circle cx="14" cy="20" r="3.6" fill="url(#gr)"/><circle cx="306" cy="20" r="3.6" fill="url(#gr)"/>
+          <text x="160" y="25.2" fill="#0E1216" opacity=".80">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="160" y="23" fill="#FFFFFF" opacity=".88">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="160" y="24" fill="#DDE5EC">FABRICATION &amp; UPHOLSTERY</text>
+        </svg>
+        <ul>
+          <li>Smooth gradient, no texture pattern</li>
+          <li>Bevel: light top edge, dark bottom edge</li>
+          <li>Two rivets, inset 14 units</li>
+          <li>Raised lettering — light face, white highlight above, dark shadow below</li>
+        </ul>
+      </div>
+      <div class="mat soft">
+        <h4>Marine vinyl patch</h4>
+        <div class="role">Upholstery — right</div>
+        <svg viewBox="0 0 320 40" role="img" aria-label="Top-stitched marine vinyl patch">
+          <defs>
+            <linearGradient id="gv" x1="0" y1="0" x2=".25" y2="1">
+              <stop offset="0" stop-color="#F79A4B"/><stop offset=".5" stop-color="#E8762B"/><stop offset="1" stop-color="#8F4212"/></linearGradient>
+            <pattern id="pg" width="5" height="5" patternUnits="userSpaceOnUse">
+              <circle cx="1.2" cy="1.2" r=".7" fill="#fff" fill-opacity=".07"/>
+              <circle cx="3.6" cy="3.4" r=".6" fill="#000" fill-opacity=".10"/></pattern>
+          </defs>
+          <rect x="0" y="0" width="320" height="40" rx="20" fill="url(#gv)" stroke="#6B3010" stroke-width="1.2"/>
+          <rect x="0" y="0" width="320" height="40" rx="20" fill="url(#pg)"/>
+          <rect x="0" y="0" width="320" height="19" rx="19" fill="#fff" opacity=".13"/>
+          <rect x="6.5" y="6.5" width="307" height="27" rx="13.5" fill="none" stroke="#FFFFFF" stroke-opacity=".92" stroke-width="1.6" stroke-dasharray="5 4" stroke-linecap="round"/>
+          <text x="160" y="24.5" fill="#4A1F06" opacity=".45">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="160" y="23.6" fill="#FFFFFF">FABRICATION &amp; UPHOLSTERY</text>
+        </svg>
+        <ul>
+          <li>Pill form, fully rounded ends</li>
+          <li>Grain pattern retained — this side keeps its texture</li>
+          <li>Sheen across the upper half</li>
+          <li>White top-stitch inset 6.5, dash 5 / 4</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">07</div><h2>Buttons</h2></div>
+    <p class="slede">Three species. Sewn and heated carry the two trades; the machined outline is the neutral option for light surfaces where a dark gradient would be too heavy. Never mix sewn and heated on the same ground — the button tells you which half of the shop you are standing in. Hover them.</p>
+    <div class="btns">
+      <a class="btn btn--sewn" href="#" onclick="return false">Start a Build</a>
+      <a class="btn btn--heat" href="#" onclick="return false">See the Gallery</a>
+      <a class="btn btn--line" href="#" onclick="return false">About the Shop</a>
+    </div>
+    <p class="try">Sewn: stitched dashed inset, compresses downward like foam. Heated: cold steel that ignites from the cursor's contact point. Machined: fills solid on hover.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th></th><th>Sewn — primary</th><th>Heated — dark surfaces</th><th>Machined — light surfaces</th></tr></thead>
+        <tbody>
+          <tr><td><b>Class</b></td><td><code>.btn--sewn</code></td><td><code>.btn--heat</code></td><td><code>.btn--line</code></td></tr>
+          <tr><td><b>Fill</b></td><td>Vinyl <code>#E8762B</code></td><td><code>#2F343A → #1B1E22</code></td><td>Transparent</td></tr>
+          <tr><td><b>Text</b></td><td><code>#1C0F05</code></td><td>White-hot <code>#FFF6E6</code></td><td><code>var(--fg)</code></td></tr>
+          <tr><td><b>Radius</b></td><td class="num">40px pill</td><td class="num">2px</td><td class="num">2px</td></tr>
+          <tr><td><b>Hover</b></td><td>Presses down 2px, stitch tightens</td><td>Radial heat from cursor, border molten</td><td>Inverts to solid</td></tr>
+          <tr><td><b>Focus</b></td><td colspan="3">2px solid, 3px offset — identical on all three</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">08</div><h2>Components</h2></div>
+
+    <h3 class="sub">Service card — torch on hover</h3>
+    <p class="slede">Interactive cards only (<code>a.value</code>). Static cards stay inert, because a hover state should not advertise a click that does not exist. Hover one:</p>
+    <div class="values" style="margin-bottom:14px">
+      <a class="value" href="#" onclick="return false">
+        <div class="n">Fabrication</div><h4>Cut, formed &amp; welded</h4>
+        <p>CNC plasma, MIG and TIG. Towers, consoles, gates, railings and cut-metal signage.</p>
+      </a>
+      <a class="value" href="#" onclick="return false">
+        <div class="n">Upholstery</div><h4>Marine-grade interiors</h4>
+        <p>Boats, cars, ATVs and RVs. Diamond stitch, piping and full rebuilds.</p>
+      </a>
+      <a class="value" href="#" onclick="return false">
+        <div class="n">Powder Coating</div><h4>A finish that outlasts paint</h4>
+        <p>Blasted, coated and cured in-house. Resists chips, corrosion and UV.</p>
+      </a>
+    </div>
+    <p class="try">A white-hot head runs the border on a 2.4s loop while the border goes molten and the card lifts 4px. The angle is animated through <code>@property --torch</code>; where that is unsupported the card still lifts and still glows — only the travelling head is missing.</p>
+
+    <h3 class="sub">Plasma-cut headline</h3>
+    <p class="slede">The FORGE hero's treatment, reused on the CTA. Three layers: a steel base, a molten copy above it, and a glowing kerf — all masked to a shared <code>--cut</code> position. It runs only while on screen.</p>
+    <div class="cutdemo">
+      <span class="cut-row" id="cutdemo">
+        <span class="cut-base">Set up a call</span>
+        <span class="cut-hot" aria-hidden="true">Set up a call</span>
+        <span class="cut-line" aria-hidden="true"></span>
+      </span>
+    </div>
+    <p class="try" style="margin-top:14px"><code>--cut</code> defaults to <b>100%</b>, so with no JS, reduced motion, or in a background tab the headline reads as finished steel rather than rendering blank. The duplicate layer is <code>aria-hidden</code>, so the text is announced once.</p>
+
+    <h3 class="sub">Gallery</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Item</th><th>Spec</th></tr></thead>
+        <tbody>
+          <tr><td><b>Photos</b></td><td class="num">111, all real FLCC work</td></tr>
+          <tr><td><b>Categories</b></td><td>Boat Upholstery (48) · Boat Fabrication (24) · Gates &amp; Railings (17) · Vehicle Interiors (14) · Signs &amp; Metal Art (3) · In the Shop (3) · Powder Coating (2)</td></tr>
+          <tr><td><b>Filters</b></td><td>Render with live counts; a category with zero photos is never rendered, so there is no dead end</td></tr>
+          <tr><td><b>Deep links</b></td><td>Selection writes to the hash — <code>gallery.html#gates</code> is linkable</td></tr>
+          <tr><td><b>Lightbox</b></td><td>Full-resolution image, arrow keys, Escape, click-outside; focus returns to the tile</td></tr>
+          <tr><td><b>Loading</b></td><td>First 12 eager, the rest lazy</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Forms</h3>
+    <p class="slede">Both forms validate client-side and report status, but deliberately do not transmit — no endpoint is wired yet. Each is marked in the source with exactly what to change. Validation runs over the form's real controls, not only fields wrapped in <code>.field</code>, so a bare input still validates.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">09</div><h2>Motion</h2></div>
+    <p class="slede">Long ambient loops, short sharp interaction responses. Everything eases on <code>cubic-bezier(.2, .8, .2, 1)</code> — fast out, settled landing, no bouncing. Every looping animation is gated by an IntersectionObserver so it costs nothing off screen, and all of it is disabled under <code>prefers-reduced-motion</code>.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Behaviour</th><th>Timing</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><td><b>Hero cut / stitch pass</b></td><td class="num">9.5s</td><td>Constant speed along total contour length</td></tr>
+          <tr><td><b>Hero pause, then re-run</b></td><td class="num">2.8s</td><td>Loops while visible</td></tr>
+          <tr><td><b>Hero heat flash &amp; cool</b></td><td class="num">~2.4s</td><td>Fires when the ring closes and the part comes free</td></tr>
+          <tr><td><b>CTA cut sweep</b></td><td class="num">~1.1s</td><td>Fires on scroll-in, repeats every 9s while visible</td></tr>
+          <tr><td><b>CTA cool</b></td><td class="num">~2s</td><td>Sweep, cool and pause all run on the same clamped frame clock — on wall-clock the pause could lap them whenever frames are starved</td></tr>
+          <tr><td><b>Card torch orbit</b></td><td class="num">2.4s loop</td><td>Hover and focus only</td></tr>
+          <tr><td><b>Reveal on scroll</b></td><td class="num">0.8s</td><td>22px rise; staggered by <code>data-reveal-delay</code></td></tr>
+          <tr><td><b>Seam follow</b></td><td class="num">~0.15s</td><td>14% interpolation per frame toward the pointer</td></tr>
+          <tr><td><b>Button press</b></td><td class="num">0.16s</td><td>Transform only</td></tr>
+          <tr><td><b>Card hover lift</b></td><td class="num">0.35s</td><td>Transform, border and glow together</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">10</div><h2>Photography</h2></div>
+    <p class="slede">Real FLCC work only — no stock. Each half of the hero gets a different grade, and legibility comes from type shadows rather than drowning the image in black.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th></th><th>Upholstery</th><th>Fabrication</th></tr></thead>
+        <tbody>
+          <tr><td><b>Grade</b></td><td><code>saturate(1.55) contrast(1.10) brightness(.86)</code></td><td><code>grayscale(.72) saturate(1.15) contrast(1.16) brightness(.92)</code></td></tr>
+          <tr><td><b>Veil</b></td><td>Warm radial + 46 → 22 → 58% dark</td><td>Plasma bloom + 20 → 34 → 62% dark</td></tr>
+          <tr><td><b>Colour survives</b></td><td>Fully — the seat orange is the point</td><td>Partially — enough for the bloom to read hot</td></tr>
+          <tr><td><b>Legibility</b></td><td colspan="2">Layered text shadows on type, not a heavier overlay</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="shead"><div class="snum">11</div><h2>Rules &amp; open items</h2></div>
+    <div class="rules">
+      <div class="rule"><h4>Fabrication left, upholstery right</h4><p>Fixed everywhere. Steel, chrome and the torch on the left of the seam; vinyl, thread and the needle on the right. Photography focal points, veil directions and the tool's side test all follow from it.</p></div>
+      <div class="rule"><h4>One font, no exceptions</h4><p>No mono, no serif, no second family. If something needs to read as a label, change case and tracking — not typeface.</p></div>
+      <div class="rule"><h4>Components read tokens, never colours</h4><p>A component that hardcodes <code>#08090A</code> breaks the moment it lands on a light band. Read <code>--bg</code>, <code>--fg</code>, <code>--accent</code>.</p></div>
+      <div class="rule"><h4>Scope page-specific CSS</h4><p><code>hero.css</code> loads after <code>site.css</code>; an unscoped <code>.eyebrow</code> there once repainted every eyebrow on the homepage. Page stylesheets scope to their own root.</p></div>
+      <div class="rule"><h4>Degrade to finished</h4><p>With no JS, reduced motion, or in a background tab, animated type renders complete rather than blank. Animation reveals a finished state; it is never the only way to see it.</p></div>
+      <div class="rule"><h4>Measure, don't eyeball</h4><p>Layout claims are checked with <code>tools/responsive-test.html</code> across 60 page/width combinations before they are called done.</p></div>
+      <div class="rule"><h4>Scale every dimension by one factor</h4><p>Moving a lockup into a new coordinate space means scaling height, type size and detail by the same factor as the width. Scaling width alone is what turned the tagline into a thin bar with the words floating in it.</p></div>
+      <div class="rule"><h4>Effects are ratios, not pixels</h4><p>An emboss, a glow or a shadow has to hold at every render size. Express the offset as a fraction of the glyph or shape it decorates — the tagline's raised lettering broke at 13% of cap height and works at 6%.</p></div>
+      <div class="rule done"><h4>Closed — the real logo</h4><p>The supplied artwork is in and drives the hero, header and footer. Six contours, lengths measured at runtime; the ring's two broken arcs made the old clearance mask unnecessary.</p></div>
+      <div class="rule done"><h4>Closed — mobile navigation</h4><p>Burger drawer below 920px, with body-scroll lock, Escape to close, and focus returned to the toggle.</p></div>
+      <div class="rule warn"><h4>Open — gallery categories</h4><p>Assigned by eye from thumbnails. A few are genuinely ambiguous — a bench seat on a bare frame is arguably either trade. One edit each in <code>assets/data/gallery.js</code>.</p></div>
+      <div class="rule warn"><h4>Open — thin categories</h4><p>Powder Coating has 2 photos; Signs and In the Shop have 3 each. More photos would earn those filters their place.</p></div>
+      <div class="rule warn"><h4>Open — Acuity, forms, map</h4><p>All built and inert. Acuity needs a booking link; both forms need an endpoint; the Google embed sits commented beneath the styled map.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-row">
+      <span>FinishLines Creative Concepts — Apopka, Florida</span>
+      <span>Cut &amp; Sewn · Full site</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* cursor tracking for the heated button */
+document.addEventListener("pointermove", function (e) {
+  var b = e.target.closest && e.target.closest(".btn--heat");
+  if (!b) return;
+  var r = b.getBoundingClientRect();
+  b.style.setProperty("--mx", (e.clientX - r.left) + "px");
+  b.style.setProperty("--my", (e.clientY - r.top) + "px");
+});
+
+/* the plasma-cut demo, same cycle as the site */
+(function () {
+  var row = document.getElementById("cutdemo");
+  if (!row || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  var CUT = 0.9, COOL = 0.5, REPEAT = 6,
+      cut = 1, heat = 0, cutting = false, idle = 0, last = 0, visible = false;
+  function paint() {
+    row.style.setProperty("--cut", (cut * 100).toFixed(2) + "%");
+    row.style.setProperty("--heat", heat.toFixed(3));
+    row.style.setProperty("--cutting", cutting ? "1" : "0");
+  }
+  function start() { cut = 0; heat = 1; cutting = true; idle = 0; last = 0; }
+  function loop(now) {
+    requestAnimationFrame(loop);
+    if (!visible) return;
+    var dt = last ? Math.min((now - last) / 1000, 0.05) : 0;
+    last = now;
+    if (cutting) { cut += CUT * dt; if (cut >= 1) { cut = 1; cutting = false; idle = 0; } }
+    else { if (heat > 0) heat = Math.max(0, heat - COOL * dt); idle += dt; if (idle > REPEAT) start(); }
+    paint();
+  }
+  if ("IntersectionObserver" in window) {
+    new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting && !visible) { start(); last = 0; }
+      visible = es[0].isIntersecting;
+    }, { threshold: 0.4 }).observe(row);
+  } else { visible = true; start(); }
+  requestAnimationFrame(loop);
+})();
+</script>

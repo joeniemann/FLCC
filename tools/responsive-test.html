@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>FLCC responsive harness</title>
+<style>
+  body{margin:0;background:#111;color:#ddd;font:13px/1.5 Arial,sans-serif}
+  #frames{position:absolute;left:-99999px;top:0}
+  iframe{border:0;height:1400px;display:block}
+  pre{padding:16px;white-space:pre-wrap}
+</style>
+</head>
+<body>
+<div id="frames"></div>
+<pre id="out">running…</pre>
+<script>
+/* Loads each page at a set of real viewport widths and measures the layout
+   inside the frame. Same-origin, so the frame's DOM is fully readable. */
+window.WIDTHS = [360, 390, 480, 560, 680, 768, 920, 1024, 1280, 1440, 1920, 2560];
+window.PAGES  = ["index.html", "services.html", "gallery.html", "about.html", "contact.html"];
+
+window.runAudit = async function (pages, widths) {
+  pages = pages || window.PAGES;
+  widths = widths || window.WIDTHS;
+  const host = document.getElementById("frames");
+  const results = {};
+
+  for (const page of pages) {
+    results[page] = {};
+    for (const w of widths) {
+      const f = document.createElement("iframe");
+      f.style.width = w + "px";
+      f.src = "/" + page;
+      host.appendChild(f);
+      await new Promise(res => { f.onload = res; setTimeout(res, 4000); });
+      await new Promise(r => setTimeout(r, 260));
+
+      let r;
+      try {
+        const d = f.contentDocument, win = f.contentWindow;
+        const vw = d.documentElement.clientWidth;
+
+        /* any element sticking out past the viewport */
+        const bleeders = [];
+        d.querySelectorAll("body *").forEach(el => {
+          const cs = win.getComputedStyle(el);
+          if (cs.position === "fixed" || cs.display === "none" || cs.visibility === "hidden") return;
+          /* deliberately parked off-screen until focused */
+          if (el.classList.contains("skip") || el.classList.contains("sr-only")) return;
+          const b = el.getBoundingClientRect();
+          if (b.width === 0) return;
+          if (b.right > vw + 1.5 || b.left < -1.5) {
+            /* Walk the ancestors: anything inside a box that clips or scrolls
+               horizontally is contained on purpose (e.g. the gallery's swipe
+               filter rows) and is not a page bleed. Checking only the direct
+               parent missed grandchildren and the overflow-x longhand. */
+            var clipped = false;
+            for (var a = el.parentElement; a && a !== d.body; a = a.parentElement) {
+              var ox = win.getComputedStyle(a).overflowX;
+              if (ox === "hidden" || ox === "auto" || ox === "scroll" || ox === "clip") { clipped = true; break; }
+            }
+            if (clipped) return;
+            bleeders.push((el.className && el.className.toString().slice(0, 30) || el.tagName) +
+                          " w=" + Math.round(b.width) + " r=" + Math.round(b.right));
+          }
+        });
+
+        const nav = d.querySelector(".nav-links"), tog = d.querySelector(".nav-toggle");
+        const gut = win.getComputedStyle(d.querySelector(".wrap") || d.body).paddingLeft;
+        const masonry = d.querySelector(".masonry");
+
+        r = {
+          docScrollW: d.documentElement.scrollWidth,
+          overflow: d.documentElement.scrollWidth > vw + 1,
+          bleeders: bleeders.slice(0, 4),
+          gutter: gut,
+          nav: nav && win.getComputedStyle(nav).display !== "none" ? "links"
+             : (tog && win.getComputedStyle(tog).display !== "none" ? "burger" : "?"),
+          cols: masonry ? win.getComputedStyle(masonry).columnCount : null,
+          minFont: (() => {
+            let m = 99;
+            d.querySelectorAll("p,li,a,span,td").forEach(e => {
+              if (!(e.textContent || "").trim()) return;
+              const s = parseFloat(win.getComputedStyle(e).fontSize);
+              if (s && s < m) m = s;
+            });
+            return m === 99 ? null : +m.toFixed(1);
+          })()
+        };
+      } catch (e) { r = { error: String(e).slice(0, 80) }; }
+
+      results[page][w] = r;
+      host.removeChild(f);
+    }
+  }
+  document.getElementById("out").textContent = JSON.stringify(results, null, 1);
+  window.AUDIT = results;
+  return results;
+};
+</script>
+</body>
+</html>

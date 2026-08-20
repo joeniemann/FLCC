@@ -1,0 +1,266 @@
+/* ============================================================
+   FLCC HERO — one logo outline, two tools.
+   A single traveller runs the FLCC mark's contours. Left of the
+   seam it is a needle laying stitches; right of it, a plasma torch
+   laying a molten cut. Drag the seam to set the balance.
+
+   Mark geometry follows the real logo: the letters run WIDER than
+   the ring and sit on top of it, so the circle reads as passing
+   behind and through them.
+
+   ONE typeface throughout. Hierarchy is carried by weight, size,
+   case and tracking only — no second family anywhere.
+   Single committed visual world; every ground painted explicitly.
+   ============================================================ */
+:root{
+  /* grounds */
+  --void:#08090A;      /* near-black page ground            */
+  --pitch:#050607;     /* deepest ground, notes + hero base  */
+  --line:#262B31;      /* hairline borders                   */
+  /* fabrication — plasma heat */
+  --molten:#FF5A1F;    /* torch orange, kerf, heat flash     */
+  --flare:#FFB35C;     /* mid-flare, spark midlife           */
+  --hot:#FFF6E6;       /* white-hot core                     */
+  /* upholstery — marine vinyl */
+  --vinyl:#E8762B;     /* the seat orange, saturated         */
+  --vinyl-lt:#F79A4B;  /* vinyl highlight                    */
+  --vinyl-dk:#8F4212;  /* vinyl shadow                       */
+  --thread:#FFFFFF;    /* stitching — pure bright white      */
+  /* chrome / steel */
+  --chrome-hi:#F4F8FB;
+  --chrome-mid:#9BA4AC;
+  --chrome-lo:#2F353B;
+  /* neutrals */
+  --bone:#F6F1E9;      /* warm off-white body + display text */
+  --ash:#A8B0B8;       /* secondary text                     */
+  --navy:#102532;      /* marine ground                      */
+  /* the only font in the document */
+  --font:Arial,"Helvetica Neue",Helvetica,"Liberation Sans",sans-serif;
+}
+*{box-sizing:border-box}
+::selection{background:var(--molten);color:#08090a}
+
+/* label style — same font, differentiated by case and tracking */
+
+/* ---------- control bar ---------- */
+
+/* ---------- hero ---------- */
+.hero{
+  /* sits directly under the sticky nav now — the old fixed-bar offset is gone.
+     svh keeps mobile browsers' collapsing address bar from cropping it. */
+  position:relative;
+  height:calc(100svh - var(--nav-h));min-height:600px;max-height:960px;
+  overflow:hidden;background:var(--pitch);cursor:ew-resize;
+  --seam:52%;--slant:5%;--heat:0;--mkTop:52%;--mkBot:48%;
+}
+@supports not (height:100svh){
+  .hero{height:calc(100vh - var(--nav-h))}
+}
+.side{position:absolute;inset:0}
+/* SIDES: fabrication LEFT, upholstery RIGHT.
+   .hard/.soft keep their meaning (fabrication / upholstery); only the
+   half of the seam they occupy is swapped, along with every dependent
+   value — focal point, veil direction and the tool's side test. */
+
+/* FABRICATION — the CNC-cut hawk gate, lit as if the torch were firing on it.
+   Not fully desaturated: a little colour survives so the plasma bloom reads hot. */
+.hard{
+  clip-path:polygon(0 0,calc(var(--seam) + var(--slant)) 0,calc(var(--seam) - var(--slant)) 100%,0 100%);
+  background:url("../hero/fabrication-hawk-gate.jpg") 32% 46%/cover no-repeat;
+  filter:grayscale(.72) saturate(1.15) contrast(1.16) brightness(.92);
+}
+/* plasma bloom — the hot core sits where the mark is being cut */
+.hard::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(42% 40% at 40% 46%,rgba(255,214,150,.34),rgba(255,120,40,.16) 46%,transparent 70%),
+    radial-gradient(86% 70% at 28% 52%,rgba(255,110,40,.22),transparent 64%),
+    linear-gradient(248deg,rgba(8,9,10,.20),rgba(8,9,10,.34) 58%,rgba(8,9,10,.62));
+}
+/* UPHOLSTERY — FLCC's own pontoon rebuild. Saturation pushed so the seat
+   orange actually reads as orange; veil cut back to a legibility scrim. */
+.soft{
+  clip-path:polygon(calc(var(--seam) + var(--slant)) 0,100% 0,100% 100%,calc(var(--seam) - var(--slant)) 100%);
+  background:url("../hero/upholstery-pontoon.jpg") 62% 46%/cover no-repeat;
+  filter:saturate(1.55) contrast(1.10) brightness(.86);
+}
+.soft::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(96% 74% at 76% 46%,rgba(255,138,58,.20),transparent 66%),
+    linear-gradient(248deg,rgba(9,18,26,.46),rgba(9,18,26,.22) 58%,rgba(8,9,10,.58));
+}
+/* brushed grain belongs to the steel half — now the left */
+.grain{
+  position:absolute;inset:0;opacity:.30;mix-blend-mode:overlay;
+  clip-path:polygon(0 0,calc(var(--seam) + var(--slant)) 0,calc(var(--seam) - var(--slant)) 100%,0 100%);
+  background:repeating-linear-gradient(101deg,rgba(255,255,255,.10) 0 1px,transparent 1px 4px);
+}
+.vig{position:absolute;inset:0;background:linear-gradient(0deg,var(--pitch) 1%,transparent 32%)}
+.seamsvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+
+/* ---------- composition ----------
+   Centred because the seam is the composition's axis: the mark has to
+   be bisected by it. Not a default — the geometry requires it. */
+.hero-in{
+  position:relative;z-index:8;height:100%;
+  width:100%;margin:0 auto;padding:0 var(--gutter);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:clamp(12px,2vh,24px);
+}
+/* SCOPED to the hero. Unscoped, this loads after site.css and repaints every
+   eyebrow on the homepage white — including "Who we are", which sits on the
+   light chalk band and was reduced to white-on-near-white. */
+.hero .eyebrow{
+  /* size/tracking follow the shared role; only colour and shadow differ,
+     because this one sits on photography rather than a flat band */
+  color:#fff;opacity:.88;text-shadow:0 1px 3px rgba(0,0,0,.85);
+}
+/* the hero's eyebrow is a long provenance line — let it wrap rather than
+   push the composition wider than the viewport on a phone */
+@media (max-width:560px){
+  .hero .eyebrow{letter-spacing:.12em;line-height:1.7}
+}
+.hero .eyebrow i{color:var(--molten);font-style:normal}
+
+/* ---------- the mark ---------- */
+.mark{position:relative;width:clamp(250px,33vw,470px);aspect-ratio:876/754;flex:none}
+.mark-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.mk-hard{clip-path:polygon(0 0,var(--mkTop) 0,var(--mkBot) 100%,0 100%)}
+.mk-soft{clip-path:polygon(var(--mkTop) 0,100% 0,100% 100%,var(--mkBot) 100%)}
+
+.fill{opacity:0;transition:opacity .55s ease}
+.fill.done{opacity:1}
+.fill-soft{fill:url(#gTan)}
+.fill-hard{fill:url(#gSteel)}
+
+/* stitching — pure white, lifted off the vinyl with a soft halo */
+.stitch{
+  fill:none;stroke:var(--thread);stroke-width:7.5;stroke-dasharray:20 15;stroke-linecap:round;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.70)) drop-shadow(0 1px 2px rgba(0,0,0,.55));
+}
+.rev{fill:none;stroke:#fff;stroke-width:28;stroke-linecap:round}
+/* kerf — white-hot core rather than amber */
+.kerf{fill:none;stroke:var(--hot);stroke-width:6;stroke-linecap:round;filter:url(#fGlow)}
+
+/* tagline lockup — vinyl patch or steel plate; settles in once the mark closes */
+.tag{opacity:0;transition:opacity .7s ease .15s}
+.tag.done{opacity:1}
+.tag text{
+  font-family:var(--font);font-size:34.75px;font-weight:700;letter-spacing:.215em;
+  text-anchor:middle;
+}
+
+/* the traveller */
+.tool{position:absolute;left:0;top:0;width:0;height:0;z-index:6;pointer-events:none;will-change:transform}
+.tool-in{position:absolute;transform:translate(-50%,-50%)}
+/* torch — blown out at the core, the way an arc reads to the eye */
+.torch{
+  width:19px;height:19px;border-radius:50%;
+  background:radial-gradient(circle,#fff 0 30%,var(--hot) 44%,var(--flare) 60%,var(--molten) 74%,rgba(255,60,0,0) 84%);
+  box-shadow:
+    0 0 10px 4px rgba(255,255,255,.95),
+    0 0 26px 9px rgba(255,175,80,.90),
+    0 0 66px 26px rgba(255,90,31,.58);
+}
+.needle{
+  width:34px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(255,255,255,0),#dbe6ee 40%,#fff 74%,#aebecb);
+  box-shadow:0 0 10px rgba(255,255,255,.75);
+}
+.needle::after{
+  content:"";position:absolute;right:-2px;top:-2.5px;width:7px;height:7px;border-radius:50%;
+  background:var(--thread);box-shadow:0 0 12px 3px rgba(255,255,255,.85);
+}
+.tool[data-side="soft"] .torch{display:none}
+.tool[data-side="hard"] .needle{display:none}
+
+/* ---------- headline ---------- */
+h1.big{
+  position:relative;margin:0;font-family:var(--font);
+  font-weight:700;text-transform:uppercase;
+  font-size:clamp(24px,4.6vw,62px);line-height:.98;letter-spacing:-.018em;
+}
+.row{position:relative;display:block;height:1em}
+.row span{position:absolute;inset:0;white-space:nowrap}
+/* legibility now comes from the type, not from drowning the photo */
+.t-soft{
+  color:var(--bone);
+  clip-path:polygon(calc(var(--seam) + var(--slant)) 0,100% 0,100% 100%,calc(var(--seam) - var(--slant)) 100%);
+  text-shadow:0 1px 2px rgba(0,0,0,.62),0 3px 12px rgba(0,0,0,.55),0 6px 40px rgba(0,0,0,.65);
+}
+/* chrome, echoing the logo's letterforms */
+.t-steel{
+  color:transparent;
+  background:linear-gradient(177deg,#f2f6f9 0%,#aeb6bd 30%,#5c646c 56%,#e8edf1 72%,#393f46 100%);
+  -webkit-background-clip:text;background-clip:text;
+  clip-path:polygon(0 0,calc(var(--seam) + var(--slant)) 0,calc(var(--seam) - var(--slant)) 100%,0 100%);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.75)) drop-shadow(0 6px 26px rgba(0,0,0,.6));
+}
+/* flashes once when the ring closes and the part comes free, then cools */
+.t-hot{
+  color:transparent;opacity:var(--heat,0);
+  background:linear-gradient(177deg,var(--hot) 0%,#ffb066 26%,var(--molten) 58%,#b82a00 100%);
+  -webkit-background-clip:text;background-clip:text;
+  clip-path:polygon(0 0,calc(var(--seam) + var(--slant)) 0,calc(var(--seam) - var(--slant)) 100%,0 100%);
+  filter:drop-shadow(0 0 24px rgba(255,90,31,.55));
+}
+
+.sub{
+  margin:0;max-width:52ch;font-size:clamp(13.5px,1.35vw,16px);line-height:1.66;
+  color:#E4EAEF;text-shadow:0 1px 2px rgba(0,0,0,.8),0 2px 14px rgba(0,0,0,.7);
+}
+.sub b{color:#fff;font-weight:700}
+.cta{display:flex;gap:13px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+
+/* Buttons come from site.css (.btn--sewn / .btn--heat). The standalone
+   study carried its own copy under .soft-b/.hard-b; that duplicate also
+   redefined the bare .btn rule, which overrode the shared one on the
+   homepage. Removed — the hero markup now uses the shared classes. */
+
+.handle{
+  position:absolute;z-index:9;top:50%;left:var(--seam);transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;pointer-events:none;
+  background:rgba(239,231,216,.10);border:1px solid rgba(239,231,216,.40);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-size:13px;color:var(--bone);
+}
+.hint{
+  position:absolute;left:0;right:0;bottom:20px;z-index:9;
+  width:100%;margin:0 auto;padding:0 var(--gutter);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#7a828a;
+}
+.hint b{color:var(--vinyl)}
+.hint i{color:var(--molten);font-style:normal}
+
+/* ---------- responsive ---------- */
+
+@media (max-width:900px){
+  .mark{width:clamp(210px,34vw,330px)}
+}
+@media (max-width:680px){
+  /* let the hero grow with its content rather than fight a viewport height,
+     and drop the drag affordance — there is no pointer to drag with */
+  .hero{height:auto;min-height:0;max-height:none;padding:60px 0 68px;cursor:default}
+  .hero-in{height:auto;gap:20px}
+  .handle{display:none}
+  .hint{position:static;margin-top:26px}
+  .mark{width:min(74vw,300px)}
+}
+@media (max-width:420px){
+  .mark{width:min(80vw,248px)}
+  .cta{width:100%}
+  .cta .btn{flex:1;justify-content:center}
+}
+/* short landscape phones — the mark alone would fill the screen */
+@media (max-height:560px) and (orientation:landscape){
+  .hero{height:auto;min-height:0;max-height:none;padding:52px 0 60px}
+  .hero-in{height:auto}
+  .mark{width:min(30vw,220px)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .tool{display:none}
+}

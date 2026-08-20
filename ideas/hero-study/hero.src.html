@@ -1,0 +1,749 @@
+<title>Stitched and Cut</title>
+<style>
+/* ============================================================
+   FLCC HERO — one logo outline, two tools.
+   A single traveller runs the FLCC mark's contours. Left of the
+   seam it is a needle laying stitches; right of it, a plasma torch
+   laying a molten cut. Drag the seam to set the balance.
+
+   Mark geometry follows the real logo: the letters run WIDER than
+   the ring and sit on top of it, so the circle reads as passing
+   behind and through them.
+
+   ONE typeface throughout. Hierarchy is carried by weight, size,
+   case and tracking only — no second family anywhere.
+   Single committed visual world; every ground painted explicitly.
+   ============================================================ */
+:root{
+  /* grounds */
+  --void:#08090A;      /* near-black page ground            */
+  --pitch:#050607;     /* deepest ground, notes + hero base  */
+  --line:#262B31;      /* hairline borders                   */
+  /* fabrication — plasma heat */
+  --molten:#FF5A1F;    /* torch orange, kerf, heat flash     */
+  --flare:#FFB35C;     /* mid-flare, spark midlife           */
+  --hot:#FFF6E6;       /* white-hot core                     */
+  /* upholstery — marine vinyl */
+  --vinyl:#E8762B;     /* the seat orange, saturated         */
+  --vinyl-lt:#F79A4B;  /* vinyl highlight                    */
+  --vinyl-dk:#8F4212;  /* vinyl shadow                       */
+  --thread:#FFFFFF;    /* stitching — pure bright white      */
+  /* chrome / steel */
+  --chrome-hi:#F4F8FB;
+  --chrome-mid:#9BA4AC;
+  --chrome-lo:#2F353B;
+  /* neutrals */
+  --bone:#F6F1E9;      /* warm off-white body + display text */
+  --ash:#A8B0B8;       /* secondary text                     */
+  --navy:#102532;      /* marine ground                      */
+  /* the only font in the document */
+  --font:Arial,"Helvetica Neue",Helvetica,"Liberation Sans",sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--void);color:var(--ash);
+  font-family:var(--font);-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--molten);color:#08090a}
+
+/* label style — same font, differentiated by case and tracking */
+.lbl{text-transform:uppercase;letter-spacing:.22em;font-weight:700}
+
+/* ---------- control bar ---------- */
+.bar{
+  position:fixed;inset:0 0 auto 0;z-index:9999;height:52px;
+  background:rgba(5,6,7,.93);border-bottom:1px solid var(--line);
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+}
+.bar-in{max-width:1400px;margin:0 auto;padding:0 20px;height:100%;display:flex;align-items:center;gap:16px}
+.bar-mark{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#6f757d;white-space:nowrap;font-weight:700}
+.bar-mark b{color:var(--bone)}
+.bar-ctl{display:flex;gap:6px;margin-left:auto;align-items:center;flex-wrap:wrap}
+.btn-bar{
+  font-family:var(--font);font-size:10px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:#9aa1aa;background:transparent;border:1px solid var(--line);
+  padding:8px 14px;border-radius:2px;cursor:pointer;transition:all .2s;white-space:nowrap;
+}
+.btn-bar:hover{color:var(--bone);border-color:#3d4046}
+.btn-bar:focus-visible{outline:2px solid var(--molten);outline-offset:2px}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;margin-top:52px;
+  height:calc(100vh - 52px);min-height:640px;max-height:940px;
+  overflow:hidden;background:var(--pitch);cursor:ew-resize;
+  --seam:52%;--heat:0;--mkTop:52%;--mkBot:48%;
+}
+.side{position:absolute;inset:0}
+/* SIDES: fabrication LEFT, upholstery RIGHT.
+   .hard/.soft keep their meaning (fabrication / upholstery); only the
+   half of the seam they occupy is swapped, along with every dependent
+   value — focal point, veil direction and the tool's side test. */
+
+/* FABRICATION — the CNC-cut hawk gate, lit as if the torch were firing on it.
+   Not fully desaturated: a little colour survives so the plasma bloom reads hot. */
+.hard{
+  clip-path:polygon(0 0,calc(var(--seam) + 5%) 0,calc(var(--seam) - 5%) 100%,0 100%);
+  background:url("data:image/jpeg;base64,__IMG_H__") 32% 46%/cover no-repeat;
+  filter:grayscale(.72) saturate(1.15) contrast(1.16) brightness(.92);
+}
+/* plasma bloom — the hot core sits where the mark is being cut */
+.hard::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(42% 40% at 40% 46%,rgba(255,214,150,.34),rgba(255,120,40,.16) 46%,transparent 70%),
+    radial-gradient(86% 70% at 28% 52%,rgba(255,110,40,.22),transparent 64%),
+    linear-gradient(248deg,rgba(8,9,10,.20),rgba(8,9,10,.34) 58%,rgba(8,9,10,.62));
+}
+/* UPHOLSTERY — FLCC's own pontoon rebuild. Saturation pushed so the seat
+   orange actually reads as orange; veil cut back to a legibility scrim. */
+.soft{
+  clip-path:polygon(calc(var(--seam) + 5%) 0,100% 0,100% 100%,calc(var(--seam) - 5%) 100%);
+  background:url("data:image/jpeg;base64,__IMG_U__") 62% 46%/cover no-repeat;
+  filter:saturate(1.55) contrast(1.10) brightness(.86);
+}
+.soft::after{
+  content:"";position:absolute;inset:0;
+  background:
+    radial-gradient(96% 74% at 76% 46%,rgba(255,138,58,.20),transparent 66%),
+    linear-gradient(248deg,rgba(9,18,26,.46),rgba(9,18,26,.22) 58%,rgba(8,9,10,.58));
+}
+/* brushed grain belongs to the steel half — now the left */
+.grain{
+  position:absolute;inset:0;opacity:.30;mix-blend-mode:overlay;
+  clip-path:polygon(0 0,calc(var(--seam) + 5%) 0,calc(var(--seam) - 5%) 100%,0 100%);
+  background:repeating-linear-gradient(101deg,rgba(255,255,255,.10) 0 1px,transparent 1px 4px);
+}
+.vig{position:absolute;inset:0;background:linear-gradient(0deg,var(--pitch) 1%,transparent 32%)}
+.seamsvg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:5}
+.sparks{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:9}
+
+/* ---------- composition ----------
+   Centred because the seam is the composition's axis: the mark has to
+   be bisected by it. Not a default — the geometry requires it. */
+.hero-in{
+  position:relative;z-index:8;height:100%;
+  max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:clamp(12px,2vh,24px);
+}
+.eyebrow{
+  font-size:10.5px;letter-spacing:.30em;text-transform:uppercase;font-weight:700;
+  color:#fff;opacity:.88;text-shadow:0 1px 3px rgba(0,0,0,.85);
+}
+.eyebrow i{color:var(--molten);font-style:normal}
+
+/* ---------- the mark ---------- */
+.mark{position:relative;width:clamp(230px,30vw,400px);aspect-ratio:1;flex:none}
+.mark-svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.mk-hard{clip-path:polygon(0 0,var(--mkTop) 0,var(--mkBot) 100%,0 100%)}
+.mk-soft{clip-path:polygon(var(--mkTop) 0,100% 0,100% 100%,var(--mkBot) 100%)}
+
+.fill{opacity:0;transition:opacity .55s ease}
+.fill.done{opacity:1}
+.fill-soft{fill:url(#gTan)}
+.fill-hard{fill:url(#gSteel)}
+
+/* stitching — pure white, lifted off the vinyl with a soft halo */
+.stitch{
+  fill:none;stroke:var(--thread);stroke-width:3.6;stroke-dasharray:9 7;stroke-linecap:round;
+  filter:drop-shadow(0 0 3px rgba(255,255,255,.70)) drop-shadow(0 1px 2px rgba(0,0,0,.55));
+}
+.rev{fill:none;stroke:#fff;stroke-width:14;stroke-linecap:round}
+/* kerf — white-hot core rather than amber */
+.kerf{fill:none;stroke:var(--hot);stroke-width:3;stroke-linecap:round;filter:url(#fGlow)}
+
+/* tagline lockup — vinyl patch or steel plate; settles in once the mark closes */
+.tag{opacity:0;transition:opacity .7s ease .15s}
+.tag.done{opacity:1}
+.tag text{
+  font-family:var(--font);font-size:13.3px;font-weight:700;letter-spacing:.215em;
+  text-anchor:middle;
+}
+
+/* the traveller */
+.tool{position:absolute;left:0;top:0;width:0;height:0;z-index:6;pointer-events:none;will-change:transform}
+.tool-in{position:absolute;transform:translate(-50%,-50%)}
+/* torch — blown out at the core, the way an arc reads to the eye */
+.torch{
+  width:19px;height:19px;border-radius:50%;
+  background:radial-gradient(circle,#fff 0 30%,var(--hot) 44%,var(--flare) 60%,var(--molten) 74%,rgba(255,60,0,0) 84%);
+  box-shadow:
+    0 0 10px 4px rgba(255,255,255,.95),
+    0 0 26px 9px rgba(255,175,80,.90),
+    0 0 66px 26px rgba(255,90,31,.58);
+}
+.needle{
+  width:34px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,rgba(255,255,255,0),#dbe6ee 40%,#fff 74%,#aebecb);
+  box-shadow:0 0 10px rgba(255,255,255,.75);
+}
+.needle::after{
+  content:"";position:absolute;right:-2px;top:-2.5px;width:7px;height:7px;border-radius:50%;
+  background:var(--thread);box-shadow:0 0 12px 3px rgba(255,255,255,.85);
+}
+.tool[data-side="soft"] .torch{display:none}
+.tool[data-side="hard"] .needle{display:none}
+
+/* ---------- headline ---------- */
+h1.big{
+  position:relative;margin:0;font-family:var(--font);
+  font-weight:700;text-transform:uppercase;
+  font-size:clamp(24px,4.6vw,62px);line-height:.98;letter-spacing:-.018em;
+}
+.row{position:relative;display:block;height:1em}
+.row span{position:absolute;inset:0;white-space:nowrap}
+/* legibility now comes from the type, not from drowning the photo */
+.t-soft{
+  color:var(--bone);
+  clip-path:polygon(calc(var(--seam) + 5%) 0,100% 0,100% 100%,calc(var(--seam) - 5%) 100%);
+  text-shadow:0 1px 2px rgba(0,0,0,.62),0 3px 12px rgba(0,0,0,.55),0 6px 40px rgba(0,0,0,.65);
+}
+/* chrome, echoing the logo's letterforms */
+.t-steel{
+  color:transparent;
+  background:linear-gradient(177deg,#f2f6f9 0%,#aeb6bd 30%,#5c646c 56%,#e8edf1 72%,#393f46 100%);
+  -webkit-background-clip:text;background-clip:text;
+  clip-path:polygon(0 0,calc(var(--seam) + 5%) 0,calc(var(--seam) - 5%) 100%,0 100%);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,.75)) drop-shadow(0 6px 26px rgba(0,0,0,.6));
+}
+/* flashes once when the ring closes and the part comes free, then cools */
+.t-hot{
+  color:transparent;opacity:var(--heat,0);
+  background:linear-gradient(177deg,var(--hot) 0%,#ffb066 26%,var(--molten) 58%,#b82a00 100%);
+  -webkit-background-clip:text;background-clip:text;
+  clip-path:polygon(0 0,calc(var(--seam) + 5%) 0,calc(var(--seam) - 5%) 100%,0 100%);
+  filter:drop-shadow(0 0 24px rgba(255,90,31,.55));
+}
+
+.sub{
+  margin:0;max-width:52ch;font-size:clamp(13.5px,1.35vw,16px);line-height:1.66;
+  color:#E4EAEF;text-shadow:0 1px 2px rgba(0,0,0,.8),0 2px 14px rgba(0,0,0,.7);
+}
+.sub b{color:#fff;font-weight:700}
+.cta{display:flex;gap:13px;flex-wrap:wrap;justify-content:center;margin-top:4px}
+
+.btn{
+  font-family:var(--font);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;
+  text-decoration:none;cursor:pointer;border:0;
+  transition:transform .16s cubic-bezier(.2,.8,.2,1),box-shadow .3s,color .3s,border-color .3s;
+}
+.btn:focus-visible{outline:2px solid var(--hot);outline-offset:3px}
+.btn.soft-b{
+  position:relative;padding:15px 26px;border-radius:40px;background:var(--vinyl);color:#1c0f05;
+  box-shadow:0 9px 24px rgba(0,0,0,.46);
+}
+.btn.soft-b::after{
+  content:"";position:absolute;inset:5px;border-radius:34px;
+  border:1.5px dashed rgba(28,15,5,.52);transition:inset .2s,border-color .3s;
+}
+.btn.soft-b:hover{transform:translateY(2px);box-shadow:0 3px 10px rgba(0,0,0,.5)}
+.btn.soft-b:hover::after{inset:4px;border-color:rgba(28,15,5,.88)}
+.btn.hard-b{
+  --mx:50%;--my:50%;
+  position:relative;overflow:hidden;isolation:isolate;padding:16px 27px;border-radius:2px;
+  border:1px solid #454a51;background:linear-gradient(180deg,#2f343a,#1b1e22);color:var(--hot);
+}
+.btn.hard-b::before{
+  content:"";position:absolute;inset:0;z-index:-1;opacity:0;transition:opacity .38s;
+  background:radial-gradient(circle 150px at var(--mx) var(--my),#fff2dd 0%,var(--molten) 26%,#a12800 58%,transparent 78%);
+}
+.btn.hard-b:hover{color:#180a02;border-color:var(--molten)}
+.btn.hard-b:hover::before{opacity:1}
+.btn.hard-b:active{transform:translateY(1px)}
+
+.handle{
+  position:absolute;z-index:9;top:50%;left:var(--seam);transform:translate(-50%,-50%);
+  width:46px;height:46px;border-radius:50%;display:grid;place-items:center;pointer-events:none;
+  background:rgba(239,231,216,.10);border:1px solid rgba(239,231,216,.40);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  font-size:13px;color:var(--bone);
+}
+.hint{
+  position:absolute;left:0;right:0;bottom:20px;z-index:9;
+  max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px);
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:#7a828a;
+}
+.hint b{color:var(--vinyl)}
+.hint i{color:var(--molten);font-style:normal}
+
+/* ---------- notes ---------- */
+.notes{border-top:1px solid var(--line);background:var(--pitch);padding:clamp(44px,6vw,76px) 0 60px}
+.notes-in{max-width:1280px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+.notes h2{
+  font-weight:700;text-transform:uppercase;font-size:clamp(22px,3vw,34px);
+  line-height:1;margin:0 0 8px;color:#eef1f4;letter-spacing:-.012em;
+}
+.notes .lede{margin:0 0 38px;max-width:62ch;line-height:1.68;color:#a8aeb6;font-size:15px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.note{border:1px solid var(--line);border-radius:3px;padding:22px;background:#0c0e10}
+.note-k{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--molten);margin-bottom:10px}
+.note h3{font-size:16px;margin:0 0 8px;color:#e6eaee;font-weight:700}
+.note p{margin:0;line-height:1.66;color:#989fa7;font-size:14px}
+.note.tan .note-k{color:var(--vinyl)}
+.foot{
+  margin-top:38px;padding-top:20px;border-top:1px solid var(--line);
+  font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#5d636b;
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+}
+
+@media (max-width:900px){ .grid3{grid-template-columns:1fr} }
+@media (max-width:680px){
+  .bar-in{padding:0 14px;gap:10px}
+  .bar-mark{display:none}
+  .hero{height:auto;min-height:0;max-height:none;padding:96px 0 88px}
+  .hero-in{height:auto}
+  .handle{display:none}
+  .hint{position:static;margin-top:30px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .tool{display:none}
+}
+</style>
+
+<header class="bar">
+  <div class="bar-in">
+    <div class="bar-mark"><b>FLCC</b> &nbsp;Hero Study &nbsp;/&nbsp; Cut &amp; Sewn Mark</div>
+    <div class="bar-ctl">
+      <button class="btn-bar" id="replay">&#8635;&nbsp; Replay</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero" id="hero">
+  <div class="side soft" aria-hidden="true"></div>
+  <div class="side hard" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vig" aria-hidden="true"></div>
+
+  <svg class="seamsvg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <line id="thread" x1="57" y1="0" x2="47" y2="100" stroke="rgba(255,255,255,.30)" stroke-width=".12" vector-effect="non-scaling-stroke"></line>
+    <line id="seamstitch" x1="57" y1="0" x2="47" y2="100" stroke="rgba(255,255,255,.95)" stroke-width=".46" vector-effect="non-scaling-stroke"
+          stroke-dasharray="9 7" stroke-linecap="round"></line>
+  </svg>
+
+  <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+  <div class="handle" aria-hidden="true">&#8596;</div>
+
+  <div class="hero-in">
+    <div class="eyebrow">Upholstery <i>&times;</i> Metal &nbsp;&middot;&nbsp; Apopka, Florida &nbsp;&middot;&nbsp; Family-Run</div>
+
+    <div class="mark" id="mark" role="img" aria-label="FLCC Fabrication and Upholstery mark, being stitched on one side and plasma cut on the other">
+      <!-- SOFT: sewn.  Ring first in the DOM so the letters sit on top of it. -->
+      <svg class="mark-svg mk-soft" viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <linearGradient id="gTan" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFA85C"/><stop offset=".55" stop-color="#E8762B"/>
+            <stop offset="1" stop-color="#A84C12"/>
+          </linearGradient>
+          <!-- marine vinyl, matched to the seat orange in the photo -->
+          <linearGradient id="gVinyl" x1="0" y1="0" x2=".25" y2="1">
+            <stop offset="0" stop-color="#F79A4B"/><stop offset=".5" stop-color="#E8762B"/>
+            <stop offset="1" stop-color="#8F4212"/>
+          </linearGradient>
+          <pattern id="pGrain" width="5" height="5" patternUnits="userSpaceOnUse">
+            <circle cx="1.2" cy="1.2" r=".7" fill="#fff" fill-opacity=".07"/>
+            <circle cx="3.6" cy="3.4" r=".6" fill="#000" fill-opacity=".10"/>
+          </pattern>
+          <!-- clearance: knocks the ring out around every letter with padding,
+               so the circle breaks short of the letterforms instead of
+               butting straight against them. Filling AND stroking each letter
+               dilates its silhouette by half the stroke width. -->
+          <mask id="clrS" maskUnits="userSpaceOnUse" x="-60" y="-60" width="520" height="520">
+            <rect x="-60" y="-60" width="520" height="520" fill="#fff"/>
+            <g fill="#000" stroke="#000" stroke-width="17" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+              <path d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+              <path d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+              <path d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+            </g>
+          </mask>
+          <!-- separate masks so a letter's reveal stroke can't bleed onto the ring -->
+          <mask id="mRingS" maskUnits="userSpaceOnUse" x="-60" y="-60" width="520" height="520">
+            <path class="rev" data-c="0" d="M82 200 A118 118 0 1 0 318 200 A118 118 0 1 0 82 200 Z"/>
+          </mask>
+          <mask id="mLetS" maskUnits="userSpaceOnUse" x="-60" y="-60" width="520" height="520">
+            <path class="rev" data-c="1" d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+            <path class="rev" data-c="2" d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+            <path class="rev" data-c="3" d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+            <path class="rev" data-c="4" d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+          </mask>
+        </defs>
+        <!-- RING LAYER — behind the letters, and cleared away around them -->
+        <g mask="url(#clrS)">
+          <path class="fill" data-c="0" d="M82 200 A118 118 0 1 0 318 200 A118 118 0 1 0 82 200 Z" style="fill:none;stroke:url(#gTan);stroke-width:9"/>
+          <g mask="url(#mRingS)">
+            <path class="stitch" d="M82 200 A118 118 0 1 0 318 200 A118 118 0 1 0 82 200 Z"/>
+          </g>
+        </g>
+        <!-- LETTER LAYER — paints over the ring and occludes it -->
+        <g>
+          <path class="fill fill-soft" data-c="1" d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+          <path class="fill fill-soft" data-c="2" d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+          <path class="fill fill-soft" data-c="3" d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+          <path class="fill fill-soft" data-c="4" d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+          <g mask="url(#mLetS)">
+            <path class="stitch" d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+            <path class="stitch" d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+            <path class="stitch" d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+            <path class="stitch" d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+          </g>
+        </g>
+        <!-- tagline on a piece of marine upholstery — piped and top-stitched.
+             Plate spans 40..360, matching the letter lockup's own width. -->
+        <g class="tag" data-tag="soft">
+          <rect x="40" y="268" width="320" height="40" rx="20" fill="url(#gVinyl)" stroke="#6B3010" stroke-width="1.2"/>
+          <rect x="40" y="268" width="320" height="40" rx="20" fill="url(#pGrain)"/>
+          <rect x="40" y="268" width="320" height="19" rx="19" fill="#fff" opacity=".13"/>
+          <rect x="46.5" y="274.5" width="307" height="27" rx="13.5" fill="none"
+                stroke="#FFFFFF" stroke-opacity=".92" stroke-width="1.6"
+                stroke-dasharray="5 4" stroke-linecap="round"/>
+          <text x="200" y="292.5" fill="#4A1F06" opacity=".45">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="200" y="291.6" fill="#FFFFFF">FABRICATION &amp; UPHOLSTERY</text>
+        </g>
+      </svg>
+
+      <!-- HARD: cut -->
+      <svg class="mark-svg mk-hard" viewBox="0 0 400 400" aria-hidden="true">
+        <defs>
+          <linearGradient id="gSteel" x1="0" y1="0" x2="0.3" y2="1">
+            <stop offset="0" stop-color="#f2f6f9"/><stop offset=".32" stop-color="#a6aeb6"/>
+            <stop offset=".62" stop-color="#525a62"/><stop offset=".78" stop-color="#dfe5ea"/>
+            <stop offset="1" stop-color="#33383e"/>
+          </linearGradient>
+          <!-- two-stage bloom: a wide molten halo plus a tight flare, both
+               explicitly fed from SourceGraphic so neither chains off the other -->
+          <filter id="fGlow" x="-90%" y="-90%" width="280%" height="280%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="wide"/>
+            <feFlood flood-color="#FF5A1F" flood-opacity="1" result="cWide"/>
+            <feComposite in="cWide" in2="wide" operator="in" result="gWide"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="tight"/>
+            <feFlood flood-color="#FFB35C" flood-opacity="1" result="cTight"/>
+            <feComposite in="cTight" in2="tight" operator="in" result="gTight"/>
+            <feMerge>
+              <feMergeNode in="gWide"/><feMergeNode in="gWide"/>
+              <feMergeNode in="gTight"/><feMergeNode in="gTight"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <!-- letter clearance, matching the soft side -->
+          <mask id="clrH" maskUnits="userSpaceOnUse" x="-60" y="-60" width="520" height="520">
+            <rect x="-60" y="-60" width="520" height="520" fill="#fff"/>
+            <g fill="#000" stroke="#000" stroke-width="17" stroke-linejoin="round" stroke-linecap="round">
+              <path d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+              <path d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+              <path d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+              <path d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+            </g>
+          </mask>
+          <!-- steel plate -->
+          <linearGradient id="gPlate" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#98a1a9"/><stop offset=".42" stop-color="#666f78"/>
+            <stop offset=".55" stop-color="#4c545c"/><stop offset="1" stop-color="#333a41"/>
+          </linearGradient>
+          <radialGradient id="gRivet" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#eef2f5"/><stop offset=".55" stop-color="#98a1a9"/>
+            <stop offset="1" stop-color="#4a5158"/>
+          </radialGradient>
+        </defs>
+        <!-- RING LAYER — behind the letters and cleared around them, so the
+             torch line disappears before it reaches a letter edge -->
+        <g mask="url(#clrH)">
+          <path class="fill" data-c="0" d="M82 200 A118 118 0 1 0 318 200 A118 118 0 1 0 82 200 Z" style="fill:none;stroke:url(#gSteel);stroke-width:9"/>
+          <path class="kerf" data-c="0" d="M82 200 A118 118 0 1 0 318 200 A118 118 0 1 0 82 200 Z"/>
+        </g>
+        <!-- LETTER LAYER — paints over the ring and occludes it -->
+        <g>
+          <path class="fill fill-hard" data-c="1" d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+          <path class="fill fill-hard" data-c="2" d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+          <path class="fill fill-hard" data-c="3" d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+          <path class="fill fill-hard" data-c="4" d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+          <path class="kerf" data-c="1" d="M40 158 H108 V168 L98 180 H62 V190 H96 V200 L86 212 H62 V242 H40 Z"/>
+          <path class="kerf" data-c="2" d="M124 158 H146 V220 H192 V232 L182 242 H124 Z"/>
+          <path class="kerf" data-c="3" d="M268.8 174.1 A34 42 0 1 0 268.8 225.9 L251.5 212.3 A12 20 0 1 1 251.5 187.7 Z"/>
+          <path class="kerf" data-c="4" d="M352.8 174.1 A34 42 0 1 0 352.8 225.9 L335.5 212.3 A12 20 0 1 1 335.5 187.7 Z"/>
+        </g>
+        <!-- tagline on a riveted steel plate — smooth, bevelled, engraved.
+             Plate spans 40..360, matching the letter lockup's own width. -->
+        <g class="tag" data-tag="hard">
+          <rect x="40" y="270" width="320" height="36" rx="2.5" fill="url(#gPlate)" stroke="#191d22" stroke-width="1.2"/>
+          <path d="M41.5 271.5 H358.5" stroke="#dfe6ec" stroke-opacity=".55" stroke-width="1.2"/>
+          <path d="M41.5 304.5 H358.5" stroke="#000" stroke-opacity=".45" stroke-width="1.2"/>
+          <circle cx="54" cy="288" r="3.6" fill="url(#gRivet)"/>
+          <circle cx="346" cy="288" r="3.6" fill="url(#gRivet)"/>
+          <!-- raised lettering: dark shadow cast below, bright highlight above,
+               light face painted last so it leaves a fringe of each -->
+          <text x="200" y="293.6" fill="#0E1216" opacity=".80">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="200" y="291.4" fill="#FFFFFF" opacity=".88">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="200" y="292.4" fill="#DDE5EC">FABRICATION &amp; UPHOLSTERY</text>
+        </g>
+      </svg>
+
+      <div class="tool" id="tool" data-side="hard" aria-hidden="true">
+        <div class="tool-in"><div class="torch"></div><div class="needle"></div></div>
+      </div>
+    </div>
+
+    <h1 class="big">
+      <span class="row">
+        <span class="t-steel" aria-hidden="true">FinishLines</span>
+        <span class="t-hot"   aria-hidden="true">FinishLines</span>
+        <span class="t-soft">FinishLines</span>
+      </span>
+      <span class="row">
+        <span class="t-steel" aria-hidden="true">Creative Concepts</span>
+        <span class="t-hot"   aria-hidden="true">Creative Concepts</span>
+        <span class="t-soft">Creative Concepts</span>
+      </span>
+    </h1>
+    <p class="sub"><b>Fabrication &amp; Upholstery Services.</b> From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.</p>
+    <div class="cta">
+      <a class="btn soft-b" href="#">Start a Build</a>
+      <a class="btn hard-b" href="#">See the Gallery</a>
+    </div>
+  </div>
+
+  <div class="hint">
+    <span><i>&#9664; Cut</i> &nbsp;&mdash;&nbsp; drag to move the seam &nbsp;&mdash;&nbsp; <b>Sewn &#9654;</b></span>
+    <span>One outline, two tools</span>
+  </div>
+</section>
+
+<section class="notes">
+  <div class="notes-in">
+    <h2>What's happening in the mark</h2>
+    <p class="lede">A single traveller runs the FLCC mark's contours. Which tool it is depends on which side of the seam it is currently on &mdash; so the fabrication half is genuinely being torch-cut while the upholstery half is genuinely being sewn, by the same pass.</p>
+    <div class="grid3">
+      <div class="note">
+        <div class="note-k">Fabrication side</div>
+        <h3>Cut in the right order</h3>
+        <p>The torch takes F, L, C, C first and the ring last &mdash; every inner feature before the outline, the way a CNC sequences a cut so the part doesn't drop free early. Sparks throw from the tip; the kerf stays molten behind it.</p>
+      </div>
+      <div class="note tan">
+        <div class="note-k">Upholstery side</div>
+        <h3>Stitches accumulate</h3>
+        <p>The needle lays a running stitch along the identical contour, riding the path's tangent, revealed through a mask that grows with the pass. The thread stays where it was laid rather than sweeping through.</p>
+      </div>
+      <div class="note tan">
+        <div class="note-k">The handoff</div>
+        <h3>The tool changes at the seam</h3>
+        <p>Cross the seam mid-contour and the needle becomes a torch, or the reverse. Drag the seam to set the balance: pull it right and the mark is almost entirely sewn; pull it left and it's almost entirely cut.</p>
+      </div>
+    </div>
+    <div class="foot">
+      <span>One typeface throughout &mdash; weight, case and tracking carry the hierarchy</span>
+      <span>Vanilla HTML5 &middot; CSS &middot; JavaScript</span>
+    </div>
+  </div>
+</section>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var hero   = document.getElementById("hero");
+  var markEl = document.getElementById("mark");
+  var toolEl = document.getElementById("tool");
+  var toolIn = toolEl.querySelector(".tool-in");
+  var cv     = document.getElementById("sparks");
+  var ctx    = cv.getContext("2d");
+  var thread = document.getElementById("thread");
+  var sstitch= document.getElementById("seamstitch");
+
+  var revs  = [].slice.call(document.querySelectorAll(".rev"));
+  var kerfs = [].slice.call(document.querySelectorAll(".kerf"));
+  var fills = [].slice.call(document.querySelectorAll(".fill"));
+  var tags  = [].slice.call(document.querySelectorAll(".tag"));
+  var lens = [], total = 0;
+
+  /* DOM order is ring-first so the letters paint on top of the ring.
+     The CUT order is the reverse priority: letters first, ring last. */
+  var ORDER = [1,2,3,4,0];
+
+  function measure(){
+    lens = kerfs.map(function(p){ return p.getTotalLength(); });
+    total = lens.reduce(function(a,b){ return a+b; }, 0);
+    revs.forEach(function(p,i){ p.style.strokeDasharray = lens[i]+" "+lens[i]; });
+    kerfs.forEach(function(p,i){ p.style.strokeDasharray = lens[i]+" "+lens[i]; });
+  }
+
+  function setPass(prog){
+    var d = prog*total, pt = null, active = -1, localD = 0;
+    for(var k=0;k<ORDER.length;k++){
+      var i = ORDER[k], L = lens[i], off;
+      if(d >= L){ off = 0; d -= L; markDone(i,true); }
+      else if(d > 0){ off = L - d; pt = kerfs[i].getPointAtLength(d); active = i; localD = d; d = 0; markDone(i,false); }
+      else { off = L; markDone(i,false); }
+      revs[i].style.strokeDashoffset  = off;
+      kerfs[i].style.strokeDashoffset = off;
+    }
+    if(!pt && prog >= 1){
+      var lastI = ORDER[ORDER.length-1];
+      pt = kerfs[lastI].getPointAtLength(lens[lastI]);
+    }
+    tags.forEach(function(t){ t.classList.toggle("done", prog >= 1); });
+    return {pt:pt, active:active, localD:localD};
+  }
+  function markDone(i,on){
+    fills.forEach(function(f){ if(+f.dataset.c === i) f.classList.toggle("done", on); });
+  }
+
+  /* ---------- seam ---------- */
+  var seam = 52, seamT = 52, SLANT = 5;
+  function paintSeam(){
+    hero.style.setProperty("--seam", seam.toFixed(2)+"%");
+    thread.setAttribute("x1",(seam+SLANT).toFixed(2)); thread.setAttribute("x2",(seam-SLANT).toFixed(2));
+    sstitch.setAttribute("x1",(seam+SLANT).toFixed(2)); sstitch.setAttribute("x2",(seam-SLANT).toFixed(2));
+    syncMarkClip();
+  }
+  function syncMarkClip(){
+    var h = hero.getBoundingClientRect(), m = markEl.getBoundingClientRect();
+    if(!h.height || !m.width) return;
+    var xAt = function(yHero){ return (seam + SLANT - 2*SLANT*(yHero/h.height))/100 * h.width; };
+    var top = (xAt(m.top - h.top) - (m.left - h.left)) / m.width * 100;
+    var bot = (xAt(m.bottom - h.top) - (m.left - h.left)) / m.width * 100;
+    hero.style.setProperty("--mkTop", top.toFixed(2)+"%");
+    hero.style.setProperty("--mkBot", bot.toFixed(2)+"%");
+  }
+  function seamXAtHeroY(y){
+    var h = hero.getBoundingClientRect();
+    return (seam + SLANT - 2*SLANT*(y/h.height))/100 * h.width;
+  }
+  /* the mark sits above the hero's vertical centre, where the slanted seam
+     has already drifted right — so the resting seam is solved for rather
+     than hardcoded, keeping the mark bisected at any viewport */
+  function restingSeam(){
+    var h = hero.getBoundingClientRect(), m = markEl.getBoundingClientRect();
+    if(!h.width || !m.width) return 52;
+    var yc = (m.top - h.top) + m.height/2;
+    var cx = (m.left - h.left) + m.width/2;
+    return Math.max(20, Math.min(80, (cx/h.width)*100 - SLANT + 2*SLANT*(yc/h.height)));
+  }
+
+  hero.addEventListener("pointermove", function(e){
+    var r = hero.getBoundingClientRect();
+    seamT = Math.max(16, Math.min(84, ((e.clientX - r.left)/r.width)*100));
+    if(reduce){ seam = seamT; paintSeam(); }
+  });
+  hero.addEventListener("pointerleave", function(){ seamT = restingSeam(); if(reduce){ seam = seamT; paintSeam(); } });
+
+  /* ---------- canvas ---------- */
+  var cw=0, ch=0, DPR = Math.min(devicePixelRatio || 1, 2), parts = [];
+  function sizeCanvas(){
+    var r = hero.getBoundingClientRect();
+    if(r.width < 2 || r.height < 2) return false;
+    if(r.width === cw && r.height === ch) return true;
+    cw = r.width; ch = r.height;
+    cv.width = cw*DPR; cv.height = ch*DPR;
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    syncMarkClip();
+    return true;
+  }
+  function emit(x,y,n,spread){
+    for(var i=0;i<n;i++){
+      var a = Math.random()*Math.PI*2, s = 1.1 + Math.random()*(spread||6);
+      parts.push({x:x,y:y,vx:Math.cos(a)*s*1.3,vy:Math.sin(a)*s-1.7,
+                  life:1,decay:.010+Math.random()*.024,r:.5+Math.random()*1.6});
+    }
+    if(parts.length > 1400) parts.splice(0, parts.length-1400);
+  }
+
+  /* ---------- pass ---------- */
+  var prog = 0, running = false, doneAt = 0, heat = 0, raf = null, last = 0;
+  var SPEED = 0.105;               /* passes per second */
+
+  function start(){
+    if(reduce || document.visibilityState === "hidden"){
+      measure(); setPass(1); heat = 0;
+      hero.style.setProperty("--heat","0");
+      return;
+    }
+    prog = 0; running = true; heat = 0; last = 0;
+    hero.style.setProperty("--heat","0");
+    sizeCanvas(); measure(); setPass(0);
+    if(!raf) raf = requestAnimationFrame(loop);
+  }
+
+  function loop(now){
+    raf = requestAnimationFrame(loop);
+    if(!sizeCanvas()) return;
+    var dt = last ? Math.min((now-last)/1000, .05) : 0; last = now;
+
+    if(Math.abs(seamT - seam) > 0.04){ seam += (seamT - seam)*0.14; paintSeam(); }
+
+    if(running){
+      prog += SPEED*dt;
+      if(prog >= 1){ prog = 1; running = false; doneAt = now; heat = 1; }
+      var r = setPass(prog);
+      if(r.pt){
+        var m = markEl.getBoundingClientRect(), h = hero.getBoundingClientRect();
+        var px = (r.pt.x/400)*m.width, py = (r.pt.y/400)*m.height;
+        var hx = (m.left-h.left)+px,   hy = (m.top-h.top)+py;
+        toolIn.style.left = px+"px"; toolIn.style.top = py+"px";
+        /* fabrication is the LEFT half, so "hard" is left of the seam */
+        var onHard = hx <= seamXAtHeroY(hy);
+        toolEl.dataset.side = onHard ? "hard" : "soft";
+        if(onHard){
+          emit(hx, hy, 5, 6);
+          toolIn.style.transform = "translate(-50%,-50%)";
+        } else if(r.active >= 0){
+          var ahead = kerfs[r.active].getPointAtLength(Math.min(lens[r.active], r.localD + 6));
+          var ang = Math.atan2(ahead.y - r.pt.y, ahead.x - r.pt.x)*180/Math.PI;
+          toolIn.style.transform = "translate(-50%,-50%) rotate("+ang.toFixed(1)+"deg)";
+        }
+      }
+    } else {
+      if(heat > 0) heat = Math.max(0, heat - dt*0.42);
+      hero.style.setProperty("--heat", heat.toFixed(3));
+      if(now - doneAt > 2800) start();
+    }
+
+    ctx.clearRect(0,0,cw,ch);
+    ctx.globalCompositeOperation = "lighter";
+    for(var i=parts.length-1;i>=0;i--){
+      var p = parts[i];
+      p.vy += 0.13; p.vx *= 0.988; p.vy *= 0.994;
+      p.x += p.vx; p.y += p.vy; p.life -= p.decay;
+      if(p.life <= 0 || p.y > ch+40){ parts.splice(i,1); continue; }
+      /* hotter ramp: white core -> flare -> molten, with a wider halo */
+      var l = p.life, col = l > .70 ? "255,255,255" : (l > .38 ? "255,179,92" : "255,90,31");
+      var rg = ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,p.r*5.6);
+      rg.addColorStop(0,"rgba("+col+","+l+")"); rg.addColorStop(1,"rgba("+col+",0)");
+      ctx.fillStyle = rg; ctx.beginPath(); ctx.arc(p.x,p.y,p.r*5.6,0,6.283); ctx.fill();
+      ctx.fillStyle = "rgba(255,255,255,"+l+")";
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r*.72,0,6.283); ctx.fill();
+    }
+    ctx.globalCompositeOperation = "source-over";
+    toolEl.style.opacity = running ? "1" : "0";
+  }
+
+  document.addEventListener("pointermove", function(e){
+    var b = e.target.closest && e.target.closest(".hard-b");
+    if(!b) return;
+    var r = b.getBoundingClientRect();
+    b.style.setProperty("--mx",(e.clientX-r.left)+"px");
+    b.style.setProperty("--my",(e.clientY-r.top)+"px");
+  });
+  document.addEventListener("click", function(e){
+    if(reduce || !(e.target.closest && e.target.closest(".hard-b"))) return;
+    var r = cv.getBoundingClientRect();
+    if(e.clientY < r.top || e.clientY > r.bottom) return;
+    emit(e.clientX-r.left, e.clientY-r.top, 46, 7);
+  });
+
+  document.getElementById("replay").addEventListener("click", start);
+  addEventListener("resize", function(){ sizeCanvas(); seam = seamT = restingSeam(); paintSeam(); });
+  document.addEventListener("visibilitychange", function(){
+    if(document.visibilityState === "visible" && !running && !reduce) start();
+  });
+
+  measure();
+  seam = seamT = restingSeam();
+  paintSeam();
+  start();
+  requestAnimationFrame(function(){ seam = seamT = restingSeam(); paintSeam(); });
+  setTimeout(function(){ seam = seamT = restingSeam(); paintSeam(); }, 260);
+})();
+</script>
