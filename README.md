@@ -18,6 +18,8 @@ powershell -File tools/serve-site.ps1    # serve at http://localhost:8940
 
 Edit **`src/`**, never the root `*.html` — those are generated and overwritten.
 
+To get a change onto the live client-review site, see **[DEPLOY.md](DEPLOY.md)**.
+
 ---
 
 ## Pages
