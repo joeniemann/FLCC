@@ -484,7 +484,7 @@
         }
         status.setAttribute("data-state", "ok");
         status.textContent = form.dataset.success ||
-          "Thanks — your message is ready to send. This form is not connected to a mail service yet.";
+          "Thanks, your message is ready to send. This form is not connected to a mail service yet.";
         form.reset();
         $$(".field", form).forEach(function (f) { f.setAttribute("data-invalid", "false"); });
       });
