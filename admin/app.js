@@ -298,6 +298,18 @@ function renderField(key, def, obj, ctx) {
     }
     case 'switch':
       return switchField(def.label, obj[key], (v) => set(v))
+    case 'align': {
+      const cur = obj[key] || 'left'
+      const row = h('div', { class: 'alignrow', role: 'group', 'aria-label': def.label })
+      def.options.forEach(([v, name]) => {
+        const b = h('button', { type: 'button', class: 'alignbtn' + (cur === v ? ' on' : ''), 'aria-pressed': cur === v ? 'true' : 'false', onclick: () => {
+          if (v === 'left') delete obj[key]; else obj[key] = v
+          ctx.changed(); ctx.redraw()
+        } }, h('span', { class: 'aico aico-' + v }, h('i'), h('i'), h('i')), name)
+        row.append(b)
+      })
+      return h('div', { class: 'field' }, labelRow(def.label), row)
+    }
     case 'color': {
       const pick = h('input', { type: 'color', value: /^#[0-9a-f]{6}$/i.test(obj[key] || '') ? obj[key] : '#888888', class: 'colorpick' })
       const hex = h('input', { type: 'text', value: obj[key] || '', maxlength: 7, placeholder: '#C98A52' })

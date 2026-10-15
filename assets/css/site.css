@@ -218,6 +218,8 @@ a{color:inherit}
 /* Stats read as cut plates: a torch-hot kerf along the top edge, the figure
    set large in the surface accent. Used on Services, Gallery and Contact. */
 .phead-stats{display:flex;gap:12px;flex-wrap:wrap}
+.phead-stats--center{justify-content:center}
+.phead-stats--right{justify-content:flex-end}
 .phead-stat{
   position:relative;flex:1 1 152px;min-width:134px;overflow:hidden;
   padding:24px 20px 18px;border:1px solid var(--rule);border-radius:3px;

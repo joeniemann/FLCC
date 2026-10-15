@@ -6,7 +6,7 @@
           <h1 class="h-display">{{br headline}}</h1>
           <p class="lede">{{intro}}</p>
         </div>
-        {{#if facts}}<div class="phead-stats" data-reveal data-reveal-delay="120">
+        {{#if facts}}<div class="phead-stats{{alignClass factsAlign}}" data-reveal data-reveal-delay="120">
           {{#each facts}}<div class="phead-stat"><b>{{big}}</b><span>{{label}}</span></div>
           {{/each}}</div>
         {{/if}}</div>

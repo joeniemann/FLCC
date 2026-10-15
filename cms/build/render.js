@@ -89,6 +89,7 @@ function compile(siteDir, ov) {
     pressed: first => (first ? 'true' : 'false'),
     photoSrc: p => escAttr(photoOf(p).file),
     photoAlt: p => escAttr(p && typeof p === 'object' && p.alt != null ? p.alt : photoOf(p).alt),
+    alignClass: v => (v === 'center' || v === 'right' ? ' phead-stats--' + v : ''),
     tens: i => String(Math.floor((i + 1) / 10)),
     ones: i => String((i + 1) % 10)
   };

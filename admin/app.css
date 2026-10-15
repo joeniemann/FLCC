@@ -16,7 +16,8 @@ body.app-mode .card { display:none; }
 .btn.small { font-size:14px; padding:6px 12px; }
 .banner { background:#fff6dc; border-bottom:1px solid #ecd48a; padding:8px 18px; font-size:15px; }
 .banner.hidden { display:none; }
-.workspace { flex:1; display:grid; grid-template-columns:200px minmax(340px, 480px) 1fr; min-height:0; }
+.workspace { flex:1; display:grid; grid-template-columns:200px minmax(340px, 480px) 1fr; grid-template-rows:minmax(0, 1fr); min-height:0; overflow:hidden; }
+.sidenav, .editor, .previewpane { min-height:0; }
 .sidenav { background:#fff; border-right:1px solid var(--line); padding:14px 10px; overflow:auto; }
 .sidenav h3 { font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin:14px 10px 6px; }
 .sidenav button { display:block; width:100%; text-align:left; font-size:17px; padding:11px 12px; margin:2px 0; border:0; border-radius:10px; background:none; color:var(--ink); cursor:pointer; margin-top:2px; font-weight:500; }
@@ -51,7 +52,7 @@ body.app-mode .card { display:none; }
 .menurow.off input[type=text] { opacity:.5; }
 .togglepreview { display:none; }
 @media (max-width: 1000px) {
-  .workspace { grid-template-columns:1fr; }
+  .workspace { grid-template-columns:1fr; grid-template-rows:auto; overflow:visible; }
   .sidenav { display:flex; gap:6px; overflow-x:auto; padding:8px; border-right:0; border-bottom:1px solid var(--line); }
   .sidenav h3 { display:none; }
   .sidenav button { width:auto; white-space:nowrap; }
@@ -95,3 +96,12 @@ body.app-mode .card { display:none; }
 .colorrow { display:flex; gap:10px; align-items:center; }
 .colorrow .colorpick { width:56px; height:44px; padding:2px; border:2px solid var(--line); border-radius:10px; background:#fff; flex:none; }
 .colorrow input[type=text] { flex:1; }
+
+.alignrow { display:flex; gap:8px; }
+.alignbtn { display:flex; flex-direction:column; align-items:center; gap:6px; width:auto; margin:0; flex:1; padding:10px 8px; font-size:14px; font-weight:600; background:#fff; color:var(--ink); border:2px solid var(--line); border-radius:10px; cursor:pointer; }
+.alignbtn:hover { background:var(--soft); }
+.alignbtn.on { border-color:var(--ink); background:var(--soft); }
+.aico { display:flex; flex-direction:column; gap:3px; width:30px; }
+.aico i { display:block; height:3px; background:var(--ink); border-radius:2px; }
+.aico i:nth-child(1) { width:100%; } .aico i:nth-child(2) { width:60%; } .aico i:nth-child(3) { width:80%; }
+.aico-left { align-items:flex-start; } .aico-center { align-items:center; } .aico-right { align-items:flex-end; }

@@ -7,7 +7,7 @@
           <div class="body">
             {{#each paragraphs}}<p>{{rich this}}</p>
             {{/each}}</div>
-          {{#if facts}}<div class="phead-stats" style="margin-top:30px">
+          {{#if facts}}<div class="phead-stats{{alignClass factsAlign}}" style="margin-top:30px">
             {{#each facts}}<div class="phead-stat"><b>{{big}}</b><span>{{label}}</span></div>
             {{/each}}</div>
           {{/if}}{{#if buttons}}<div style="margin-top:30px;display:flex;gap:12px;flex-wrap:wrap">

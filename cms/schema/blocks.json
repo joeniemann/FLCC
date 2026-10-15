@@ -39,6 +39,25 @@
             }
           }
         },
+        "factsAlign": {
+          "label": "Line up the quick facts",
+          "kind": "align",
+          "optional": true,
+          "options": [
+            [
+              "left",
+              "Left"
+            ],
+            [
+              "center",
+              "Center"
+            ],
+            [
+              "right",
+              "Right"
+            ]
+          ]
+        },
         "backdrop": {
           "label": "Background picture",
           "kind": "choice",
@@ -56,8 +75,7 @@
               "welding",
               "Welding"
             ]
-          ],
-          "note": "Becomes a true photo picker once the stylesheet has one background rule driven by a variable."
+          ]
         },
         "look": {
           "label": "Light or dark",
@@ -307,6 +325,25 @@
               "max": 28
             }
           }
+        },
+        "factsAlign": {
+          "label": "Line up the quick facts",
+          "kind": "align",
+          "optional": true,
+          "options": [
+            [
+              "left",
+              "Left"
+            ],
+            [
+              "center",
+              "Center"
+            ],
+            [
+              "right",
+              "Right"
+            ]
+          ]
         },
         "buttons": {
           "label": "Buttons",
