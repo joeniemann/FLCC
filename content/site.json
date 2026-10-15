@@ -1,0 +1,85 @@
+{
+  "business": {
+    "name": "FinishLines Creative Concepts",
+    "shortName": "FLCC",
+    "description": "Fabrication & upholstery for boats and vehicles. Built by hand in Apopka, Florida.",
+    "legalLine": "Fabrication & Upholstery · Apopka, FL",
+    "street": "2553 Valerie Avenue",
+    "cityLine": "Apopka, FL 32712",
+    "directionsNote": "Off Ustler Road, north-west Apopka",
+    "phone": "352-536-2628",
+    "email": "finishlineproducts@gmail.com",
+    "hours": [
+      {
+        "days": "Mon-Fri",
+        "times": "8am-5pm"
+      },
+      {
+        "days": "Sat",
+        "times": "By appointment"
+      }
+    ],
+    "social": {
+      "facebook": "https://www.facebook.com/finishlineproducts",
+      "instagram": "https://www.instagram.com/finishlinescreativeconcepts",
+      "tiktok": "https://www.tiktok.com/@flcreativeconcepts"
+    },
+    "bookingLink": "",
+    "mapLabel": "2553 Valerie Ave, Apopka FL"
+  },
+  "menu": {
+    "items": [
+      {
+        "label": "Services",
+        "page": "services",
+        "show": true
+      },
+      {
+        "label": "Gallery",
+        "page": "gallery",
+        "show": true
+      },
+      {
+        "label": "About",
+        "page": "about",
+        "show": true,
+        "footerLabel": "About Us"
+      },
+      {
+        "label": "Contact",
+        "page": "contact",
+        "show": true
+      }
+    ],
+    "button": {
+      "label": "Set Up a Call",
+      "link": {
+        "page": "contact",
+        "anchor": "book"
+      }
+    }
+  },
+  "callBand": {
+    "headline": "Set up a call",
+    "text": "Tell us what you're building. We'll talk through materials, timeline and cost. No obligation, no runaround.",
+    "primary": {
+      "label": "Book a Time",
+      "link": {
+        "phone": true
+      }
+    },
+    "secondary": {
+      "label": "Send a Message",
+      "link": {
+        "page": "contact"
+      }
+    }
+  },
+  "footer": {
+    "newsletterHeading": "News & Updates",
+    "newsletterText": "Build photos and shop news. No spam, and never more than once a month.",
+    "newsletterButton": "Sign Up",
+    "newsletterPlaceholder": "EMAIL ADDRESS",
+    "newsletterSuccess": "You're on the list. Thanks. (Not connected to a mail service yet.)"
+  }
+}

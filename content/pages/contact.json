@@ -1,0 +1,42 @@
+{
+  "id": "contact",
+  "type": "contact",
+  "file": "contact.html",
+  "title": "Contact | FinishLines Creative Concepts",
+  "description": "Visit the shop at 2553 Valerie Avenue, Apopka FL. Call 352-536-2628 or send a project request.",
+  "showCallBand": true,
+  "blocks": [
+    {
+      "type": "pageHeader",
+      "eyebrow": "Get in touch",
+      "headline": "Tell us what\nyou're building",
+      "intro": "Drop by the shop, call, or send the details and photos. We'll come back with materials, a timeline and a number. No obligation.",
+      "factsFromHours": true
+    },
+    {
+      "type": "contactSection",
+      "details": {
+        "heading": "The shop",
+        "phoneNote": "Fastest way to reach us",
+        "emailNote": "Send photos and dimensions if you have them",
+        "socialNote": "Work-in-progress shots go up here first"
+      },
+      "form": {
+        "heading": "Start a project",
+        "intro": "The more you can tell us, the tighter the quote. Photos help more than anything else.",
+        "successMessage": "Thanks. We'll get back to you within one business day. (This form isn't connected to a mail service yet.)",
+        "serviceChoices": [
+          "Boat upholstery",
+          "Boat fabrication: tower, T-top, console",
+          "Vehicle or RV interior",
+          "Gate, railing or architectural metal",
+          "Sign or cut metal art",
+          "Powder coating",
+          "Something else / not sure yet"
+        ],
+        "messageHint": "What is it, what shape is it in, and when do you need it? Make, model and year help if you have them.",
+        "buttonLabel": "Send Request"
+      }
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "about",
+  "type": "info",
+  "file": "about.html",
+  "title": "About | FinishLines Creative Concepts",
+  "description": "A family-driven fabrication and upholstery shop in Apopka, Florida, built on craftsmanship, creativity and precision.",
+  "showCallBand": true,
+  "blocks": [
+    {
+      "type": "pageHeader",
+      "eyebrow": "Who we are",
+      "headline": "More than\njust a shop",
+      "intro": "FLCC is a family-driven business built on craftsmanship, creativity and precision. What started as a passion for rebuilding cars and boats grew into an established local business.",
+      "facts": [
+        { "big": "Apopka", "label": "Florida" },
+        { "big": "Family", "label": "Owned & run" }
+      ]
+    },
+    {
+      "type": "photoMosaic",
+      "eyebrow": "The shop",
+      "headline": "We do the whole\njob ourselves",
+      "paragraphs": [
+        "Most shops do one thing. If you need a boat's interior rebuilt <em>and</em> a new tower fabricated <em>and</em> the hardware coated, you're usually managing three vendors, three schedules and three people blaming each other.",
+        "We cut and weld the metal, stitch the upholstery, and coat the finish, in the same building, by the same people. One quote, one timeline, one shop answering the phone.",
+        "It also means the trades talk to each other. The person building your frame knows what the upholsterer needs from it, because they're ten feet apart."
+      ],
+      "photos": [
+        { "id": "g030", "alt": "Welding aluminium on the shop floor" },
+        { "id": "g074", "alt": "Finishing work underway in the FLCC shop" },
+        { "id": "g017", "alt": "Aluminium tower frame being assembled" },
+        { "id": "g083", "alt": "Pontoon rail panels lined up in the shop" },
+        { "id": "g012", "alt": "Aluminium console under fabrication" },
+        { "id": "g090", "alt": "Large fabricated aluminium box taking shape" },
+        { "id": "g082", "alt": "Formed aluminium console shell on the bench" }
+      ]
+    },
+    {
+      "type": "cardRow",
+      "style": "numbered",
+      "backdrop": "welding",
+      "eyebrow": "How we work",
+      "headline": "Four things we\nhold to",
+      "cards": [
+        { "title": "Nothing leaves the building", "text": "No subcontractors. Every stage of the job happens here, which is why the finish matches across the metal and the vinyl." },
+        { "title": "No job too small", "text": "A single torn cushion is as welcome as a full pontoon rebuild. Small repairs are how most of our long relationships started." },
+        { "title": "Built for Florida", "text": "Marine-grade materials and corrosion-resistant finishes, because sun, salt and afternoon storms are the real test here." },
+        { "title": "You talk to the builder", "text": "The person who quotes your job is the person who builds it. Nothing gets lost between a salesperson and a shop floor." }
+      ]
+    },
+    {
+      "type": "timeline",
+      "eyebrow": "What comes through the door",
+      "headline": "Boats, mostly.\nBut not only.",
+      "text": "Marine work is the backbone: pontoons, bass boats, deck boats, center consoles. Around that sits everything else a metal-and-fabric shop gets asked for.",
+      "items": [
+        { "title": "Marine upholstery & fabrication", "text": "Full interiors, helm seating, bench rebuilds, aluminium towers, T-tops, leaning posts, consoles and tanks." },
+        { "title": "Vehicle interiors", "text": "Classic car restorations, ATV and side-by-side seats, motorhome and RV interiors. Diamond stitch a speciality." },
+        { "title": "Gates, railings & architectural metal", "text": "Driveway gates, fence panels, handrails, stair and walkway railings, gangways." },
+        { "title": "Signs & cut metal art", "text": "CNC plasma-cut signage and medallions: ranch entrances, business signs, family pieces." },
+        { "title": "Powder coating", "text": "Wheels, frames, railings and hardware, blasted and cured in-house." }
+      ]
+    }
+  ]
+}

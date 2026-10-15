@@ -1,0 +1,173 @@
+<section class="hero" id="hero">
+  <div class="side soft" aria-hidden="true"></div>
+  <div class="side hard" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="vig" aria-hidden="true"></div>
+
+  <svg class="seamsvg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <line id="thread" x1="57" y1="0" x2="47" y2="100" stroke="rgba(255,255,255,.30)" stroke-width=".12" vector-effect="non-scaling-stroke"></line>
+    <line id="seamstitch" x1="57" y1="0" x2="47" y2="100" stroke="rgba(255,255,255,.95)" stroke-width=".46" vector-effect="non-scaling-stroke"
+          stroke-dasharray="9 7" stroke-linecap="round"></line>
+  </svg>
+
+  <canvas class="sparks" id="sparks" aria-hidden="true"></canvas>
+  <div class="handle" aria-hidden="true">&#8596;</div>
+
+  <div class="hero-in">
+    <div class="eyebrow">{{eyebrow eyebrow}}</div>
+
+    <div class="mark" id="mark" role="img" aria-label="FLCC Fabrication and Upholstery mark, being stitched on one side and plasma cut on the other">
+      <!-- Real logo artwork. Arcs sit first in the DOM so the letters paint over
+           them. The ring is supplied as two broken arcs with the gaps around the
+           letters already built in, so the clearance mask is no longer needed. -->
+      <svg class="mark-svg mk-soft" viewBox="84 446 876 754" aria-hidden="true">
+        <defs>
+          <linearGradient id="gTan" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#FFA85C"/><stop offset=".55" stop-color="#E8762B"/>
+            <stop offset="1" stop-color="#A84C12"/>
+          </linearGradient>
+          <linearGradient id="gVinyl" x1="0" y1="0" x2=".25" y2="1">
+            <stop offset="0" stop-color="#F79A4B"/><stop offset=".5" stop-color="#E8762B"/>
+            <stop offset="1" stop-color="#8F4212"/>
+          </linearGradient>
+          <pattern id="pGrain" width="11" height="11" patternUnits="userSpaceOnUse">
+            <circle cx="2.6" cy="2.6" r="1.5" fill="#fff" fill-opacity=".07"/>
+            <circle cx="7.9" cy="7.4" r="1.3" fill="#000" fill-opacity=".10"/>
+          </pattern>
+          <mask id="mArcS" maskUnits="userSpaceOnUse" x="0" y="380" width="1024" height="860">
+            <path class="rev" data-c="0" d="M331.56,569.85c50.85-50.85,118.45-78.85,190.35-78.85s139.51,28,190.35,78.85c11.21,11.21,21.3,23.23,30.24,35.94h29.86c-51.83-83.88-144.6-139.78-250.44-139.78s-198.62,55.9-250.44,139.78h29.86c8.93-12.7,19.03-24.73,30.24-35.94Z"/>
+            <path class="rev" data-c="1" d="M712.27,950.55c-50.85,50.85-118.45,78.85-190.35,78.85s-139.51-28-190.35-78.85c-19.34-19.34-35.36-41.1-47.8-64.6h-27.87c47.15,99.57,148.54,168.45,266.03,168.45s218.87-68.88,266.03-168.45h-27.87c-12.45,23.5-28.47,45.26-47.8,64.6Z"/>
+          </mask>
+          <mask id="mLetS" maskUnits="userSpaceOnUse" x="0" y="600" width="1024" height="340">
+            <path class="rev" data-c="2" d="M103.92,667.56h169.27l-20,35.19h-102.32v43.88h100.02l-19,34.9h-81.02v82.47h-46.95v-196.44Z"/>
+            <path class="rev" data-c="3" d="M298.48,667.56h46.95v158.1h133.33l-20,38.34h-160.28v-196.44Z"/>
+            <path class="rev" data-c="4" d="M700.78,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+            <path class="rev" data-c="5" d="M916.44,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          </mask>
+        </defs>
+        <g>
+          <path class="fill fill-soft" data-c="0" d="M331.56,569.85c50.85-50.85,118.45-78.85,190.35-78.85s139.51,28,190.35,78.85c11.21,11.21,21.3,23.23,30.24,35.94h29.86c-51.83-83.88-144.6-139.78-250.44-139.78s-198.62,55.9-250.44,139.78h29.86c8.93-12.7,19.03-24.73,30.24-35.94Z"/>
+          <path class="fill fill-soft" data-c="1" d="M712.27,950.55c-50.85,50.85-118.45,78.85-190.35,78.85s-139.51-28-190.35-78.85c-19.34-19.34-35.36-41.1-47.8-64.6h-27.87c47.15,99.57,148.54,168.45,266.03,168.45s218.87-68.88,266.03-168.45h-27.87c-12.45,23.5-28.47,45.26-47.8,64.6Z"/>
+          <g mask="url(#mArcS)">
+            <path class="stitch" d="M331.56,569.85c50.85-50.85,118.45-78.85,190.35-78.85s139.51,28,190.35,78.85c11.21,11.21,21.3,23.23,30.24,35.94h29.86c-51.83-83.88-144.6-139.78-250.44-139.78s-198.62,55.9-250.44,139.78h29.86c8.93-12.7,19.03-24.73,30.24-35.94Z"/>
+            <path class="stitch" d="M712.27,950.55c-50.85,50.85-118.45,78.85-190.35,78.85s-139.51-28-190.35-78.85c-19.34-19.34-35.36-41.1-47.8-64.6h-27.87c47.15,99.57,148.54,168.45,266.03,168.45s218.87-68.88,266.03-168.45h-27.87c-12.45,23.5-28.47,45.26-47.8,64.6Z"/>
+          </g>
+        </g>
+        <g>
+          <path class="fill fill-soft" data-c="2" d="M103.92,667.56h169.27l-20,35.19h-102.32v43.88h100.02l-19,34.9h-81.02v82.47h-46.95v-196.44Z"/>
+          <path class="fill fill-soft" data-c="3" d="M298.48,667.56h46.95v158.1h133.33l-20,38.34h-160.28v-196.44Z"/>
+          <path class="fill fill-soft" data-c="4" d="M700.78,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          <path class="fill fill-soft" data-c="5" d="M916.44,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          <g mask="url(#mLetS)">
+            <path class="stitch" d="M103.92,667.56h169.27l-20,35.19h-102.32v43.88h100.02l-19,34.9h-81.02v82.47h-46.95v-196.44Z"/>
+            <path class="stitch" d="M298.48,667.56h46.95v158.1h133.33l-20,38.34h-160.28v-196.44Z"/>
+            <path class="stitch" d="M700.78,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+            <path class="stitch" d="M916.44,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          </g>
+        </g>
+        <!-- every dimension scaled from the proportions that worked at 400px:
+             836/320 = 2.6125. Getting this wrong is what made the bar read as
+             a thin strip with the words floating in the middle of it. -->
+        <g class="tag" data-tag="soft">
+          <rect x="104" y="1081" width="836" height="105" rx="52" fill="url(#gVinyl)" stroke="#4A2B12" stroke-width="3"/>
+          <rect x="104" y="1081" width="836" height="105" rx="52" fill="url(#pGrain)"/>
+          <rect x="104" y="1081" width="836" height="50" rx="50" fill="#fff" opacity=".13"/>
+          <rect x="121" y="1098" width="802" height="71" rx="35" fill="none"
+                stroke="#FFFFFF" stroke-opacity=".92" stroke-width="4.2" stroke-dasharray="13 10.5" stroke-linecap="round"/>
+          <text x="522" y="1145" fill="#1D1006" opacity=".42">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="522" y="1142.7" fill="#F7F0E3">FABRICATION &amp; UPHOLSTERY</text>
+        </g>
+      </svg>
+
+      <svg class="mark-svg mk-hard" viewBox="84 446 876 754" aria-hidden="true">
+        <defs>
+          <linearGradient id="gSteel" x1="0" y1="0" x2="0.3" y2="1">
+            <stop offset="0" stop-color="#f2f6f9"/><stop offset=".32" stop-color="#a6aeb6"/>
+            <stop offset=".62" stop-color="#525a62"/><stop offset=".78" stop-color="#dfe5ea"/>
+            <stop offset="1" stop-color="#33383e"/>
+          </linearGradient>
+          <filter id="fGlow" x="-90%" y="-90%" width="280%" height="280%">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="9" result="wide"/>
+            <feFlood flood-color="#FF5A1F" flood-opacity="1" result="cWide"/>
+            <feComposite in="cWide" in2="wide" operator="in" result="gWide"/>
+            <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="tight"/>
+            <feFlood flood-color="#FFB35C" flood-opacity="1" result="cTight"/>
+            <feComposite in="cTight" in2="tight" operator="in" result="gTight"/>
+            <feMerge>
+              <feMergeNode in="gWide"/><feMergeNode in="gWide"/>
+              <feMergeNode in="gTight"/><feMergeNode in="gTight"/>
+              <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+          </filter>
+          <linearGradient id="gPlate" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#98a1a9"/><stop offset=".42" stop-color="#666f78"/>
+            <stop offset=".55" stop-color="#4c545c"/><stop offset="1" stop-color="#333a41"/>
+          </linearGradient>
+          <radialGradient id="gRivet" cx=".35" cy=".3" r=".8">
+            <stop offset="0" stop-color="#eef2f5"/><stop offset=".55" stop-color="#98a1a9"/>
+            <stop offset="1" stop-color="#4a5158"/>
+          </radialGradient>
+        </defs>
+        <g>
+          <path class="fill fill-hard" data-c="0" d="M331.56,569.85c50.85-50.85,118.45-78.85,190.35-78.85s139.51,28,190.35,78.85c11.21,11.21,21.3,23.23,30.24,35.94h29.86c-51.83-83.88-144.6-139.78-250.44-139.78s-198.62,55.9-250.44,139.78h29.86c8.93-12.7,19.03-24.73,30.24-35.94Z"/>
+          <path class="fill fill-hard" data-c="1" d="M712.27,950.55c-50.85,50.85-118.45,78.85-190.35,78.85s-139.51-28-190.35-78.85c-19.34-19.34-35.36-41.1-47.8-64.6h-27.87c47.15,99.57,148.54,168.45,266.03,168.45s218.87-68.88,266.03-168.45h-27.87c-12.45,23.5-28.47,45.26-47.8,64.6Z"/>
+          <path class="kerf" data-c="0" d="M331.56,569.85c50.85-50.85,118.45-78.85,190.35-78.85s139.51,28,190.35,78.85c11.21,11.21,21.3,23.23,30.24,35.94h29.86c-51.83-83.88-144.6-139.78-250.44-139.78s-198.62,55.9-250.44,139.78h29.86c8.93-12.7,19.03-24.73,30.24-35.94Z"/>
+          <path class="kerf" data-c="1" d="M712.27,950.55c-50.85,50.85-118.45,78.85-190.35,78.85s-139.51-28-190.35-78.85c-19.34-19.34-35.36-41.1-47.8-64.6h-27.87c47.15,99.57,148.54,168.45,266.03,168.45s218.87-68.88,266.03-168.45h-27.87c-12.45,23.5-28.47,45.26-47.8,64.6Z"/>
+        </g>
+        <g>
+          <path class="fill fill-hard" data-c="2" d="M103.92,667.56h169.27l-20,35.19h-102.32v43.88h100.02l-19,34.9h-81.02v82.47h-46.95v-196.44Z"/>
+          <path class="fill fill-hard" data-c="3" d="M298.48,667.56h46.95v158.1h133.33l-20,38.34h-160.28v-196.44Z"/>
+          <path class="fill fill-hard" data-c="4" d="M700.78,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          <path class="fill fill-hard" data-c="5" d="M916.44,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          <path class="kerf" data-c="2" d="M103.92,667.56h169.27l-20,35.19h-102.32v43.88h100.02l-19,34.9h-81.02v82.47h-46.95v-196.44Z"/>
+          <path class="kerf" data-c="3" d="M298.48,667.56h46.95v158.1h133.33l-20,38.34h-160.28v-196.44Z"/>
+          <path class="kerf" data-c="4" d="M700.78,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+          <path class="kerf" data-c="5" d="M916.44,864s-50.27-.13-73.52-.13c-72.32,0-104.18-49.13-104.18-95.43,0-60.92,42.94-101.03,100.63-101.03l100.55-.4-18.77,36.61-80.2-.73c-29.85,0-57.68,22.51-57.68,62.11,0,35.3,24.95,60.11,60.54,60.11l94.64.59-22.01,38.3Z"/>
+        </g>
+        <g class="tag" data-tag="hard">
+          <rect x="104" y="1086" width="836" height="94" rx="6.5" fill="url(#gPlate)" stroke="#191d22" stroke-width="3"/>
+          <path d="M108 1090 H936" stroke="#dfe6ec" stroke-opacity=".55" stroke-width="3"/>
+          <path d="M108 1176 H936" stroke="#000" stroke-opacity=".45" stroke-width="3"/>
+          <circle cx="141" cy="1133" r="9.4" fill="url(#gRivet)"/>
+          <circle cx="903" cy="1133" r="9.4" fill="url(#gRivet)"/>
+          <!-- Raised lettering: highlight above, shadow below, face on top.
+               The offset must stay a small FRACTION of the glyph height, the
+               tagline renders around 10-19px on screen, so a wide spread stops
+               reading as a bevel and reads as a second, ghosted line of text.
+               1.1 units either side ≈ 6% of cap height at every viewport. -->
+          <text x="522" y="1145.6" fill="#0E1216" opacity=".55">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="522" y="1143.4" fill="#FFFFFF" opacity=".45">FABRICATION &amp; UPHOLSTERY</text>
+          <text x="522" y="1144.5" fill="#E6EDF3">FABRICATION &amp; UPHOLSTERY</text>
+        </g>
+      </svg>
+
+      <div class="tool" id="tool" data-side="hard" aria-hidden="true">
+        <div class="tool-in"><div class="torch"></div><div class="needle"></div></div>
+      </div>
+    </div>
+
+    <h1 class="big">
+      <span class="row">
+        <span class="t-steel" aria-hidden="true">FinishLines</span>
+        <span class="t-hot"   aria-hidden="true">FinishLines</span>
+        <span class="t-soft">FinishLines</span>
+      </span>
+      <span class="row">
+        <span class="t-steel" aria-hidden="true">Creative Concepts</span>
+        <span class="t-hot"   aria-hidden="true">Creative Concepts</span>
+        <span class="t-soft">Creative Concepts</span>
+      </span>
+    </h1>
+    <p class="sub"><b>{{leadIn}}</b> {{text}}</p>
+    <div class="cta">
+      {{#each buttons}}{{> button}}
+      {{/each}}
+    </div>
+  </div>
+
+  <div class="hint">
+    <span><i>&#9664; Cut</i> &nbsp;&middot;&nbsp; drag to move the seam &nbsp;&middot;&nbsp; <b>Sewn &#9654;</b></span>
+    <span>One outline, two tools</span>
+  </div>
+</section>
+

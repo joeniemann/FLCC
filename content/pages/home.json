@@ -1,0 +1,113 @@
+{
+  "id": "home",
+  "type": "home",
+  "file": "index.html",
+  "title": "FinishLines Creative Concepts | Fabrication & Upholstery, Apopka FL",
+  "description": "Custom fabrication and marine-grade upholstery for boats and vehicles. Family-run in Apopka, Florida.",
+  "showCallBand": true,
+  "blocks": [
+    {
+      "type": "homeHero",
+      "eyebrow": "Upholstery × Metal Fab · Apopka, Florida · Family-Run",
+      "leadIn": "Fabrication & Upholstery Services.",
+      "text": "From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.",
+      "buttons": [
+        {
+          "label": "Start a Build",
+          "link": {
+            "page": "contact",
+            "anchor": "book"
+          },
+          "style": "sewn"
+        },
+        {
+          "label": "See the Gallery",
+          "link": {
+            "page": "gallery"
+          },
+          "style": "heat"
+        }
+      ]
+    },
+    {
+      "type": "cardRow",
+      "look": "dark",
+      "style": "linked",
+      "eyebrow": "What we do",
+      "headline": "Three trades,\none roof",
+      "intro": "Cut, welded, coated & stitched from quote to finish, this family-owned business does it all in‑house.",
+      "cards": [
+        {
+          "label": "Fabrication",
+          "title": "Cut, formed & welded",
+          "text": "CNC plasma, MIG and TIG. Aluminium towers and T-tops, consoles and tanks, gates, railings and cut-metal signage.",
+          "link": {
+            "page": "services",
+            "anchor": "fabrication"
+          }
+        },
+        {
+          "label": "Upholstery",
+          "title": "Marine-grade interiors",
+          "text": "Boats, cars, ATVs and RVs. Diamond stitch, piping and full rebuilds in materials that survive a Florida summer.",
+          "link": {
+            "page": "services",
+            "anchor": "upholstery"
+          }
+        },
+        {
+          "label": "Powder Coating",
+          "title": "A finish that outlasts paint",
+          "text": "Blasted, coated and cured in-house. Resists chips, corrosion and UV, and needs almost no upkeep.",
+          "link": {
+            "page": "services",
+            "anchor": "powder-coating"
+          }
+        }
+      ]
+    },
+    {
+      "type": "textPhoto",
+      "eyebrow": "Who we are",
+      "headline": "More than just a shop:\na family-driven business",
+      "paragraphs": [
+        "At FLCC we're built on craftsmanship, creativity and precision. What started as a passion for rebuilding cars and boats grew into an established local business.",
+        "We deliver work that lasts, looks incredible and exceeds expectations, whether that's a full boat interior, a restored classic, or a one-off custom gate."
+      ],
+      "facts": [
+        {
+          "big": "3",
+          "label": "Trades in-house"
+        },
+        {
+          "big": "0",
+          "label": "Subcontractors"
+        },
+        {
+          "auto": "photoCount",
+          "label": "Projects in the gallery"
+        }
+      ],
+      "buttons": [
+        {
+          "label": "See the Gallery",
+          "link": {
+            "page": "gallery"
+          },
+          "style": "sewn"
+        },
+        {
+          "label": "About the Shop",
+          "link": {
+            "page": "about"
+          },
+          "style": "line"
+        }
+      ],
+      "photo": {
+        "id": "g097",
+        "alt": "Restored panel truck with a rebuilt tan diamond-stitched interior"
+      }
+    }
+  ]
+}

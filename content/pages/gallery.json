@@ -1,0 +1,21 @@
+{
+  "id": "gallery",
+  "type": "gallery",
+  "file": "gallery.html",
+  "title": "Gallery | FinishLines Creative Concepts",
+  "description": "Boat upholstery, marine fabrication, gates, railings and vehicle interiors built by FLCC in Apopka, Florida.",
+  "showCallBand": true,
+  "blocks": [
+    {
+      "type": "pageHeader",
+      "eyebrow": "Our work",
+      "headline": "Every one\nof them ours",
+      "intro": "Boats stripped to the frame and rebuilt. Aluminium cut, welded and polished. Gates that outlive the house. Filter by the kind of work you're here for, or scroll the lot.",
+      "facts": [
+        { "auto": "photoCount", "label": "Projects shown" },
+        { "auto": "categoryCount", "label": "Kinds of work" }
+      ]
+    },
+    { "type": "galleryBrowser", "emptyMessage": "Nothing in this category yet. Try another filter." }
+  ]
+}
