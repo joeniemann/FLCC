@@ -31,7 +31,7 @@
     },
     {
       "type": "cardRow",
-      "look": "dark",
+      "look": "light",
       "style": "linked",
       "eyebrow": "What we do",
       "headline": "Three trades,\none roof",
