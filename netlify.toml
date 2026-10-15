@@ -1,0 +1,6 @@
+[build]
+  command = "mkdir -p dist/assets && cp -r assets/. dist/assets/ && cp style-guide.html dist/ && node cms/build/render.js --site . --out dist"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

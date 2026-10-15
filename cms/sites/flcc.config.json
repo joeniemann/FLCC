@@ -1,0 +1,17 @@
+{
+  "id": "flcc",
+  "name": "FinishLines Creative Concepts",
+  "siteFolder": "../FLCC",
+  "content": "content",
+  "templates": "templates",
+  "pageTypes": {
+    "home": { "name": "Home page", "unique": true, "deletable": false, "starts": ["homeHero", "cardRow", "textPhoto"], "allowed": ["homeHero", "cardRow", "textPhoto"] },
+    "info": { "name": "Info page", "starts": ["pageHeader", "textPhoto", "cardRow", "timeline"], "allowed": ["pageHeader", "textPhoto", "photoMosaic", "cardRow", "timeline"] },
+    "service": { "name": "Service page", "starts": ["pageHeader", "serviceFeature", "textPhoto"], "allowed": ["pageHeader", "serviceFeature", "textPhoto", "photoMosaic", "cardRow"] },
+    "gallery": { "name": "Gallery page", "starts": ["pageHeader", "galleryBrowser"], "allowed": ["pageHeader", "galleryBrowser"] },
+    "contact": { "name": "Contact page", "unique": true, "starts": ["pageHeader", "contactSection"], "allowed": ["pageHeader", "contactSection"] }
+  },
+  "protectedPages": ["home", "contact"],
+  "roles": { "owner": ["everything"], "editor": ["content", "photos", "pages", "menu"] },
+  "build": "node cms/build/render.js --site . --out dist"
+}
