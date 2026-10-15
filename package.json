@@ -1,0 +1,10 @@
+{
+  "name": "flcc-site",
+  "private": true,
+  "version": "0.1.0",
+  "description": "FLCC website and its editor",
+  "dependencies": {
+    "@netlify/functions": "^5.2.0",
+    "@netlify/identity": "2.0.0"
+  }
+}
