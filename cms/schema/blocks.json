@@ -40,7 +40,7 @@
           }
         },
         "factsAlign": {
-          "label": "Line up the quick facts",
+          "label": "Line up the words inside the quick fact cards",
           "kind": "align",
           "optional": true,
           "options": [
@@ -327,7 +327,7 @@
           }
         },
         "factsAlign": {
-          "label": "Line up the quick facts",
+          "label": "Line up the words inside the quick fact cards",
           "kind": "align",
           "optional": true,
           "options": [
