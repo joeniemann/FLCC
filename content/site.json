@@ -30,13 +30,13 @@
   "menu": {
     "items": [
       {
-        "label": "Our Work",
-        "page": "gallery",
+        "label": "Services",
+        "page": "services",
         "show": true
       },
       {
-        "label": "Services",
-        "page": "services",
+        "label": "Our Work",
+        "page": "gallery",
         "show": true
       },
       {
