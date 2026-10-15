@@ -14,10 +14,20 @@
       "headline": "Three trades,\none roof",
       "intro": "Cut, formed, welded, coated and stitched, all of it under the same roof in Apopka, by the same family that quotes the job. Nothing gets subcontracted out and nothing comes back looking like someone else did it.",
       "facts": [
-        { "big": "3", "label": "Trades in-house" },
-        { "big": "0", "label": "Subcontractors" },
-        { "big": "1", "label": "Family" }
-      ]
+        {
+          "big": "3",
+          "label": "Trades in-house"
+        },
+        {
+          "big": "0",
+          "label": "Subcontractors"
+        },
+        {
+          "big": "1",
+          "label": "Family"
+        }
+      ],
+      "factsAlign": "center"
     },
     {
       "type": "serviceFeature",
@@ -28,13 +38,35 @@
       "headline": "Cut, formed\n& welded",
       "text": "From custom metal projects to precision CNC work, our fabrication delivers strength and creativity. Custom builds, repairs and modifications that blend innovation with craftsmanship: aluminium towers and T-tops, consoles, tanks and boxes, gates, railings and cut-metal signage.",
       "details": [
-        { "label": "Process", "value": "CNC plasma, shear, brake, roll" },
-        { "label": "Joining", "value": "MIG & TIG, aluminium and steel" },
-        { "label": "Marine", "value": "Towers, T-tops, leaning posts, tanks" },
-        { "label": "Architectural", "value": "Gates, railings, gangways, signs" }
+        {
+          "label": "Process",
+          "value": "CNC plasma, shear, brake, roll"
+        },
+        {
+          "label": "Joining",
+          "value": "MIG & TIG, aluminium and steel"
+        },
+        {
+          "label": "Marine",
+          "value": "Towers, T-tops, leaning posts, tanks"
+        },
+        {
+          "label": "Architectural",
+          "value": "Gates, railings, gangways, signs"
+        }
       ],
-      "button": { "label": "See Fabrication Work", "link": { "page": "gallery", "anchor": "fabrication" }, "style": "heat" },
-      "photo": { "id": "g064", "alt": "Steel gate with a cut eagle medallion, fabricated by FLCC" },
+      "button": {
+        "label": "See Fabrication Work",
+        "link": {
+          "page": "gallery",
+          "anchor": "fabrication"
+        },
+        "style": "heat"
+      },
+      "photo": {
+        "id": "g064",
+        "alt": "Steel gate with a cut eagle medallion, fabricated by FLCC"
+      },
       "caption": "CNC plasma: custom gate medallion",
       "photoSide": "right"
     },
@@ -48,20 +80,81 @@
       "pickerLabel": "Pick a direction:",
       "pickerAria": "Upholstery colours",
       "swatches": [
-        { "name": "Saddle", "label": "Saddle", "color": "#C98A52", "photo": "g021", "caption": "Classic coupe interior, Saddle diamond stitch", "alt": "Classic coupe interior trimmed in saddle-tan diamond-stitched vinyl" },
-        { "name": "Marine Blue", "label": "Marine", "color": "#1E4C7A", "photo": "g055", "caption": "Ski boat rebuild, Marine Blue and white", "alt": "Ski boat interior finished in deep marine blue and white" },
-        { "name": "Seagrass", "label": "Seagrass", "color": "#2E7D5B", "photo": "g058", "caption": "Bench seating, Seagrass with cream stitch", "alt": "Bench seating in seagrass green with cream diamond stitch" },
-        { "name": "Sunset Orange", "label": "Sunset", "color": "#E8762B", "photo": "g044", "caption": "Boat seating, Sunset Orange vinyl", "alt": "Boat seating finished in bright sunset orange" },
-        { "name": "Storm Grey", "label": "Storm", "color": "#8E9499", "photo": "g039", "caption": "Motorhome dinette, Storm Grey vinyl", "alt": "Motorhome dinette and bench rebuilt in storm grey vinyl" },
-        { "name": "Buoy Yellow", "label": "Buoy", "color": "#E4C64F", "photo": "g110", "caption": "Boat interior, Buoy Yellow accents", "alt": "Boat interior in buoy yellow, grey and white" }
+        {
+          "name": "Saddle",
+          "label": "Saddle",
+          "color": "#C98A52",
+          "photo": "g021",
+          "caption": "Classic coupe interior, Saddle diamond stitch",
+          "alt": "Classic coupe interior trimmed in saddle-tan diamond-stitched vinyl"
+        },
+        {
+          "name": "Marine Blue",
+          "label": "Marine",
+          "color": "#1E4C7A",
+          "photo": "g055",
+          "caption": "Ski boat rebuild, Marine Blue and white",
+          "alt": "Ski boat interior finished in deep marine blue and white"
+        },
+        {
+          "name": "Seagrass",
+          "label": "Seagrass",
+          "color": "#2E7D5B",
+          "photo": "g058",
+          "caption": "Bench seating, Seagrass with cream stitch",
+          "alt": "Bench seating in seagrass green with cream diamond stitch"
+        },
+        {
+          "name": "Sunset Orange",
+          "label": "Sunset",
+          "color": "#E8762B",
+          "photo": "g044",
+          "caption": "Boat seating, Sunset Orange vinyl",
+          "alt": "Boat seating finished in bright sunset orange"
+        },
+        {
+          "name": "Storm Grey",
+          "label": "Storm",
+          "color": "#8E9499",
+          "photo": "g039",
+          "caption": "Motorhome dinette, Storm Grey vinyl",
+          "alt": "Motorhome dinette and bench rebuilt in storm grey vinyl"
+        },
+        {
+          "name": "Buoy Yellow",
+          "label": "Buoy",
+          "color": "#E4C64F",
+          "photo": "g110",
+          "caption": "Boat interior, Buoy Yellow accents",
+          "alt": "Boat interior in buoy yellow, grey and white"
+        }
       ],
       "details": [
-        { "label": "Materials", "value": "Marine-grade vinyl, closed-cell foam" },
-        { "label": "Detail", "value": "Diamond stitch, piping, embroidery" },
-        { "label": "Scope", "value": "Boats, cars, ATVs, RVs, furniture" },
-        { "label": "Service", "value": "Single repair to full rebuild" }
+        {
+          "label": "Materials",
+          "value": "Marine-grade vinyl, closed-cell foam"
+        },
+        {
+          "label": "Detail",
+          "value": "Diamond stitch, piping, embroidery"
+        },
+        {
+          "label": "Scope",
+          "value": "Boats, cars, ATVs, RVs, furniture"
+        },
+        {
+          "label": "Service",
+          "value": "Single repair to full rebuild"
+        }
       ],
-      "button": { "label": "See Upholstery Work", "link": { "page": "gallery", "anchor": "upholstery" }, "style": "sewn" }
+      "button": {
+        "label": "See Upholstery Work",
+        "link": {
+          "page": "gallery",
+          "anchor": "upholstery"
+        },
+        "style": "sewn"
+      }
     },
     {
       "type": "serviceFeature",
@@ -73,22 +166,65 @@
       "pickerLabel": "Choose a finish:",
       "pickerAria": "Powder coat colours",
       "finishes": [
-        { "name": "Safety Orange", "color": "#FF4D00" },
-        { "name": "Candy Red", "color": "#C21B17" },
-        { "name": "Electric Blue", "color": "#12509E" },
-        { "name": "Lime", "color": "#6E8F1E" },
-        { "name": "Satin Black", "color": "#1C1E21" },
-        { "name": "Raw Copper", "color": "#B87333" }
+        {
+          "name": "Safety Orange",
+          "color": "#FF4D00"
+        },
+        {
+          "name": "Candy Red",
+          "color": "#C21B17"
+        },
+        {
+          "name": "Electric Blue",
+          "color": "#12509E"
+        },
+        {
+          "name": "Lime",
+          "color": "#6E8F1E"
+        },
+        {
+          "name": "Satin Black",
+          "color": "#1C1E21"
+        },
+        {
+          "name": "Raw Copper",
+          "color": "#B87333"
+        }
       ],
       "details": [
-        { "label": "Finish", "value": "Gloss, matte, textured" },
-        { "label": "Resists", "value": "Chips, corrosion, UV" },
-        { "label": "Typical", "value": "Wheels, frames, railings, hardware" },
-        { "label": "Turnaround", "value": "3-5 days, drop-off to pickup" }
+        {
+          "label": "Finish",
+          "value": "Gloss, matte, textured"
+        },
+        {
+          "label": "Resists",
+          "value": "Chips, corrosion, UV"
+        },
+        {
+          "label": "Typical",
+          "value": "Wheels, frames, railings, hardware"
+        },
+        {
+          "label": "Turnaround",
+          "value": "3-5 days, drop-off to pickup"
+        }
       ],
-      "button": { "label": "See Coating Work", "link": { "page": "gallery", "anchor": "coating" }, "style": "heat" },
-      "before": { "heading": "Raw", "text": "Blasted back to bare metal. Every weld and edge exposed." },
-      "after": { "heading": "Coated", "text": "Electrostatically applied, oven-cured, done in a day." }
+      "button": {
+        "label": "See Coating Work",
+        "link": {
+          "page": "gallery",
+          "anchor": "coating"
+        },
+        "style": "heat"
+      },
+      "before": {
+        "heading": "Raw",
+        "text": "Blasted back to bare metal. Every weld and edge exposed."
+      },
+      "after": {
+        "heading": "Coated",
+        "text": "Electrostatically applied, oven-cured, done in a day."
+      }
     }
   ]
 }

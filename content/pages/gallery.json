@@ -12,10 +12,20 @@
       "headline": "Every one\nof them ours",
       "intro": "Boats stripped to the frame and rebuilt. Aluminium cut, welded and polished. Gates that outlive the house. Filter by the kind of work you're here for, or scroll the lot.",
       "facts": [
-        { "auto": "photoCount", "label": "Projects shown" },
-        { "auto": "categoryCount", "label": "Kinds of work" }
-      ]
+        {
+          "auto": "photoCount",
+          "label": "Projects shown"
+        },
+        {
+          "auto": "categoryCount",
+          "label": "Kinds of work"
+        }
+      ],
+      "factsAlign": "center"
     },
-    { "type": "galleryBrowser", "emptyMessage": "Nothing in this category yet. Try another filter." }
+    {
+      "type": "galleryBrowser",
+      "emptyMessage": "Nothing in this category yet. Try another filter."
+    }
   ]
 }
