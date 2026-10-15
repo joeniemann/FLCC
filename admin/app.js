@@ -265,8 +265,13 @@ function renderField(key, def, obj, ctx) {
   switch (def.kind) {
     case 'text': {
       const input = h('input', { type: 'text', value: obj[key] || '', maxlength: def.max || 200 })
-      input.addEventListener('input', () => set(input.value))
-      return h('div', { class: 'field' }, labelRow(def.label, def.max ? counter(def.max, input) : null), input, hint(def.note))
+      const warn = h('p', { class: 'hint warn' })
+      const re = def.pattern ? new RegExp(def.pattern) : null
+      input.addEventListener('input', () => {
+        if (re && !re.test(input.value.trim())) { warn.textContent = def.patternMessage || 'That does not look right yet.'; return }
+        warn.textContent = ''; set(re ? input.value.trim() : input.value)
+      })
+      return h('div', { class: 'field' }, labelRow(def.label, def.max ? counter(def.max, input) : null), input, warn, hint(def.note))
     }
     case 'paragraph': {
       const ta = h('textarea', { rows: 4, maxlength: def.max || 600 })
@@ -296,8 +301,11 @@ function renderField(key, def, obj, ctx) {
       sel.addEventListener('change', () => { if (sel.value === '' && def.optional) delete obj[key]; else obj[key] = sel.value; ctx.changed(); ctx.redraw() })
       return h('div', { class: 'field' }, labelRow(def.label), sel, hint(def.note))
     }
-    case 'switch':
-      return switchField(def.label, obj[key], (v) => set(v))
+    case 'switch': {
+      const el = switchField(def.label, obj[key], (v) => set(v))
+      if (def.note) el.append(hint(def.note))
+      return el
+    }
     case 'align': {
       const cur = obj[key] || 'left'
       const row = h('div', { class: 'alignrow', role: 'group', 'aria-label': def.label })
@@ -492,11 +500,42 @@ function newBlock(schema, type, photos) {
 }
 
 // ---------- screens ----------
+function formScreen(formId, rootOf) {
+  return {
+    title: formId,
+    preview: 'contact',
+    async render(root) {
+      const schema = await loadSchema()
+      const form = schema.siteForms[formId]
+      this.preview = form.preview || 'home'
+      previewPage = this.preview
+      const site = await loadFile('content/site.json')
+      const target = rootOf(site)
+      const changed = () => touch('content/site.json')
+      const draw = () => {
+        const keep = editorEl.scrollTop
+        const was = [...root.querySelectorAll('details.blockcard')].map((d) => d.open)
+        root.textContent = ''
+        root.append(h('h1', {}, form.title), h('p', { class: 'lead' }, form.lead))
+        form.groups.forEach((g, i) => {
+          const card = h('details', { class: 'blockcard' }, h('summary', {}, g.name))
+          card.open = was.length ? !!was[i] : i === 0
+          card.append(h('div', { class: 'blockbody' }, renderFields(g.fields, target, { block: target, changed, redraw: draw })))
+          root.append(card)
+        })
+        editorEl.scrollTop = keep
+      }
+      draw()
+    },
+  }
+}
 const PAGE_COMMON = { movable: [], addable: [], hide: { serviceFeature: ['version'] } }
 const SCREENS = {
   services: pageScreen('services', Object.assign({ title: 'Services page', lead: 'Each trade has its own section. Open one to change its words, photo and colors.' }, PAGE_COMMON)),
   about: pageScreen('about', Object.assign({ title: 'About page', lead: 'Open a section to change its words and photos.' }, PAGE_COMMON)),
   gallery: pageScreen('gallery', Object.assign({ title: 'Gallery page', lead: 'The photos themselves are managed in the photo library (coming soon). Here you can change the words around them.' }, PAGE_COMMON)),
+  contact: pageScreen('contact', Object.assign({ title: 'Contact page', lead: 'Open a section to change the words on the Contact page. The phone, email, hours and address come from Business info.' }, PAGE_COMMON)),
+  business: formScreen('business', (site) => site.business),
   menu: { title: 'Menu', render: renderMenu, preview: 'home' },
   home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'], hide: {} }),
 }
