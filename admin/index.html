@@ -56,8 +56,13 @@
   <div id="welcome" class="hidden">
     <h1>You are in.</h1>
     <p>Logged in as <span class="who" id="whoEmail"></span> (<span id="whoRole"></span>).</p>
-    <p>The page editor is coming next. For now, this screen just proves your login works.</p>
-    <button type="button" id="logoutBtn">Log out</button>
+    <p>The page editor is coming next. This small box is a test of saving: change the phone number, save it as a draft, then make it live.</p>
+    <label for="phone">Business phone</label>
+    <input id="phone" type="text" inputmode="tel">
+    <button type="button" id="saveBtn">Save draft</button>
+    <button type="button" id="liveBtn">Make it live</button>
+    <div class="msg" id="testMsg"></div>
+    <button type="button" id="logoutBtn" class="link">Log out</button>
   </div>
 
   <div id="noAccess" class="hidden">
@@ -90,6 +95,7 @@ async function showAfterLogin() {
     $('whoEmail').textContent = data.email
     $('whoRole').textContent = data.role
     show('welcome')
+    loadSite()
   } else if (res.status === 403) {
     show('noAccess')
   } else {
@@ -160,6 +166,41 @@ $('newPwForm').addEventListener('submit', async (e) => {
 async function doLogout() { await logout(); location.reload() }
 $('logoutBtn').addEventListener('click', doLogout)
 $('logoutBtn2').addEventListener('click', doLogout)
+
+// ---- Saving test: edits the business phone number in content/site.json ----
+let siteFile = null
+async function api(url, opts) {
+  const res = await fetch(url, Object.assign({ credentials: 'same-origin' }, opts))
+  const data = await res.json().catch(() => ({}))
+  if (!res.ok) throw new Error(data.error || 'Something went wrong.')
+  return data
+}
+async function loadSite() {
+  try {
+    siteFile = await api('/.netlify/functions/content-read?path=content/site.json')
+    $('phone').value = siteFile.content.business.phone
+    if (siteFile.changed) say('testMsg', 'You have a saved draft that is not live yet.', 'good')
+  } catch (err) { say('testMsg', nice(err), 'error') }
+}
+$('saveBtn').addEventListener('click', async () => {
+  const btn = $('saveBtn'); btn.disabled = true
+  try {
+    siteFile.content.business.phone = $('phone').value.trim()
+    const r = await api('/.netlify/functions/content-save', {
+      method: 'POST',
+      body: JSON.stringify({ path: 'content/site.json', content: siteFile.content, sha: siteFile.sha }),
+    })
+    siteFile.sha = r.sha
+    say('testMsg', 'Draft saved. The live site has not changed yet.', 'good')
+  } catch (err) { say('testMsg', nice(err), 'error') } finally { btn.disabled = false }
+})
+$('liveBtn').addEventListener('click', async () => {
+  const btn = $('liveBtn'); btn.disabled = true
+  try {
+    const r = await api('/.netlify/functions/publish', { method: 'POST' })
+    say('testMsg', r.nothing ? 'Nothing new to publish.' : 'Done. The site is updating and will be live in about a minute.', 'good')
+  } catch (err) { say('testMsg', nice(err), 'error') } finally { btn.disabled = false }
+})
 
 start()
 </script>
