@@ -165,7 +165,7 @@ function blank(def) {
 }
 function visible(def, scopes) {
   if (!def.onlyWhen) return true
-  return Object.entries(def.onlyWhen).every(([k, v]) => scopes.some((s) => s && s[k] === v))
+  return Object.entries(def.onlyWhen).every(([k, v]) => scopes.some((s) => s && (Array.isArray(v) ? v.includes(s[k]) : s[k] === v)))
 }
 function labelRow(text, count) { return h('label', {}, text, count || null) }
 function hint(text) { return text ? h('p', { class: 'hint' }, text) : null }
@@ -254,6 +254,7 @@ function renderFields(fields, obj, ctx) {
   const wrap = h('div')
   for (const [key, def] of Object.entries(fields)) {
     if (def.hidden || !visible(def, [obj, ctx.block])) continue
+    if (ctx.hide && obj === ctx.block && (ctx.hide[ctx.block.type] || []).includes(key)) continue
     wrap.append(renderField(key, def, obj, ctx))
   }
   return wrap
@@ -297,6 +298,13 @@ function renderField(key, def, obj, ctx) {
     }
     case 'switch':
       return switchField(def.label, obj[key], (v) => set(v))
+    case 'color': {
+      const pick = h('input', { type: 'color', value: /^#[0-9a-f]{6}$/i.test(obj[key] || '') ? obj[key] : '#888888', class: 'colorpick' })
+      const hex = h('input', { type: 'text', value: obj[key] || '', maxlength: 7, placeholder: '#C98A52' })
+      pick.addEventListener('input', () => { hex.value = pick.value.toUpperCase(); set(hex.value) })
+      hex.addEventListener('input', () => { if (/^#[0-9a-f]{6}$/i.test(hex.value)) { pick.value = hex.value; set(hex.value.toUpperCase()) } })
+      return h('div', { class: 'field' }, labelRow(def.label), h('div', { class: 'colorrow' }, pick, hex))
+    }
     case 'link':
       return linkField(def, obj, key, ctx)
     case 'photo':
@@ -338,7 +346,8 @@ function photoField(def, obj, key, ctx) {
   const draw = async () => {
     wrap.textContent = ''
     const photos = await loadPhotos()
-    const cur = obj[key] || {}
+    const plain = def.altRequired === false
+    const cur = typeof obj[key] === 'string' ? { id: obj[key] } : (obj[key] || {})
     const ph = photos.find((p) => p.id === cur.id)
     const img = ph ? h('img', { class: 'bigthumb', src: '/' + ph.thumb, alt: '' }) : h('div', { class: 'bigthumb empty' }, 'No photo yet')
     const alt = h('input', { type: 'text', value: cur.alt || '', maxlength: 200 })
@@ -347,9 +356,12 @@ function photoField(def, obj, key, ctx) {
       if (!alt.value.trim()) { warn.textContent = 'Please describe the photo. It helps people who cannot see it, and Google.'; return }
       warn.textContent = ''; obj[key] = Object.assign({}, obj[key], { alt: alt.value }); ctx.changed()
     })
-    wrap.append(labelRow(def.label), h('div', { class: 'photorow' }, img,
-      h('div', {}, h('button', { type: 'button', class: 'btn plain small', onclick: () => openPicker(cur.id, (p) => { obj[key] = { id: p.id, alt: p.alt }; ctx.changed(); draw() }) }, ph ? 'Change photo' : 'Pick a photo'))),
-      h('div', { class: 'lab', style: 'margin-top:10px;font-weight:600;font-size:14px' }, 'Describe this photo'), alt, warn)
+    const choose = h('button', { type: 'button', class: 'btn plain small', onclick: () => openPicker(cur.id, (p) => {
+      if (plain) { obj[key] = p.id; if ('alt' in obj) obj.alt = p.alt; ctx.changed(); ctx.redraw() }
+      else { obj[key] = { id: p.id, alt: p.alt }; ctx.changed(); draw() }
+    }) }, ph ? 'Change photo' : 'Pick a photo')
+    wrap.append(labelRow(def.label), h('div', { class: 'photorow' }, img, h('div', {}, choose)))
+    if (!plain) wrap.append(h('div', { class: 'lab', style: 'margin-top:10px;font-weight:600;font-size:14px' }, 'Describe this photo'), alt, warn)
   }
   draw()
   return wrap
@@ -414,7 +426,7 @@ function pageScreen(pageId, cfg) {
         root.append(info)
         page.blocks.forEach((block, i) => {
           const def = schema.blocks[block.type]
-          const ctx = { block, changed, redraw: draw }
+          const ctx = { block, changed, redraw: draw, hide: cfg.hide }
           const movable = cfg.movable.includes(block.type)
           const title = def.name + (block.eyebrow ? ': ' + block.eyebrow : '')
           const card = h('details', { class: 'blockcard' }, h('summary', {}, title))
@@ -468,9 +480,13 @@ function newBlock(schema, type, photos) {
 }
 
 // ---------- screens ----------
+const PAGE_COMMON = { movable: [], addable: [], hide: { serviceFeature: ['version'] } }
 const SCREENS = {
+  services: pageScreen('services', Object.assign({ title: 'Services page', lead: 'Each trade has its own section. Open one to change its words, photo and colors.' }, PAGE_COMMON)),
+  about: pageScreen('about', Object.assign({ title: 'About page', lead: 'Open a section to change its words and photos.' }, PAGE_COMMON)),
+  gallery: pageScreen('gallery', Object.assign({ title: 'Gallery page', lead: 'The photos themselves are managed in the photo library (coming soon). Here you can change the words around them.' }, PAGE_COMMON)),
   menu: { title: 'Menu', render: renderMenu, preview: 'home' },
-  home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'] }),
+  home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'], hide: {} }),
 }
 
 const NAV = [

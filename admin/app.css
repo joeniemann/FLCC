@@ -91,3 +91,7 @@ body.app-mode .card { display:none; }
 .pthumb:hover { border-color:var(--brand); background:none; }
 .pthumb.on { border-color:var(--ink); }
 .pthumb img { width:100%; height:90px; object-fit:cover; border-radius:7px; display:block; background:#eef0f3; }
+
+.colorrow { display:flex; gap:10px; align-items:center; }
+.colorrow .colorpick { width:56px; height:44px; padding:2px; border:2px solid var(--line); border-radius:10px; background:#fff; flex:none; }
+.colorrow input[type=text] { flex:1; }

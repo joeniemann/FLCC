@@ -419,7 +419,7 @@
     },
     "serviceFeature": {
       "name": "Service feature",
-      "help": "One service, with its details and a photo. Three versions.",
+      "help": "One service on the Services page: its words, quick details and photo.",
       "fields": {
         "version": {
           "label": "Version",
