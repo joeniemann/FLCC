@@ -32,7 +32,7 @@
       {
         "label": "Services",
         "page": "services",
-        "show": false
+        "show": true
       },
       {
         "label": "Our Work",
