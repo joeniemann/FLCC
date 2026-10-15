@@ -126,11 +126,11 @@
               "options": [
                 [
                   "sewn",
-                  "Solid"
+                  "Orange"
                 ],
                 [
                   "heat",
-                  "Orange"
+                  "Glass"
                 ],
                 [
                   "line",
@@ -329,11 +329,11 @@
               "options": [
                 [
                   "sewn",
-                  "Solid"
+                  "Orange"
                 ],
                 [
                   "heat",
-                  "Orange"
+                  "Glass"
                 ],
                 [
                   "line",
@@ -498,11 +498,11 @@
               "options": [
                 [
                   "sewn",
-                  "Solid"
+                  "Orange"
                 ],
                 [
                   "heat",
-                  "Orange"
+                  "Glass"
                 ]
               ]
             }
