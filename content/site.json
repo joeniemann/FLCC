@@ -40,15 +40,15 @@
         "show": true
       },
       {
+        "label": "Contact",
+        "page": "contact",
+        "show": true
+      },
+      {
         "label": "About",
         "page": "about",
         "show": true,
         "footerLabel": "About Us"
-      },
-      {
-        "label": "Contact",
-        "page": "contact",
-        "show": true
       }
     ],
     "button": {
