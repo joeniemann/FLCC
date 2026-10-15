@@ -30,18 +30,13 @@
   "menu": {
     "items": [
       {
-        "label": "Services",
-        "page": "services",
-        "show": true
-      },
-      {
         "label": "Our Work",
         "page": "gallery",
         "show": true
       },
       {
-        "label": "Contact",
-        "page": "contact",
+        "label": "Services",
+        "page": "services",
         "show": true
       },
       {
@@ -49,6 +44,11 @@
         "page": "about",
         "show": true,
         "footerLabel": "About Us"
+      },
+      {
+        "label": "Contact",
+        "page": "contact",
+        "show": true
       }
     ],
     "button": {
