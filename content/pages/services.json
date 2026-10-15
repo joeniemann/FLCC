@@ -27,7 +27,7 @@
           "label": "Family"
         }
       ],
-      "factsAlign": "center"
+      "factsAlign": "right"
     },
     {
       "type": "serviceFeature",
