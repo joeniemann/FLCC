@@ -1,5 +1,5 @@
 [build]
-  command = "rm -rf dist && mkdir -p dist/assets dist/admin && cp -r assets/. dist/assets/ && cp -r admin/. dist/admin/ && cp style-guide.html dist/ && node cms/build/render.js --site . --out dist"
+  command = "rm -rf dist && mkdir -p dist/assets dist/admin && cp -r assets/. dist/assets/ && cp -r admin/. dist/admin/ && cp cms/schema/blocks.json dist/admin/blocks.json && cp style-guide.html dist/ && node cms/build/render.js --site . --out dist"
   publish = "dist"
 
 [build.environment]
