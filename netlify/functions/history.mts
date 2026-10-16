@@ -9,10 +9,37 @@ export default async (req: Request) => {
     if (req.method === 'GET') {
       const path = new URL(req.url).searchParams.get('path')
       if (!okPath(path)) return reply({ error: 'That file is not editable.' }, 400)
-      const r = await gh('/commits?sha=' + encodeURIComponent(LIVE) + '&path=' + encodeURIComponent(path) + '&per_page=20')
-      if (r.status !== 200) return reply({ error: 'Could not load history (' + r.status + ').' }, 500)
-      const list = (await r.json()).map((c: any) => ({ sha: c.sha, when: c.commit.committer.date, message: c.commit.message.split('\n')[0] }))
-      return reply({ versions: list })
+      // Only the versions that went live: each "Make it live" counts once, however many saves came before it.
+      const pull = async (extra: string) => {
+        const pages = await Promise.all([1, 2, 3, 4, 5].map((n) => gh('/commits?sha=' + encodeURIComponent(LIVE) + '&per_page=100&page=' + n + extra)))
+        const out: any[] = []
+        for (const r of pages) {
+          if (r.status === 404 || r.status === 422) continue
+          if (r.status !== 200) throw new Error('Could not load history (' + r.status + ').')
+          out.push(...(await r.json()))
+        }
+        return out
+      }
+      const [all, mine] = await Promise.all([pull(''), pull('&path=' + encodeURIComponent(path))])
+      const email = (m: string) => { const x = /\(([^)]+)\)\s*$/.exec(m.split('\n')[0]); return x ? x[1] : '' }
+      const pubs = all.filter((c: any) => c.commit.message.startsWith('Make it live'))
+        .map((c: any) => ({ when: c.commit.committer.date as string, by: email(c.commit.message) }))
+        .sort((a: any, b: any) => a.when.localeCompare(b.when))
+      const seen = new Set<string>()
+      const versions: any[] = []
+      for (const c of mine) {
+        const msg: string = c.commit.message
+        const date: string = c.commit.committer.date
+        if (!msg.startsWith('Draft:')) { versions.push({ sha: c.sha, when: date, by: '', note: 'Changed directly by Joe' }); continue }
+        const pub = pubs.find((x: any) => x.when >= date)
+        if (!pub) { versions.push({ sha: c.sha, when: date, by: email(msg), note: 'Made live' }); continue }
+        const key = pub.when
+        if (seen.has(key)) continue
+        seen.add(key)
+        versions.push({ sha: c.sha, when: pub.when, by: pub.by || email(msg), note: 'Made live' })
+      }
+      versions.sort((a, b) => b.when.localeCompare(a.when))
+      return reply({ versions: versions.slice(0, 20) })
     }
     if (req.method === 'POST') {
       const { path, sha } = await req.json()

@@ -170,3 +170,4 @@ body.app-mode .card { display:none; }
 .btn.danger-text { color:#b3261e; }
 .rowacts { display:flex; gap:8px; }
 .btn.danger:hover { background:#8c1d18; }
+.histpick { width:100%; font-size:17px; padding:11px 13px; border:2px solid var(--line); border-radius:10px; background:#fff; }

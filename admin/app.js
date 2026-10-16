@@ -2,6 +2,7 @@
 import { logout } from './identity.js'
 import { photosScreen, photoImg } from './photos.js'
 import { blank, newBlock, buildNewPage, slugify } from './newpage.js'
+import { historyScreen } from './history.js'
 
 const $ = (sel, root = document) => root.querySelector(sel)
 
@@ -746,6 +747,7 @@ const SCREENS = {
   addpage: addPageScreen(),
   pages: pagesScreen(),
   photos: photosScreen({ h, api, loadFile, touch, setStatus }),
+  history: historyScreen({ h, api, loadFile, state, setStatus, markWaiting, getPages: () => PAGES, navLabel, flushAll, setPreview: (id) => { previewPage = id }, refreshPreview: () => refreshPreview() }),
   home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'], hide: {} }),
 }
 
@@ -754,7 +756,7 @@ function navGroups() {
   const added = PAGES.filter((p) => p.custom && !p.archived).map((p) => [p.id, navLabel(p)])
   return [
     ['Pages', [...base, ...added, ['addpage', '+ Add a page'], ['pages', 'All pages']]],
-    ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info'], ['callBand', 'Call band'], ['footer', 'Footer']]],
+    ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info'], ['callBand', 'Call band'], ['footer', 'Footer'], ['history', 'History']]],
   ]
 }
 
