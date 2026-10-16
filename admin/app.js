@@ -95,7 +95,7 @@ async function makeLive() {
     await flushAll()
     const r = await api('/.netlify/functions/publish', { method: 'POST' })
     markWaiting(false)
-    setStatus(r.nothing ? 'Nothing new to publish' : 'Live! Site updates in about a minute', 'ok')
+    setStatus(r.nothing ? 'Nothing new to publish' : r.combined ? 'Live! We combined your changes with a newer version of the site. Site updates in about a minute' : 'Live! Site updates in about a minute', 'ok')
     if (state.screen === 'history') go('history')
   } catch (err) {
     liveBtn.disabled = false
