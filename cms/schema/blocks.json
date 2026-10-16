@@ -1043,6 +1043,121 @@
           }
         }
       ]
+    },
+    "callBand": {
+      "title": "Call band",
+      "lead": "This is the big band near the bottom of most pages that invites people to call or message the shop. Change the words and where each button goes. To hide it on one page, use the switch at the bottom of that page's screen.",
+      "preview": "home",
+      "previewScroll": "end",
+      "groups": [
+        {
+          "name": "The words",
+          "fields": {
+            "headline": {
+              "label": "Big words",
+              "kind": "text",
+              "max": 30,
+              "note": "Keep it short. It shows in large letters."
+            },
+            "text": {
+              "label": "Sentence under the big words",
+              "kind": "paragraph",
+              "max": 200
+            }
+          }
+        },
+        {
+          "name": "First button",
+          "fields": {
+            "primary": {
+              "label": "First button",
+              "kind": "object",
+              "item": {
+                "label": {
+                  "label": "Words on the button",
+                  "kind": "text",
+                  "max": 20
+                },
+                "link": {
+                  "label": "Button goes to",
+                  "kind": "link"
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Second button",
+          "fields": {
+            "secondary": {
+              "label": "Second button",
+              "kind": "object",
+              "item": {
+                "label": {
+                  "label": "Words on the button",
+                  "kind": "text",
+                  "max": 20
+                },
+                "link": {
+                  "label": "Button goes to",
+                  "kind": "link"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "footer": {
+      "title": "Footer",
+      "lead": "This is the bottom of every page. The logo line, menu links, address, phone and social icons come from Business info and Menu. Here you can change the news sign-up box. Sign-ups arrive in your Netlify dashboard under Forms.",
+      "preview": "home",
+      "previewScroll": "end",
+      "groups": [
+        {
+          "name": "News sign-up words",
+          "fields": {
+            "newsletterHeading": {
+              "label": "Heading",
+              "kind": "text",
+              "max": 30
+            },
+            "newsletterText": {
+              "label": "Sentence under the heading",
+              "kind": "paragraph",
+              "max": 140
+            },
+            "newsletterPlaceholder": {
+              "label": "Words inside the email box",
+              "kind": "text",
+              "max": 24,
+              "note": "Shows in grey until someone types."
+            },
+            "newsletterButton": {
+              "label": "Words on the button",
+              "kind": "text",
+              "max": 14
+            }
+          }
+        },
+        {
+          "name": "After someone signs up",
+          "fields": {
+            "newsletterSuccess": {
+              "label": "Thank-you message",
+              "kind": "text",
+              "max": 100,
+              "note": "Shows right after a successful sign-up."
+            },
+            "newsletterError": {
+              "label": "Message if it fails",
+              "kind": "text",
+              "max": 100,
+              "note": "Shows if the sign-up could not be sent."
+            }
+          }
+        }
+      ]
     }
   }
 }

@@ -103,6 +103,7 @@ async function makeLive() {
 // ---------- live preview ----------
 let previewTimer = null
 let previewPage = 'home'
+let previewEnd = false
 function schedulePreview() {
   clearTimeout(previewTimer)
   previewTimer = setTimeout(refreshPreview, 450)
@@ -115,7 +116,9 @@ async function refreshPreview() {
     const r = await api('/.netlify/functions/preview', { method: 'POST', body: JSON.stringify(body) })
     const y = previewFrame.contentWindow ? previewFrame.contentWindow.scrollY : 0
     previewFrame.srcdoc = r.html
-    previewFrame.addEventListener('load', () => { try { previewFrame.contentWindow.scrollTo(0, y) } catch (e) {} }, { once: true })
+    const goEnd = previewEnd
+    previewEnd = false
+    previewFrame.addEventListener('load', () => { try { previewFrame.contentWindow.scrollTo(0, goEnd ? 1e6 : y) } catch (e) {} }, { once: true })
   } catch (err) {
     setStatus('Preview problem: ' + err.message, 'bad')
   }
@@ -510,6 +513,7 @@ function formScreen(formId, rootOf) {
       const form = schema.siteForms[formId]
       this.preview = form.preview || 'home'
       previewPage = this.preview
+      previewEnd = form.previewScroll === 'end'
       const site = await loadFile('content/site.json')
       const target = rootOf(site)
       const changed = () => touch('content/site.json')
@@ -537,6 +541,8 @@ const SCREENS = {
   gallery: pageScreen('gallery', Object.assign({ title: 'Gallery page', lead: 'The photos themselves are managed under Photos in the menu on the left. Here you can change the words around them.' }, PAGE_COMMON)),
   contact: pageScreen('contact', Object.assign({ title: 'Contact page', lead: 'Open a section to change the words on the Contact page. The phone, email, hours and address come from Business info.' }, PAGE_COMMON)),
   business: formScreen('business', (site) => site.business),
+  callBand: formScreen('callBand', (site) => site.callBand),
+  footer: formScreen('footer', (site) => site.footer),
   menu: { title: 'Menu', render: renderMenu, preview: 'home' },
   photos: photosScreen({ h, api, loadFile, touch, setStatus }),
   home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'], hide: {} }),
@@ -544,7 +550,7 @@ const SCREENS = {
 
 const NAV = [
   ['Pages', [['home', 'Home'], ['services', 'Services'], ['about', 'About'], ['gallery', 'Gallery'], ['contact', 'Contact']]],
-  ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info']]],
+  ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info'], ['callBand', 'Call band'], ['footer', 'Footer']]],
 ]
 
 function drawNav(nav) {

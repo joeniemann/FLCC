@@ -455,7 +455,7 @@
 
   /* ---------- forms: validate, then send ----------
      The contact form (data-netlify) posts to Netlify Forms. Other forms
-     (footer newsletter) only validate and show their message. */
+     (none left) only validate and show their message. */
   (function forms() {
     $$("form[data-form]").forEach(function (form) {
       /* the status pill may sit inside the form (contact) or as a sibling
@@ -491,7 +491,7 @@
         if (form.getAttribute("data-send") !== "netlify") { done(); return; }
         /* Netlify uses a field named "subject" as the email subject line */
         var subj = form.elements["subject"];
-        if (subj) {
+        if (subj && !form.hasAttribute("data-keep-subject")) {
           var who = (form.elements["name"] || {}).value || "";
           var what = (form.elements["service"] || {}).value || "";
           subj.value = "New request" + (who ? " from " + who.trim() : "") + (what ? ": " + what : "");
