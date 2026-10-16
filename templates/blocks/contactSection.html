@@ -43,12 +43,16 @@
           </div>
         </div>
 
-        <div data-reveal data-reveal-delay="120">
+        <div data-reveal data-reveal-delay="120" id="book">
           <h2 class="h-sub" style="margin-bottom:8px">{{form.heading}}</h2>
           <p class="body" style="margin-bottom:24px">{{form.intro}}</p>
 
-          <form class="form" data-form
-                data-success="{{attr form.successMessage}}">
+          <form class="form" data-form name="contact" method="POST"
+                data-netlify="true" netlify-honeypot="bot-field"
+                data-success="{{attr form.successMessage}}"
+                data-error="{{attr form.errorMessage}}">
+            <input type="hidden" name="form-name" value="contact">
+            <p style="display:none"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
             <div class="field-row">
               <div class="field">
                 <label for="c-name">Name <i>*</i></label>

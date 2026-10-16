@@ -453,10 +453,9 @@
     }
   })();
 
-  /* ---------- forms: validate and report, but do not submit ----------
-     No backend is wired yet. Everything validates client-side and
-     reports success so the flow can be reviewed; hook a real endpoint
-     by setting action/method on the <form> and deleting the preventDefault. */
+  /* ---------- forms: validate, then send ----------
+     The contact form (data-netlify) posts to Netlify Forms. Other forms
+     (footer newsletter) only validate and show their message. */
   (function forms() {
     $$("form[data-form]").forEach(function (form) {
       /* the status pill may sit inside the form (contact) or as a sibling
@@ -482,11 +481,28 @@
           status.textContent = "Please check the highlighted fields and try again.";
           return;
         }
+        function done() {
+          status.setAttribute("data-state", "ok");
+          status.textContent = form.dataset.success || "Thanks, we got your message. We'll get back to you soon.";
+          form.reset();
+          $$(".field", form).forEach(function (f) { f.setAttribute("data-invalid", "false"); });
+        }
+        /* only the contact form is a Netlify form; others just show the message */
+        if (!form.hasAttribute("data-netlify")) { done(); return; }
+        var body = new URLSearchParams(new FormData(form)).toString();
         status.setAttribute("data-state", "ok");
-        status.textContent = form.dataset.success ||
-          "Thanks, your message is ready to send. This form is not connected to a mail service yet.";
-        form.reset();
-        $$(".field", form).forEach(function (f) { f.setAttribute("data-invalid", "false"); });
+        status.textContent = "Sending...";
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: body
+        }).then(function (r) {
+          if (!r.ok) throw new Error("bad status");
+          done();
+        }).catch(function () {
+          status.setAttribute("data-state", "err");
+          status.textContent = form.dataset.error || "Something went wrong. Please call us instead.";
+        });
       });
       $$("input,textarea,select", form).forEach(function (input) {
         input.addEventListener("blur", function () {

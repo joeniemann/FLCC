@@ -874,6 +874,11 @@
               "kind": "paragraph",
               "max": 200
             },
+            "errorMessage": {
+              "label": "Message if sending fails",
+              "kind": "paragraph",
+              "max": 200
+            },
             "buttonLabel": {
               "label": "Button words",
               "kind": "text",
