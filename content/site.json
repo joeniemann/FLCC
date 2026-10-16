@@ -53,7 +53,8 @@
       {
         "label": "TEST",
         "page": "test",
-        "show": true
+        "show": true,
+        "parent": "about"
       }
     ],
     "button": {
