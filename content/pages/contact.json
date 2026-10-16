@@ -11,8 +11,7 @@
       "eyebrow": "Get in touch",
       "headline": "Tell us what\nyou're building",
       "intro": "Drop by the shop, call, or send the details and photos. We'll come back with materials, a timeline and a number. No obligation.",
-      "factsFromHours": true,
-      "facts": []
+      "factsFromHours": true
     },
     {
       "type": "contactSection",
@@ -25,8 +24,7 @@
       "form": {
         "heading": "Start a project",
         "intro": "The more you can tell us, the tighter the quote. Photos help more than anything else.",
-        "successMessage": "Thanks, we got your message. We'll get back to you within one business day.",
-        "errorMessage": "Something went wrong sending that. Please call us and we'll sort it out.",
+        "successMessage": "Thanks. We'll get back to you within one business day. (This form isn't connected to a mail service yet.)",
         "serviceChoices": [
           "Boat upholstery",
           "Boat fabrication: tower, T-top, console",
@@ -37,8 +35,7 @@
           "Something else / not sure yet"
         ],
         "messageHint": "What is it, what shape is it in, and when do you need it? Make, model and year help if you have them.",
-        "buttonLabel": "Send Request",
-        "errorMessage": "Error! Something went wrong please try again."
+        "buttonLabel": "Send Request"
       }
     }
   ]
