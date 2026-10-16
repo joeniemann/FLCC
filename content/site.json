@@ -66,7 +66,8 @@
       "label": "Book a Time",
       "link": {
         "phone": true
-      }
+      },
+      "show": true
     },
     "secondary": {
       "label": "Send a Message",
