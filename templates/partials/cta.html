@@ -14,8 +14,8 @@
       <!-- ACUITY: swap this href for the Acuity/Squarespace Scheduling link.
            Looks like https://app.acuityscheduling.com/schedule.php?owner=XXXXXXX
            To embed the full scheduler inline instead, drop Acuity's iframe here. -->
-      {{#if callBand.primary.show}}<a class="btn btn--sewn" href="{{href callBand.primary.link}}" data-acuity><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>{{callBand.primary.label}}</a>{{/if}}
-      {{#if callBand.secondary.show}}<a class="btn btn--heat" href="{{href callBand.secondary.link}}"><i class="fa-solid fa-envelope" aria-hidden="true"></i>{{callBand.secondary.label}}</a>{{/if}}
+      {{#if callBand.primary.show}}<a class="btn btn--{{callBand.primary.style}}" href="{{href callBand.primary.link}}" data-acuity><i class="fa-solid fa-calendar-check" aria-hidden="true"></i>{{callBand.primary.label}}</a>{{/if}}
+      {{#if callBand.secondary.show}}<a class="btn btn--{{callBand.secondary.style}}" href="{{href callBand.secondary.link}}"><i class="fa-solid fa-envelope" aria-hidden="true"></i>{{callBand.secondary.label}}</a>{{/if}}
     </div>
   </div>
 </section>

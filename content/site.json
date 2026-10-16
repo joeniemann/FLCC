@@ -68,14 +68,16 @@
       "link": {
         "page": "contact",
         "anchor": "book"
-      }
+      },
+      "style": "sewn"
     },
     "secondary": {
       "show": true,
       "label": "Send a Message",
       "link": {
         "page": "contact"
-      }
+      },
+      "style": "heat"
     }
   },
   "footer": {

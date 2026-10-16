@@ -1086,6 +1086,24 @@
                 "link": {
                   "label": "Button goes to",
                   "kind": "link"
+                },
+                "style": {
+                  "label": "Look",
+                  "kind": "choice",
+                  "options": [
+                    [
+                      "sewn",
+                      "Orange"
+                    ],
+                    [
+                      "heat",
+                      "Glass"
+                    ],
+                    [
+                      "line",
+                      "Outline"
+                    ]
+                  ]
                 }
               }
             }
@@ -1111,6 +1129,24 @@
                 "link": {
                   "label": "Button goes to",
                   "kind": "link"
+                },
+                "style": {
+                  "label": "Look",
+                  "kind": "choice",
+                  "options": [
+                    [
+                      "sewn",
+                      "Orange"
+                    ],
+                    [
+                      "heat",
+                      "Glass"
+                    ],
+                    [
+                      "line",
+                      "Outline"
+                    ]
+                  ]
                 }
               }
             }
