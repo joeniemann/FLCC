@@ -139,7 +139,8 @@ body.app-mode .card { display:none; }
 .typecard { text-align:left; padding:12px 14px; border:2px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; font:inherit; display:flex; flex-direction:column; gap:4px; }
 .typecard strong { font-size:16px; }
 .typecard span { font-size:13px; color:var(--muted); line-height:1.35; }
-.typecard:hover { border-color:#b9bec7; }
+.typecard:hover, .typecard.on:hover { background:var(--brand-dark); border-color:var(--brand-dark); color:#fff; }
+.typecard:hover strong, .typecard:hover span { color:#fff; }
 .typecard.on { border-color:var(--brand); background:#fff5f6; }
 .pagerow { display:flex; align-items:center; gap:12px; background:#fafbfc; border:2px solid var(--line); border-radius:12px; padding:12px 14px; margin:0 0 10px; }
 .pagerow.off { opacity:.7; }
