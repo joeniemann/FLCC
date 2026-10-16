@@ -198,6 +198,9 @@ a{color:inherit}
   opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .22s,transform .22s,visibility .22s;
 }
 .sub a{padding:12px 14px;white-space:nowrap}
+.sub a::before{display:none}
+.sub a:hover{color:#C9CDD3}
+.sub a[aria-current="page"]:hover{color:var(--molten)}
 .nav-item:hover .sub,.nav-item:focus-within .sub,.nav-item.open .sub{opacity:1;visibility:visible;transform:none}
 .nav-cta{margin-left:14px}
 .nav-cta .btn{padding:12px 20px}
