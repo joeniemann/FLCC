@@ -1,5 +1,6 @@
 // The editor. Screens are built from small pieces so every page uses the same boxes.
 import { logout } from './identity.js'
+import { photosScreen, photoImg } from './photos.js'
 
 const $ = (sel, root = document) => root.querySelector(sel)
 
@@ -236,7 +237,7 @@ async function openPicker(currentId, onPick) {
     grid.textContent = ''
     photos.filter((p) => !q || p.alt.toLowerCase().includes(q)).forEach((p) => {
       grid.append(h('button', { type: 'button', class: 'pthumb' + (p.id === currentId ? ' on' : ''), title: p.alt, onclick: () => { onPick(p); close() } },
-        h('img', { src: '/' + p.thumb, alt: p.alt, loading: 'lazy' })))
+        photoImg(h, p, 'thumb', { alt: p.alt })))
     })
     if (!grid.children.length) grid.append(h('p', { class: 'lead' }, 'No photos match that. Try a different word.'))
   }
@@ -369,7 +370,7 @@ function photoField(def, obj, key, ctx) {
     const plain = def.altRequired === false
     const cur = typeof obj[key] === 'string' ? { id: obj[key] } : (obj[key] || {})
     const ph = photos.find((p) => p.id === cur.id)
-    const img = ph ? h('img', { class: 'bigthumb', src: '/' + ph.thumb, alt: '' }) : h('div', { class: 'bigthumb empty' }, 'No photo yet')
+    const img = ph ? photoImg(h, ph, 'thumb', { class: 'bigthumb', alt: '' }) : h('div', { class: 'bigthumb empty' }, 'No photo yet')
     const alt = h('input', { type: 'text', value: cur.alt || '', maxlength: 200 })
     const warn = h('p', { class: 'hint warn' })
     alt.addEventListener('input', () => {
@@ -533,16 +534,17 @@ const PAGE_COMMON = { movable: [], addable: [], hide: { serviceFeature: ['versio
 const SCREENS = {
   services: pageScreen('services', Object.assign({ title: 'Services page', lead: 'Each trade has its own section. Open one to change its words, photo and colors.' }, PAGE_COMMON)),
   about: pageScreen('about', Object.assign({ title: 'About page', lead: 'Open a section to change its words and photos.' }, PAGE_COMMON)),
-  gallery: pageScreen('gallery', Object.assign({ title: 'Gallery page', lead: 'The photos themselves are managed in the photo library (coming soon). Here you can change the words around them.' }, PAGE_COMMON)),
+  gallery: pageScreen('gallery', Object.assign({ title: 'Gallery page', lead: 'The photos themselves are managed under Photos in the menu on the left. Here you can change the words around them.' }, PAGE_COMMON)),
   contact: pageScreen('contact', Object.assign({ title: 'Contact page', lead: 'Open a section to change the words on the Contact page. The phone, email, hours and address come from Business info.' }, PAGE_COMMON)),
   business: formScreen('business', (site) => site.business),
   menu: { title: 'Menu', render: renderMenu, preview: 'home' },
+  photos: photosScreen({ h, api, loadFile, touch, setStatus }),
   home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'], hide: {} }),
 }
 
 const NAV = [
   ['Pages', [['home', 'Home'], ['services', 'Services'], ['about', 'About'], ['gallery', 'Gallery'], ['contact', 'Contact']]],
-  ['Site', [['menu', 'Menu'], ['business', 'Business info']]],
+  ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info']]],
 ]
 
 function drawNav(nav) {

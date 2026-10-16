@@ -105,3 +105,30 @@ body.app-mode .card { display:none; }
 .aico i { display:block; height:3px; background:var(--ink); border-radius:2px; }
 .aico i:nth-child(1) { width:100%; } .aico i:nth-child(2) { width:60%; } .aico i:nth-child(3) { width:80%; }
 .aico-left { align-items:flex-start; } .aico-center { align-items:center; } .aico-right { align-items:flex-end; }
+
+/* Photos screen */
+.addbox { border:2px dashed var(--line); border-radius:14px; padding:16px; margin:14px 0; background:#fff; }
+.plist { display:flex; flex-direction:column; gap:14px; margin-bottom:12px; }
+.pitem { display:flex; gap:14px; align-items:flex-start; }
+.pitem > img { width:130px; height:130px; object-fit:cover; border-radius:10px; flex:none; background:#eef0f3; }
+.pfields { display:flex; flex-direction:column; gap:8px; flex:1; min-width:0; align-items:flex-start; }
+.pfields input[type=text], .pfields select { width:100%; font-size:16px; padding:10px 12px; border:2px solid var(--line); border-radius:10px; background:#fff; }
+.row { display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+.filters { margin:6px 0; }
+.filters input { flex:1; min-width:160px; font-size:16px; padding:10px 12px; border:2px solid var(--line); border-radius:10px; }
+.filters select { font-size:16px; padding:10px 12px; border:2px solid var(--line); border-radius:10px; background:#fff; }
+.pgrid.big { grid-template-columns:repeat(auto-fill, minmax(130px, 1fr)); }
+.pgrid.big .pthumb { position:relative; cursor:grab; }
+.pgrid.big .pthumb img { height:110px; }
+.pthumb.off img { opacity:.4; }
+.pthumb .tag { position:absolute; left:8px; top:8px; background:var(--ink); color:#fff; font-size:12px; font-weight:700; padding:2px 8px; border-radius:20px; }
+.editgrid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; overflow:auto; }
+.editimg { width:100%; max-height:60vh; object-fit:contain; border-radius:10px; background:#eef0f3; }
+.btn.danger { background:#b3261e; color:#fff; }
+.btn.plain.danger { background:var(--soft); color:#b3261e; }
+@media (max-width:700px) { .editgrid { grid-template-columns:1fr; } .pitem { flex-direction:column; } }
+.pfields, .pfields * { box-sizing:border-box; }
+.pfields .switch { width:auto; }
+.pfields input[type=checkbox] { width:22px; height:22px; flex:none; }
+.addbox .hint, .modal .hint { font-family:inherit; color:var(--muted); }
+.modal .hint.warn { color:#b3261e; }
