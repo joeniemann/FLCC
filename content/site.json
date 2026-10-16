@@ -67,13 +67,14 @@
       "link": {
         "page": "contact"
       },
-      "show": true
+      "show": false
     },
     "secondary": {
       "label": "Send a Message",
       "link": {
         "page": "contact"
-      }
+      },
+      "show": true
     }
   },
   "footer": {
