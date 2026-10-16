@@ -39,6 +39,25 @@
             }
           }
         },
+        "factsAlign": {
+          "label": "Line up the words inside the quick fact cards",
+          "kind": "align",
+          "optional": true,
+          "options": [
+            [
+              "left",
+              "Left"
+            ],
+            [
+              "center",
+              "Center"
+            ],
+            [
+              "right",
+              "Right"
+            ]
+          ]
+        },
         "backdrop": {
           "label": "Background picture",
           "kind": "choice",
@@ -56,8 +75,7 @@
               "welding",
               "Welding"
             ]
-          ],
-          "note": "Becomes a true photo picker once the stylesheet has one background rule driven by a variable."
+          ]
         },
         "look": {
           "label": "Light or dark",
@@ -78,7 +96,8 @@
         "factsFromHours": {
           "label": "Show the shop hours as the quick facts",
           "kind": "switch",
-          "optional": true
+          "optional": true,
+          "note": "When this is on, the quick facts above are replaced by the shop hours from Business info."
         }
       }
     },
@@ -126,11 +145,11 @@
               "options": [
                 [
                   "sewn",
-                  "Solid"
+                  "Orange"
                 ],
                 [
                   "heat",
-                  "Orange"
+                  "Glass"
                 ],
                 [
                   "line",
@@ -308,6 +327,25 @@
             }
           }
         },
+        "factsAlign": {
+          "label": "Line up the words inside the quick fact cards",
+          "kind": "align",
+          "optional": true,
+          "options": [
+            [
+              "left",
+              "Left"
+            ],
+            [
+              "center",
+              "Center"
+            ],
+            [
+              "right",
+              "Right"
+            ]
+          ]
+        },
         "buttons": {
           "label": "Buttons",
           "kind": "list",
@@ -329,11 +367,11 @@
               "options": [
                 [
                   "sewn",
-                  "Solid"
+                  "Orange"
                 ],
                 [
                   "heat",
-                  "Orange"
+                  "Glass"
                 ],
                 [
                   "line",
@@ -419,7 +457,7 @@
     },
     "serviceFeature": {
       "name": "Service feature",
-      "help": "One service, with its details and a photo. Three versions.",
+      "help": "One service on the Services page: its words, quick details and photo.",
       "fields": {
         "version": {
           "label": "Version",
@@ -498,11 +536,11 @@
               "options": [
                 [
                   "sewn",
-                  "Solid"
+                  "Orange"
                 ],
                 [
                   "heat",
-                  "Orange"
+                  "Glass"
                 ]
               ]
             }
@@ -836,6 +874,11 @@
               "kind": "paragraph",
               "max": 200
             },
+            "errorMessage": {
+              "label": "Message if sending fails",
+              "kind": "paragraph",
+              "max": 200
+            },
             "buttonLabel": {
               "label": "Button words",
               "kind": "text",
@@ -851,5 +894,316 @@
     "menu": "Menu: page order, Show in menu switch, menu word, header button",
     "callBand": "Call band: big words, paragraph, two buttons. Per page switch: showCallBand",
     "footer": "Footer: news sign-up heading, blurb, placeholder, button words, thank-you message"
+  },
+  "siteForms": {
+    "business": {
+      "title": "Business info",
+      "lead": "This is the information that shows up all over the site: the footer, the Contact page, the map, and every Call us button. Change it here once and it updates everywhere.",
+      "preview": "contact",
+      "groups": [
+        {
+          "name": "The business",
+          "fields": {
+            "name": {
+              "label": "Full business name",
+              "kind": "text",
+              "max": 60
+            },
+            "shortName": {
+              "label": "Short name",
+              "kind": "text",
+              "max": 12,
+              "note": "Used in small spaces, like \"FLCC\"."
+            },
+            "description": {
+              "label": "One-line description",
+              "kind": "paragraph",
+              "max": 120,
+              "note": "Shows in the footer under the logo."
+            },
+            "legalLine": {
+              "label": "Line at the very bottom of every page",
+              "kind": "text",
+              "max": 60
+            }
+          }
+        },
+        {
+          "name": "Address",
+          "fields": {
+            "street": {
+              "label": "Street address",
+              "kind": "text",
+              "max": 60
+            },
+            "cityLine": {
+              "label": "City, state and zip",
+              "kind": "text",
+              "max": 40
+            },
+            "directionsNote": {
+              "label": "Directions note",
+              "kind": "text",
+              "max": 80,
+              "note": "Shows under the address on the Contact page, like \"Off Ustler Road\"."
+            },
+            "mapLabel": {
+              "label": "Short address shown under the map",
+              "kind": "text",
+              "max": 60
+            }
+          }
+        },
+        {
+          "name": "Phone and email",
+          "fields": {
+            "phone": {
+              "label": "Phone number",
+              "kind": "text",
+              "max": 14,
+              "pattern": "^\\(?\\d{3}\\)?[-. ]?\\d{3}[-. ]?\\d{4}$",
+              "patternMessage": "Please enter a 10 digit phone number, like 352-536-2628. It is not saved until it looks right.",
+              "note": "Every \"Call us\" button on the site uses this number."
+            },
+            "email": {
+              "label": "Email address",
+              "kind": "text",
+              "max": 80,
+              "pattern": "^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$",
+              "patternMessage": "That does not look like an email address yet. It is not saved until it does."
+            }
+          }
+        },
+        {
+          "name": "Shop hours",
+          "fields": {
+            "hours": {
+              "label": "Hours",
+              "kind": "list",
+              "min": 1,
+              "max": 4,
+              "item": {
+                "days": {
+                  "label": "Days",
+                  "kind": "text",
+                  "max": 16
+                },
+                "times": {
+                  "label": "Hours",
+                  "kind": "text",
+                  "max": 24
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Social links",
+          "fields": {
+            "social": {
+              "label": "Social links",
+              "kind": "object",
+              "item": {
+                "facebook": {
+                  "label": "Facebook page address",
+                  "kind": "text",
+                  "max": 120,
+                  "pattern": "^(https?://.*)?$",
+                  "patternMessage": "The address needs to start with https://. Leave it empty to hide the icon."
+                },
+                "instagram": {
+                  "label": "Instagram page address",
+                  "kind": "text",
+                  "max": 120,
+                  "pattern": "^(https?://.*)?$",
+                  "patternMessage": "The address needs to start with https://. Leave it empty to hide the icon."
+                },
+                "tiktok": {
+                  "label": "TikTok page address",
+                  "kind": "text",
+                  "max": 120,
+                  "pattern": "^(https?://.*)?$",
+                  "patternMessage": "The address needs to start with https://. Leave it empty to hide the icon."
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Online booking",
+          "fields": {
+            "bookingLink": {
+              "label": "Online booking link (optional)",
+              "kind": "text",
+              "max": 160,
+              "pattern": "^(https?://.*)?$",
+              "patternMessage": "The address needs to start with https://. Leave it empty if you do not use one.",
+              "note": "Leave empty if you do not use an online booking page."
+            }
+          }
+        }
+      ]
+    },
+    "callBand": {
+      "title": "Call band",
+      "lead": "This is the big band near the bottom of most pages that invites people to call or message the shop. Change the words and where each button goes. To hide it on one page, use the switch at the bottom of that page's screen.",
+      "preview": "home",
+      "previewScroll": "end",
+      "groups": [
+        {
+          "name": "The words",
+          "fields": {
+            "headline": {
+              "label": "Big words",
+              "kind": "text",
+              "max": 30,
+              "note": "Keep it short. It shows in large letters."
+            },
+            "text": {
+              "label": "Sentence under the big words",
+              "kind": "paragraph",
+              "max": 200
+            }
+          }
+        },
+        {
+          "name": "First button",
+          "fields": {
+            "primary": {
+              "label": "First button",
+              "kind": "object",
+              "item": {
+                "show": {
+                  "label": "Show this button",
+                  "kind": "switch",
+                  "note": "Switch off to hide it. You can show both buttons, just one, or neither."
+                },
+                "label": {
+                  "label": "Words on the button",
+                  "kind": "text",
+                  "max": 20
+                },
+                "link": {
+                  "label": "Button goes to",
+                  "kind": "link"
+                },
+                "style": {
+                  "label": "Look",
+                  "kind": "choice",
+                  "options": [
+                    [
+                      "sewn",
+                      "Orange"
+                    ],
+                    [
+                      "heat",
+                      "Glass"
+                    ],
+                    [
+                      "line",
+                      "Outline"
+                    ]
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "name": "Second button",
+          "fields": {
+            "secondary": {
+              "label": "Second button",
+              "kind": "object",
+              "item": {
+                "show": {
+                  "label": "Show this button",
+                  "kind": "switch",
+                  "note": "Switch off to hide it. You can show both buttons, just one, or neither."
+                },
+                "label": {
+                  "label": "Words on the button",
+                  "kind": "text",
+                  "max": 20
+                },
+                "link": {
+                  "label": "Button goes to",
+                  "kind": "link"
+                },
+                "style": {
+                  "label": "Look",
+                  "kind": "choice",
+                  "options": [
+                    [
+                      "sewn",
+                      "Orange"
+                    ],
+                    [
+                      "heat",
+                      "Glass"
+                    ],
+                    [
+                      "line",
+                      "Outline"
+                    ]
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "footer": {
+      "title": "Footer",
+      "lead": "This is the bottom of every page. The logo line, menu links, address, phone and social icons come from Business info and Menu. Here you can change the news sign-up box. Sign-ups arrive in your Netlify dashboard under Forms.",
+      "preview": "home",
+      "previewScroll": "end",
+      "groups": [
+        {
+          "name": "News sign-up words",
+          "fields": {
+            "newsletterHeading": {
+              "label": "Heading",
+              "kind": "text",
+              "max": 30
+            },
+            "newsletterText": {
+              "label": "Sentence under the heading",
+              "kind": "paragraph",
+              "max": 140
+            },
+            "newsletterPlaceholder": {
+              "label": "Words inside the email box",
+              "kind": "text",
+              "max": 24,
+              "note": "Shows in grey until someone types."
+            },
+            "newsletterButton": {
+              "label": "Words on the button",
+              "kind": "text",
+              "max": 14
+            }
+          }
+        },
+        {
+          "name": "After someone signs up",
+          "fields": {
+            "newsletterSuccess": {
+              "label": "Thank-you message",
+              "kind": "text",
+              "max": 100,
+              "note": "Shows right after a successful sign-up."
+            },
+            "newsletterError": {
+              "label": "Message if it fails",
+              "kind": "text",
+              "max": 100,
+              "note": "Shows if the sign-up could not be sent."
+            }
+          }
+        }
+      ]
+    }
   }
 }

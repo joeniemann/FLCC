@@ -75,7 +75,8 @@
       "link": {
         "page": "contact"
       },
-      "show": false
+      "show": false,
+      "style": "heat"
     }
   },
   "footer": {
@@ -83,6 +84,7 @@
     "newsletterText": "Build photos and shop news. No spam, and never more than once a month.",
     "newsletterButton": "Sign Up",
     "newsletterPlaceholder": "EMAIL ADDRESS",
-    "newsletterSuccess": "You're on the list. Thanks. (Not connected to a mail service yet.)"
+    "newsletterSuccess": "You're on the list. Thanks!",
+    "newsletterError": "Something went wrong. Please try again, or call us."
   }
 }

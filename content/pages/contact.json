@@ -25,7 +25,8 @@
       "form": {
         "heading": "Start a project",
         "intro": "The more you can tell us, the tighter the quote. Photos help more than anything else.",
-        "successMessage": "Thanks. We'll get back to you within one business day. (This form isn't connected to a mail service yet.)",
+        "successMessage": "Thanks, we got your message. We'll get back to you within one business day.",
+        "errorMessage": "Something went wrong sending that. Please call us and we'll sort it out.",
         "serviceChoices": [
           "Boat upholstery",
           "Boat fabrication: tower, T-top, console",

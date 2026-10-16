@@ -13,14 +13,15 @@ function arg(name, def) {
   return i > -1 ? process.argv[i + 1] : def;
 }
 
-function build(siteDir, outDir) {
+function compile(siteDir, ov) {
+  ov = ov || {};
   const rd = p => fs.readFileSync(path.join(siteDir, p), 'utf8');
   const json = p => JSON.parse(rd(p));
-  const site = json('content/site.json');
+  const site = ov.site || json('content/site.json');
   const photoList = json('content/photos.json').photos;
   const gallery = json('content/gallery.json');
   const pageFiles = fs.readdirSync(path.join(siteDir, 'content/pages')).filter(f => f.endsWith('.json')).sort();
-  const pages = pageFiles.map(f => json('content/pages/' + f));
+  const pages = pageFiles.map(f => json('content/pages/' + f)).map(p => (ov.pages && ov.pages[p.id]) || p);
   const pageById = Object.fromEntries(pages.map(p => [p.id, p]));
   const photoById = Object.fromEntries(photoList.map(p => [p.id, p]));
   const warnings = [];
@@ -88,6 +89,7 @@ function build(siteDir, outDir) {
     pressed: first => (first ? 'true' : 'false'),
     photoSrc: p => escAttr(photoOf(p).file),
     photoAlt: p => escAttr(p && typeof p === 'object' && p.alt != null ? p.alt : photoOf(p).alt),
+    alignClass: v => (v === 'center' || v === 'right' ? ' phead-stats--' + v : ''),
     tens: i => String(Math.floor((i + 1) / 10)),
     ones: i => String((i + 1) % 10)
   };
@@ -121,8 +123,7 @@ function build(siteDir, outDir) {
     });
   }
 
-  fs.mkdirSync(outDir, { recursive: true });
-  const written = [];
+  const out = [];
 
   for (const page of pages) {
     const root = Object.assign({}, site, derived, {
@@ -149,9 +150,7 @@ function build(siteDir, outDir) {
     root.blocks = html;
     let doc = renderNodes(loadTemplate('templates/page.html'), [{ ctx: root }], env);
     doc = doc.replace(/<!--[\s\S]*?-->/g, '');
-    const target = path.join(outDir, page.file);
-    fs.writeFileSync(target, doc);
-    written.push(page.file);
+    out.push({ id: page.id, file: page.file, html: doc });
   }
 
   // gallery data for the browser script
@@ -161,11 +160,29 @@ function build(siteDir, outDir) {
     'window.FLCC_GALLERY = [\n' + items.join(',\n') + '\n];\n\n' +
     'window.FLCC_CATEGORIES = ' + JSON.stringify([{ id: 'all', label: 'All Work' }].concat(gallery.categories)) + ';\n\n' +
     'window.FLCC_GROUPS = ' + JSON.stringify(gallery.groups) + ';\n';
-  fs.mkdirSync(path.join(outDir, 'assets/data'), { recursive: true });
-  fs.writeFileSync(path.join(outDir, 'assets/data/gallery.js'), g);
-  written.push('assets/data/gallery.js');
+  return { pages: out, galleryJs: g, warnings };
+}
 
-  return { written, warnings };
+function build(siteDir, outDir) {
+  const r = compile(siteDir);
+  fs.mkdirSync(outDir, { recursive: true });
+  const written = [];
+  for (const pg of r.pages) {
+    fs.writeFileSync(path.join(outDir, pg.file), pg.html);
+    written.push(pg.file);
+  }
+  fs.mkdirSync(path.join(outDir, 'assets/data'), { recursive: true });
+  fs.writeFileSync(path.join(outDir, 'assets/data/gallery.js'), r.galleryJs);
+  written.push('assets/data/gallery.js');
+  return { written, warnings: r.warnings };
+}
+
+// Builds one page in memory from edits that are not saved yet (used by the live preview).
+function renderPreview(siteDir, o) {
+  const r = compile(siteDir, { site: o.site, pages: o.page ? { [o.page.id]: o.page } : undefined });
+  const hit = r.pages.find(x => x.id === o.pageId);
+  if (!hit) throw new Error('Page not found: ' + o.pageId);
+  return hit.html;
 }
 
 if (require.main === module) {
@@ -180,4 +197,4 @@ if (require.main === module) {
     process.exit(1);
   }
 }
-module.exports = { build };
+module.exports = { build, compile, renderPreview };

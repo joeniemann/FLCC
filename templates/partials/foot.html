@@ -26,13 +26,17 @@
       <div>
         <h4>{{footer.newsletterHeading}}</h4>
         <p class="foot-blurb" style="margin-top:0">{{footer.newsletterText}}</p>
-        <form class="news-form" data-form data-success="{{attr footer.newsletterSuccess}}">
+        <form class="news-form" data-form name="newsletter" method="POST"
+              data-netlify="true" data-send="netlify" data-keep-subject netlify-honeypot="bot-field"
+              data-success="{{attr footer.newsletterSuccess}}"
+              data-error="{{attr footer.newsletterError}}">
+          <input type="hidden" name="form-name" value="newsletter">
+          <input type="hidden" name="subject" value="New news sign-up from the website">
+          <p style="display:none"><label>Leave this empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
           <label for="news-email" class="sr-only">Email address</label>
           <input id="news-email" name="email" type="email" required placeholder="{{attr footer.newsletterPlaceholder}}" autocomplete="email">
           <button class="btn btn--heat" type="submit">{{footer.newsletterButton}} <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></button>
         </form>
-        <!-- NEWSLETTER: connect to Mailchimp / Buttondown / Klaviyo by setting
-             action + method on the form above and removing data-form. -->
         <p class="form-status" role="status"></p>
       </div>
     </div>
