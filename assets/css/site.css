@@ -195,13 +195,13 @@ a{color:inherit}
   display:flex;flex-direction:column;gap:0;padding:6px;
   background:linear-gradient(180deg,#2F343A,#1B1E22);border:1px solid #454A51;border-radius:2px;
   box-shadow:0 14px 30px rgba(0,0,0,.45);
-  opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .22s,transform .22s,visibility .22s;
+  opacity:0;visibility:hidden;transition:opacity .18s,visibility .18s;
 }
 .sub a{padding:12px 14px;white-space:nowrap}
+.sub a{transition:none}
 .sub a::before{display:none}
-.sub a:hover{color:#C9CDD3}
-.sub a[aria-current="page"]:hover{color:var(--molten)}
-.nav-item:hover .sub,.nav-item:focus-within .sub,.nav-item.open .sub{opacity:1;visibility:visible;transform:none}
+.sub a:hover,.sub a:focus-visible{background:#F6F1E9;color:#08090A}
+.nav-item:hover .sub,.nav-item:focus-within .sub,.nav-item.open .sub{opacity:1;visibility:visible}
 .nav-cta{margin-left:14px}
 .nav-cta .btn{padding:12px 20px}
 .nav-toggle{
