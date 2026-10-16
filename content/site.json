@@ -70,7 +70,7 @@
       "show": false
     },
     "secondary": {
-      "label": "Send a Message",
+      "label": "Contact Us",
       "link": {
         "page": "contact"
       },
