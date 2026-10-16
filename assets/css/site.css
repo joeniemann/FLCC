@@ -190,17 +190,17 @@ a{color:inherit}
 .sub-toggle:hover{color:#F6F1E9}
 .nav-item.open .sub-toggle{transform:rotate(180deg)}
 .nav-item.has-current > a{color:var(--molten)}
-.sub{
+.nav-sub{
   position:absolute;top:100%;left:0;min-width:220px;z-index:950;
   display:none;flex-direction:column;gap:0;padding:6px;
   background:linear-gradient(180deg,#2F343A,#1B1E22);border:1px solid #454A51;border-radius:2px;
   box-shadow:0 14px 30px rgba(0,0,0,.45);
 }
-.sub a{padding:12px 14px;white-space:nowrap}
-.sub a{transition:none}
-.sub a::before{display:none}
-.sub a:hover,.sub a:focus-visible{background:#F6F1E9;color:#08090A}
-.nav-item:hover .sub,.nav-item:focus-within .sub,.nav-item.open .sub{display:flex}
+.nav-sub a{padding:12px 14px;white-space:nowrap}
+.nav-sub a{transition:none}
+.nav-sub a::before{display:none}
+.nav-sub a:hover,.nav-sub a:focus-visible{background:#F6F1E9;color:#08090A}
+.nav-item:hover .nav-sub,.nav-item:focus-within .nav-sub,.nav-item.open .nav-sub{display:flex}
 .nav-cta{margin-left:14px}
 .nav-cta .btn{padding:12px 20px}
 .nav-toggle{

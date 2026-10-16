@@ -538,6 +538,6 @@
       var href = (a.getAttribute("href") || "").split("/").pop();
       if (href && href === here) a.setAttribute("aria-current", "page");
     });
-    $$(".nav-item .sub a[aria-current]").forEach(function (a) { a.closest(".nav-item").classList.add("has-current"); });
+    $$(".nav-item .nav-sub a[aria-current]").forEach(function (a) { a.closest(".nav-item").classList.add("has-current"); });
   })();
 })();
