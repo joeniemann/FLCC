@@ -1073,6 +1073,11 @@
               "label": "First button",
               "kind": "object",
               "item": {
+                "show": {
+                  "label": "Show this button",
+                  "kind": "switch",
+                  "note": "Switch off to hide it. You can show both buttons, just one, or neither."
+                },
                 "label": {
                   "label": "Words on the button",
                   "kind": "text",
@@ -1093,6 +1098,11 @@
               "label": "Second button",
               "kind": "object",
               "item": {
+                "show": {
+                  "label": "Show this button",
+                  "kind": "switch",
+                  "note": "Switch off to hide it. You can show both buttons, just one, or neither."
+                },
                 "label": {
                   "label": "Words on the button",
                   "kind": "text",
