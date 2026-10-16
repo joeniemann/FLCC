@@ -65,7 +65,7 @@
     "primary": {
       "label": "Book a Time",
       "link": {
-        "phone": true
+        "page": "contact"
       },
       "show": true
     },
