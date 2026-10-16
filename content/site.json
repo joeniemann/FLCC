@@ -49,12 +49,6 @@
         "label": "Contact",
         "page": "contact",
         "show": true
-      },
-      {
-        "label": "TEST",
-        "page": "test",
-        "show": true,
-        "parent": "about"
       }
     ],
     "button": {
