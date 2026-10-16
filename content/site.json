@@ -85,6 +85,6 @@
     "newsletterButton": "Sign Up",
     "newsletterPlaceholder": "EMAIL ADDRESS",
     "newsletterSuccess": "You're on the list. Now FAFO!",
-    "newsletterError": "TEST live side error"
+    "newsletterError": "Something went wrong. Please try again, or call us."
   }
 }
