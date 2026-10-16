@@ -132,3 +132,20 @@ body.app-mode .card { display:none; }
 .pfields input[type=checkbox] { width:22px; height:22px; flex:none; }
 .addbox .hint, .modal .hint { font-family:inherit; color:var(--muted); }
 .modal .hint.warn { color:#b3261e; }
+
+/* added pages */
+.typegrid { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.typecard { text-align:left; padding:12px 14px; border:2px solid var(--line); border-radius:12px; background:#fff; color:var(--ink); cursor:pointer; font:inherit; display:flex; flex-direction:column; gap:4px; }
+.typecard strong { font-size:16px; }
+.typecard span { font-size:13px; color:var(--muted); line-height:1.35; }
+.typecard:hover { border-color:#b9bec7; }
+.typecard.on { border-color:var(--brand); background:#fff5f6; }
+.pagerow { display:flex; align-items:center; gap:12px; background:#fafbfc; border:2px solid var(--line); border-radius:12px; padding:12px 14px; margin:0 0 10px; }
+.pagerow.off { opacity:.7; }
+.pagerow .pi { flex:1; display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; min-width:0; }
+.pagerow .pi strong { font-size:17px; }
+.pagerow .ptype { font-size:13px; color:var(--muted); }
+.chip { font-size:12px; font-weight:700; padding:3px 9px; border-radius:99px; background:var(--soft); color:var(--muted); }
+.chip.ok { background:#e3f3e8; color:var(--ok); }
+.chip.wait { background:#fff3cf; color:#7a5a00; }
+@media (max-width:760px) { .typegrid { grid-template-columns:1fr; } }

@@ -1,6 +1,7 @@
 // The editor. Screens are built from small pieces so every page uses the same boxes.
 import { logout } from './identity.js'
 import { photosScreen, photoImg } from './photos.js'
+import { blank, newBlock, buildNewPage, slugify } from './newpage.js'
 
 const $ = (sel, root = document) => root.querySelector(sel)
 
@@ -158,15 +159,24 @@ async function loadPhotos() {
 }
 const PAGE_CHOICES = [['home', 'The Home page'], ['services', 'The Services page'], ['about', 'The About page'], ['gallery', 'The Gallery page'], ['contact', 'The Contact page']]
 
-// ---------- little helpers ----------
-function blank(def) {
-  if (def.kind === 'list') return []
-  if (def.kind === 'switch') return false
-  if (def.kind === 'link') return { page: 'contact' }
-  if (def.kind === 'choice') return def.optional ? '' : def.options[0][0]
-  if (def.kind === 'object') return Object.fromEntries(Object.entries(def.item).map(([k, d]) => [k, blank(d)]))
-  return ''
+// ---------- the list of pages (so new pages show up everywhere) ----------
+let PAGES = []
+const navLabel = (p) => String(p.title || p.id).split('|')[0].trim()
+async function loadPages() {
+  await flushAll()
+  try { PAGES = (await api('/.netlify/functions/pages-list')).pages } catch (e) { PAGES = PAGE_CHOICES.map(([id, name]) => ({ id, title: name, type: id, file: id + '.html', published: true, archived: false, custom: false })) }
+  const order = ['home', 'services', 'about', 'gallery', 'contact']
+  PAGES.sort((a, b) => (order.indexOf(a.id) + 1 || 99) - (order.indexOf(b.id) + 1 || 99) || navLabel(a).localeCompare(navLabel(b)))
+  const schema = await loadSchema()
+  for (const p of PAGES) if (p.custom && !SCREENS[p.id]) SCREENS[p.id] = customPageScreen(p, schema)
 }
+function pageChoices() {
+  const list = PAGE_CHOICES.slice()
+  PAGES.filter((p) => p.custom && p.published !== false && !p.archived).forEach((p) => list.push([p.id, 'The ' + navLabel(p) + ' page']))
+  return list
+}
+
+// ---------- little helpers ----------
 function visible(def, scopes) {
   if (!def.onlyWhen) return true
   return Object.entries(def.onlyWhen).every(([k, v]) => scopes.some((s) => s && (Array.isArray(v) ? v.includes(s[k]) : s[k] === v)))
@@ -348,7 +358,9 @@ function linkField(def, obj, key, ctx) {
   const l = obj[key] || (obj[key] = { page: 'contact' })
   const type = l.url !== undefined ? 'url' : l.phone ? 'phone' : l.email ? 'email' : 'page:' + (l.page || 'home')
   const sel = h('select')
-  PAGE_CHOICES.forEach(([id, name]) => sel.append(h('option', { value: 'page:' + id, selected: type === 'page:' + id }, name)))
+  const choices = pageChoices()
+  if (type.startsWith('page:') && !choices.some(([id]) => 'page:' + id === type)) choices.push([type.slice(5), 'A page that is not on the site right now'])
+  choices.forEach(([id, name]) => sel.append(h('option', { value: 'page:' + id, selected: type === 'page:' + id }, name)))
   ;[['phone', 'Call the shop (phone number)'], ['email', 'Email the shop'], ['url', 'Another website']].forEach(([v, name]) => sel.append(h('option', { value: v, selected: type === v }, name)))
   const url = h('input', { type: 'text', placeholder: 'https://', value: l.url || '' })
   url.addEventListener('input', () => { obj[key] = { url: url.value.trim() }; ctx.changed() })
@@ -438,15 +450,17 @@ function pageScreen(pageId, cfg) {
         const was = [...root.querySelectorAll('details.blockcard')].map((d) => d.open)
         root.textContent = ''
         root.append(h('h1', {}, cfg.title), h('p', { class: 'lead' }, cfg.lead))
-        const info = h('details', { class: 'blockcard' }, h('summary', {}, 'Page title and search description'))
+        const info = h('details', { class: 'blockcard' }, h('summary', {}, cfg.custom ? 'Page settings: title, show on the site' : 'Page title and search description'))
         const ictx = { block: page, changed, redraw: draw }
-        info.append(h('div', { class: 'blockbody' },
+        const infoBody = h('div', { class: 'blockbody' },
           renderFields({
             title: { label: 'Page title (shows on the browser tab and in Google)', kind: 'text', max: 70 },
             description: { label: 'Short description for Google', kind: 'paragraph', max: 160 },
             showCallBand: { label: 'Show the "Set up a call" band at the bottom of this page', kind: 'switch' },
-          }, page, ictx)))
-        info.open = !!was[0]
+          }, page, ictx))
+        if (cfg.custom) infoBody.append(customControls(page, changed))
+        info.append(infoBody)
+        info.open = was.length ? !!was[0] : !!cfg.custom
         root.append(info)
         page.blocks.forEach((block, i) => {
           const def = schema.blocks[block.type]
@@ -489,20 +503,6 @@ function pageScreen(pageId, cfg) {
   }
 }
 
-function newBlock(schema, type, photos) {
-  const def = schema.blocks[type]
-  const b = { type }
-  for (const [k, d] of Object.entries(def.fields)) {
-    if (d.hidden || d.optional) continue
-    b[k] = blank(d)
-    if (d.kind === 'list') while (b[k].length < (d.min || 0)) b[k].push(typeof d.item.kind === 'string' ? '' : blank({ kind: 'object', item: d.item }))
-    if (d.kind === 'photo') b[k] = { id: photos[0].id, alt: photos[0].alt }
-  }
-  if (type === 'cardRow') { b.style = 'linked'; b.eyebrow = 'New section'; b.headline = 'Your headline'; b.cards.forEach((c, i) => { c.label = 'Label'; c.title = 'Card ' + (i + 1); c.text = 'Tell people about it here.'; c.link = { page: 'services' } }) }
-  if (type === 'textPhoto') { b.eyebrow = 'New section'; b.headline = 'Your headline'; b.paragraphs = ['Write about it here.'] }
-  return b
-}
-
 // ---------- screens ----------
 function formScreen(formId, rootOf) {
   return {
@@ -534,6 +534,136 @@ function formScreen(formId, rootOf) {
     },
   }
 }
+// ---------- added pages: show, remove, restore, create ----------
+const pagePath = (id) => 'content/pages/' + id + '.json'
+const setListed = (page, patch) => { const m = PAGES.find((x) => x.id === page.id); if (m) Object.assign(m, patch) }
+
+async function setPublished(page, on) {
+  const site = await loadFile('content/site.json')
+  const items = site.menu.items
+  const i = items.findIndex((it) => it.page === page.id)
+  if (on) { if (i < 0) items.push({ label: navLabel(page).slice(0, 18), page: page.id, show: true }); else items[i].show = true }
+  else if (i >= 0) items[i].show = false
+  page.published = on
+  setListed(page, { published: on })
+  touch('content/site.json')
+}
+async function setArchived(page, on) {
+  const site = await loadFile('content/site.json')
+  if (on) site.menu.items = site.menu.items.filter((it) => it.page !== page.id)
+  page.archived = on
+  page.published = false
+  setListed(page, { archived: on, published: false })
+  touch('content/site.json')
+  touch(pagePath(page.id))
+}
+
+function customControls(page, changed) {
+  const cb = h('input', { type: 'checkbox' })
+  cb.checked = page.published !== false
+  cb.addEventListener('change', async () => {
+    try { await setPublished(page, cb.checked); changed() } catch (err) { setStatus(err.message, 'bad'); cb.checked = !cb.checked }
+  })
+  let armed = false
+  const rm = h('button', { type: 'button', class: 'btn plain small', onclick: async () => {
+    if (!armed) { armed = true; rm.textContent = 'Click again to remove this page'; setTimeout(() => { armed = false; rm.textContent = 'Remove this page' }, 3000); return }
+    try { await setArchived(page, true); await loadPages(); go('pages') } catch (err) { setStatus(err.message, 'bad') }
+  } }, 'Remove this page')
+  return h('div', {},
+    h('div', { class: 'field' }, h('label', { class: 'switch' }, cb, 'Show this page on the site'),
+      h('p', { class: 'hint' }, 'Off keeps it hidden. When it is on and you click Make it live, the page appears on the site and in the menu.')),
+    h('div', { class: 'blockactions' }, rm),
+    h('p', { class: 'hint' }, 'Removing hides the page and takes it out of the menu. You can bring it back from All pages.'))
+}
+
+function customPageScreen(p, schema) {
+  const t = schema.pageTypes[p.type] || { allowed: [] }
+  const free = t.allowed.filter((x) => !['pageHeader', 'galleryBrowser', 'contactSection'].includes(x))
+  return pageScreen(p.id, { title: navLabel(p), lead: 'Open a section to change its words and photos. This page is not on the site until you switch it on under "Page settings".', movable: free, addable: free, hide: { serviceFeature: ['version'] }, custom: true })
+}
+
+function addPageScreen() {
+  return {
+    title: 'Add a page',
+    preview: 'home',
+    async render(root) {
+      const schema = await loadSchema()
+      const site = await loadFile('content/site.json')
+      const types = Object.entries(schema.pageTypes)
+      let chosen = types[0][0]
+      const grid = h('div', { class: 'typegrid' })
+      const drawTypes = () => {
+        grid.textContent = ''
+        types.forEach(([id, t]) => grid.append(h('button', { type: 'button', class: 'typecard' + (chosen === id ? ' on' : ''), 'aria-pressed': chosen === id ? 'true' : 'false', onclick: () => { chosen = id; drawTypes() } },
+          h('strong', {}, t.name), h('span', {}, t.help))))
+      }
+      drawTypes()
+      const input = h('input', { type: 'text', maxlength: 40, placeholder: 'Example: Boat Wraps' })
+      const addr = h('p', { class: 'hint' }, 'The page address will show up here.')
+      const warn = h('p', { class: 'hint warn' })
+      input.addEventListener('input', () => { warn.textContent = ''; const s = slugify(input.value); addr.textContent = s ? 'Page address: ' + s + '.html (it cannot be changed later)' : 'The page address will show up here.' })
+      const go2 = h('button', { type: 'button', class: 'btn' }, 'Create page')
+      go2.addEventListener('click', async () => {
+        const title = input.value.trim()
+        const id = slugify(title)
+        if (!id) { warn.textContent = 'Please type a name for the page first.'; return }
+        const reserved = ['index', 'admin', 'assets', 'style-guide', 'netlify', 'cms', 'templates', 'content', 'preview', 'ideas', 'src', 'tools']
+        if (reserved.includes(id) || PAGES.some((p) => p.id === id || p.file === id + '.html')) { warn.textContent = 'There is already a page with that name. Try a different name.'; return }
+        go2.disabled = true
+        setStatus('Creating the page...')
+        try {
+          const photos = await loadPhotos()
+          const page = buildNewPage({
+            schema, typeId: chosen, id, title, businessName: site.business.name, photos,
+            contactPage: await loadFile(pagePath('contact')), galleryPage: await loadFile(pagePath('gallery')),
+          })
+          const r = await api('/.netlify/functions/content-save', { method: 'POST', body: JSON.stringify({ path: pagePath(id), content: page }) })
+          state.files[pagePath(id)] = { sha: r.sha, content: page }
+          markWaiting(true)
+          setStatus('Page created. It is hidden until you switch it on.', 'ok')
+          await loadPages()
+          if (!PAGES.some((p) => p.id === id)) {
+            PAGES.push({ id, type: chosen, file: id + '.html', title: page.title, published: false, archived: false, custom: true })
+            SCREENS[id] = customPageScreen(PAGES[PAGES.length - 1], schema)
+          }
+          go(id)
+        } catch (err) { go2.disabled = false; setStatus(err.message, 'bad') }
+      })
+      root.append(
+        h('h1', {}, 'Add a page'),
+        h('p', { class: 'lead' }, 'Pick the kind of page, give it a name, and it opens ready to fill in. It stays hidden from the site until you switch it on.'),
+        h('div', { class: 'field' }, h('div', { class: 'lab' }, '1. What kind of page?'), grid),
+        h('div', { class: 'field' }, h('label', {}, '2. What is the page called?'), input, addr, warn),
+        go2)
+    },
+  }
+}
+
+function pagesScreen() {
+  return {
+    title: 'All pages',
+    preview: 'home',
+    async render(root) {
+      await loadPages()
+      const schema = await loadSchema()
+      root.append(h('h1', {}, 'All pages'),
+        h('p', { class: 'lead' }, 'Every page on your site and where it stands.'),
+        h('div', { class: 'addrow' }, h('button', { type: 'button', class: 'btn', onclick: () => go('addpage') }, 'Add a page')))
+      PAGES.forEach((p) => {
+        const st = p.archived ? ['Removed', 'off'] : p.published === false ? ['Not on the site yet', 'wait'] : ['On the site', 'ok']
+        const kind = (schema.pageTypes[p.type] || {}).name || (p.type === 'home' ? 'Home page' : 'Page')
+        const act = p.archived
+          ? h('button', { type: 'button', class: 'btn plain small', onclick: async () => {
+              try { const page = await loadFile(pagePath(p.id)); await setArchived(page, false); await loadPages(); go('pages') } catch (err) { setStatus(err.message, 'bad') }
+            } }, 'Bring it back')
+          : h('button', { type: 'button', class: 'btn plain small', disabled: !SCREENS[p.id], onclick: () => go(p.id) }, 'Edit')
+        root.append(h('div', { class: 'pagerow' + (p.archived ? ' off' : '') },
+          h('div', { class: 'pi' }, h('strong', {}, navLabel(p)), h('span', { class: 'chip ' + st[1] }, st[0]), h('span', { class: 'ptype' }, kind)), act))
+      })
+    },
+  }
+}
+
 const PAGE_COMMON = { movable: [], addable: [], hide: { serviceFeature: ['version'] } }
 const SCREENS = {
   services: pageScreen('services', Object.assign({ title: 'Services page', lead: 'Each trade has its own section. Open one to change its words, photo and colors.' }, PAGE_COMMON)),
@@ -544,18 +674,24 @@ const SCREENS = {
   callBand: formScreen('callBand', (site) => site.callBand),
   footer: formScreen('footer', (site) => site.footer),
   menu: { title: 'Menu', render: renderMenu, preview: 'home' },
+  addpage: addPageScreen(),
+  pages: pagesScreen(),
   photos: photosScreen({ h, api, loadFile, touch, setStatus }),
   home: pageScreen('home', { title: 'Home page', lead: 'Open a section to change its words and photos. The preview on the right updates as you type.', movable: ['cardRow', 'textPhoto'], addable: ['cardRow', 'textPhoto'], hide: {} }),
 }
 
-const NAV = [
-  ['Pages', [['home', 'Home'], ['services', 'Services'], ['about', 'About'], ['gallery', 'Gallery'], ['contact', 'Contact']]],
-  ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info'], ['callBand', 'Call band'], ['footer', 'Footer']]],
-]
+function navGroups() {
+  const base = [['home', 'Home'], ['services', 'Services'], ['about', 'About'], ['gallery', 'Gallery'], ['contact', 'Contact']]
+  const added = PAGES.filter((p) => p.custom && !p.archived).map((p) => [p.id, navLabel(p)])
+  return [
+    ['Pages', [...base, ...added, ['addpage', '+ Add a page'], ['pages', 'All pages']]],
+    ['Site', [['photos', 'Photos'], ['menu', 'Menu'], ['business', 'Business info'], ['callBand', 'Call band'], ['footer', 'Footer']]],
+  ]
+}
 
 function drawNav(nav) {
   nav.textContent = ''
-  for (const [group, items] of NAV) {
+  for (const [group, items] of navGroups()) {
     nav.append(h('h3', {}, group))
     for (const [id, label] of items) {
       const live = !!SCREENS[id]
@@ -639,5 +775,5 @@ export function startApp(user) {
   app.classList.remove('hidden')
   document.body.classList.add('app-mode')
   api('/.netlify/functions/status').then((r) => markWaiting(!!r.waiting)).catch(() => {})
-  go('home')
+  loadPages().catch(() => {}).finally(() => go('home'))
 }

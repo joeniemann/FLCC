@@ -22,7 +22,15 @@ function compile(siteDir, ov) {
   const gallery = json('content/gallery.json');
   const pageFiles = fs.readdirSync(path.join(siteDir, 'content/pages')).filter(f => f.endsWith('.json')).sort();
   const pages = pageFiles.map(f => json('content/pages/' + f)).map(p => (ov.pages && ov.pages[p.id]) || p);
+  // pages that exist only in an edit that is not saved yet (a brand-new page being previewed)
+  Object.values(ov.pages || {}).forEach(p => { if (!pages.some(x => x.id === p.id)) pages.push(p); });
+  const isLive = p => p.published !== false && !p.archived;
+  const liveIds = new Set(pages.filter(isLive).map(p => p.id));
   const pageById = Object.fromEntries(pages.map(p => [p.id, p]));
+  // menu items that point at a page that is not live are left out
+  const menuFixed = Object.assign({}, site.menu, {
+    items: site.menu.items.map(i => (i.page && !liveIds.has(i.page) ? Object.assign({}, i, { show: false }) : i))
+  });
   const photoById = Object.fromEntries(photoList.map(p => [p.id, p]));
   const warnings = [];
 
@@ -59,6 +67,7 @@ function compile(siteDir, ov) {
     if (l.page) {
       const pg = pageById[l.page];
       if (!pg) { warnings.push('Link points to a page that does not exist: ' + l.page); return '#'; }
+      if (!isLive(pg)) warnings.push('Link points to a page that is not on the site: ' + l.page);
       return pg.file + (l.anchor ? '#' + l.anchor : '');
     }
     return '#';
@@ -126,7 +135,7 @@ function compile(siteDir, ov) {
   const out = [];
 
   for (const page of pages) {
-    const root = Object.assign({}, site, derived, {
+    const root = Object.assign({}, site, { menu: menuFixed }, derived, {
       title: page.title, description: page.description, showCallBand: page.showCallBand !== false,
       hasHero: page.blocks.some(x => x.type === 'homeHero'),
       hasGallery: page.blocks.some(x => x.type === 'galleryBrowser')
@@ -150,7 +159,7 @@ function compile(siteDir, ov) {
     root.blocks = html;
     let doc = renderNodes(loadTemplate('templates/page.html'), [{ ctx: root }], env);
     doc = doc.replace(/<!--[\s\S]*?-->/g, '');
-    out.push({ id: page.id, file: page.file, html: doc });
+    out.push({ id: page.id, file: page.file, html: doc, live: isLive(page) });
   }
 
   // gallery data for the browser script
@@ -168,6 +177,7 @@ function build(siteDir, outDir) {
   fs.mkdirSync(outDir, { recursive: true });
   const written = [];
   for (const pg of r.pages) {
+    if (!pg.live) continue; // new pages stay off the site until they are switched on
     fs.writeFileSync(path.join(outDir, pg.file), pg.html);
     written.push(pg.file);
   }

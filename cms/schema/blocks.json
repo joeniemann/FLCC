@@ -1205,5 +1205,64 @@
         }
       ]
     }
+  },
+  "pageTypes": {
+    "info": {
+      "name": "Info page",
+      "help": "Words and photos in sections, like the About page.",
+      "starts": [
+        "pageHeader",
+        "textPhoto",
+        "cardRow",
+        "timeline"
+      ],
+      "allowed": [
+        "pageHeader",
+        "textPhoto",
+        "photoMosaic",
+        "cardRow",
+        "timeline"
+      ]
+    },
+    "service": {
+      "name": "Service page",
+      "help": "A big service section with a photo, like the Services page.",
+      "starts": [
+        "pageHeader",
+        "serviceFeature",
+        "textPhoto"
+      ],
+      "allowed": [
+        "pageHeader",
+        "serviceFeature",
+        "textPhoto",
+        "photoMosaic",
+        "cardRow"
+      ]
+    },
+    "gallery": {
+      "name": "Gallery page",
+      "help": "A header and the photo gallery. It shows the same photos as the main Gallery page.",
+      "starts": [
+        "pageHeader",
+        "galleryBrowser"
+      ],
+      "allowed": [
+        "pageHeader",
+        "galleryBrowser"
+      ]
+    },
+    "contact": {
+      "name": "Contact page",
+      "help": "A header with the shop details, map and request form. Requests go to the same inbox as the main Contact page.",
+      "starts": [
+        "pageHeader",
+        "contactSection"
+      ],
+      "allowed": [
+        "pageHeader",
+        "contactSection"
+      ]
+    }
   }
 }

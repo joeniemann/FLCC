@@ -73,6 +73,9 @@ export function problemWith(path: string, text: string): string | null {
       if (!b || typeof b.type !== 'string' || !known.includes(b.type)) return 'This page has a block the editor does not know about.'
     }
     if (typeof data.title !== 'string' || !data.title.trim()) return 'Every page needs a title.'
+    const name = path.slice('content/pages/'.length, -'.json'.length)
+    if (data.id !== name) return 'This page has the wrong address.'
+    if (data.file !== (data.id === 'home' ? 'index.html' : name + '.html')) return 'This page has the wrong file name.'
   }
   if (path === 'content/site.json') {
     if (!data || typeof data !== 'object' || !data.business || !data.menu) return 'Business info or the menu is missing.'
