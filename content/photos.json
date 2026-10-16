@@ -1,670 +1,670 @@
 {
- "photos": [
-  {
-   "id": "g001",
-   "file": "assets/gallery/g001.webp",
-   "thumb": "assets/gallery-thumbs/g001.webp",
-   "alt": "Center console boat with fabricated hardtop, in the shop"
-  },
-  {
-   "id": "g002",
-   "file": "assets/gallery/g002.webp",
-   "thumb": "assets/gallery-thumbs/g002.webp",
-   "alt": "Tan diamond-stitched boat seat, close detail"
-  },
-  {
-   "id": "g003",
-   "file": "assets/gallery/g003.webp",
-   "thumb": "assets/gallery-thumbs/g003.webp",
-   "alt": "Cut metal family tree sign"
-  },
-  {
-   "id": "g004",
-   "file": "assets/gallery/g004.webp",
-   "thumb": "assets/gallery-thumbs/g004.webp",
-   "alt": "ATV with grey diamond-stitched seats"
-  },
-  {
-   "id": "g005",
-   "file": "assets/gallery/g005.webp",
-   "thumb": "assets/gallery-thumbs/g005.webp",
-   "alt": "Deck boat interior in tan vinyl"
-  },
-  {
-   "id": "g006",
-   "file": "assets/gallery/g006.webp",
-   "thumb": "assets/gallery-thumbs/g006.webp",
-   "alt": "Rebuilt helm seats in tan and blue"
-  },
-  {
-   "id": "g007",
-   "file": "assets/gallery/g007.webp",
-   "thumb": "assets/gallery-thumbs/g007.webp",
-   "alt": "Railing with cut monogram medallion"
-  },
-  {
-   "id": "g008",
-   "file": "assets/gallery/g008.webp",
-   "thumb": "assets/gallery-thumbs/g008.webp",
-   "alt": "Quad with grey and red diamond-stitched seat"
-  },
-  {
-   "id": "g009",
-   "file": "assets/gallery/g009.webp",
-   "thumb": "assets/gallery-thumbs/g009.webp",
-   "alt": "Center console with green and tan seating"
-  },
-  {
-   "id": "g010",
-   "file": "assets/gallery/g010.webp",
-   "thumb": "assets/gallery-thumbs/g010.webp",
-   "alt": "Black fabricated frame on a jon boat"
-  },
-  {
-   "id": "g011",
-   "file": "assets/gallery/g011.webp",
-   "thumb": "assets/gallery-thumbs/g011.webp",
-   "alt": "Recovered coach sofa in grey"
-  },
-  {
-   "id": "g012",
-   "file": "assets/gallery/g012.webp",
-   "thumb": "assets/gallery-thumbs/g012.webp",
-   "alt": "Aluminium console under fabrication"
-  },
-  {
-   "id": "g013",
-   "file": "assets/gallery/g013.webp",
-   "thumb": "assets/gallery-thumbs/g013.webp",
-   "alt": "Pontoon interior in black and saddle tan"
-  },
-  {
-   "id": "g014",
-   "file": "assets/gallery/g014.webp",
-   "thumb": "assets/gallery-thumbs/g014.webp",
-   "alt": "Aluminium tower fitted to a white hull"
-  },
-  {
-   "id": "g015",
-   "file": "assets/gallery/g015.webp",
-   "thumb": "assets/gallery-thumbs/g015.webp",
-   "alt": "Deck boat interior, tan diamond stitch"
-  },
-  {
-   "id": "g016",
-   "file": "assets/gallery/g016.webp",
-   "thumb": "assets/gallery-thumbs/g016.webp",
-   "alt": "Moulded boat seating in blue and tan"
-  },
-  {
-   "id": "g017",
-   "file": "assets/gallery/g017.webp",
-   "thumb": "assets/gallery-thumbs/g017.webp",
-   "alt": "Aluminium tower frame in the shop"
-  },
-  {
-   "id": "g018",
-   "file": "assets/gallery/g018.webp",
-   "thumb": "assets/gallery-thumbs/g018.webp",
-   "alt": "Aluminium gate frames outdoors"
-  },
-  {
-   "id": "g019",
-   "file": "assets/gallery/g019.webp",
-   "thumb": "assets/gallery-thumbs/g019.webp",
-   "alt": "White railing panels in the shop"
-  },
-  {
-   "id": "g020",
-   "file": "assets/gallery/g020.webp",
-   "thumb": "assets/gallery-thumbs/g020.webp",
-   "alt": "Motorhome captain's chair in cream"
-  },
-  {
-   "id": "g021",
-   "file": "assets/gallery/g021.webp",
-   "thumb": "assets/gallery-thumbs/g021.webp",
-   "alt": "Classic car interior in tan diamond stitch"
-  },
-  {
-   "id": "g022",
-   "file": "assets/gallery/g022.webp",
-   "thumb": "assets/gallery-thumbs/g022.webp",
-   "alt": "Fabricated aluminium tank box"
-  },
-  {
-   "id": "g023",
-   "file": "assets/gallery/g023.webp",
-   "thumb": "assets/gallery-thumbs/g023.webp",
-   "alt": "Jon boat bench seating in tan"
-  },
-  {
-   "id": "g024",
-   "file": "assets/gallery/g024.webp",
-   "thumb": "assets/gallery-thumbs/g024.webp",
-   "alt": "Bow grab rails and seat base"
-  },
-  {
-   "id": "g025",
-   "file": "assets/gallery/g025.webp",
-   "thumb": "assets/gallery-thumbs/g025.webp",
-   "alt": "Side-by-side ATV in the shop"
-  },
-  {
-   "id": "g026",
-   "file": "assets/gallery/g026.webp",
-   "thumb": "assets/gallery-thumbs/g026.webp",
-   "alt": "Long aluminium pontoon fabrication"
-  },
-  {
-   "id": "g027",
-   "file": "assets/gallery/g027.webp",
-   "thumb": "assets/gallery-thumbs/g027.webp",
-   "alt": "Pontoon rebuilt in orange and white"
-  },
-  {
-   "id": "g028",
-   "file": "assets/gallery/g028.webp",
-   "thumb": "assets/gallery-thumbs/g028.webp",
-   "alt": "Wrought iron driveway gate"
-  },
-  {
-   "id": "g029",
-   "file": "assets/gallery/g029.webp",
-   "thumb": "assets/gallery-thumbs/g029.webp",
-   "alt": "Aluminium mesh gate panels"
-  },
-  {
-   "id": "g030",
-   "file": "assets/gallery/g030.webp",
-   "thumb": "assets/gallery-thumbs/g030.webp",
-   "alt": "Welding aluminium in the shop"
-  },
-  {
-   "id": "g031",
-   "file": "assets/gallery/g031.webp",
-   "thumb": "assets/gallery-thumbs/g031.webp",
-   "alt": "Pontoon bench seat in white and navy"
-  },
-  {
-   "id": "g032",
-   "file": "assets/gallery/g032.webp",
-   "thumb": "assets/gallery-thumbs/g032.webp",
-   "alt": "Stone walkway with fabricated railing"
-  },
-  {
-   "id": "g033",
-   "file": "assets/gallery/g033.webp",
-   "thumb": "assets/gallery-thumbs/g033.webp",
-   "alt": "Bass boat interior in red and white"
-  },
-  {
-   "id": "g034",
-   "file": "assets/gallery/g034.webp",
-   "thumb": "assets/gallery-thumbs/g034.webp",
-   "alt": "Center console bench in tan diamond stitch"
-  },
-  {
-   "id": "g035",
-   "file": "assets/gallery/g035.webp",
-   "thumb": "assets/gallery-thumbs/g035.webp",
-   "alt": "Wheel finished in gloss white powder coat"
-  },
-  {
-   "id": "g036",
-   "file": "assets/gallery/g036.webp",
-   "thumb": "assets/gallery-thumbs/g036.webp",
-   "alt": "Pontoon helm chairs in tan diamond stitch"
-  },
-  {
-   "id": "g037",
-   "file": "assets/gallery/g037.webp",
-   "thumb": "assets/gallery-thumbs/g037.webp",
-   "alt": "Aluminium railing around a deck tank"
-  },
-  {
-   "id": "g038",
-   "file": "assets/gallery/g038.webp",
-   "thumb": "assets/gallery-thumbs/g038.webp",
-   "alt": "Bow seating in tan diamond stitch"
-  },
-  {
-   "id": "g039",
-   "file": "assets/gallery/g039.webp",
-   "thumb": "assets/gallery-thumbs/g039.webp",
-   "alt": "Motorhome dinette rebuilt in grey"
-  },
-  {
-   "id": "g040",
-   "file": "assets/gallery/g040.webp",
-   "thumb": "assets/gallery-thumbs/g040.webp",
-   "alt": "Coated frames curing"
-  },
-  {
-   "id": "g041",
-   "file": "assets/gallery/g041.webp",
-   "thumb": "assets/gallery-thumbs/g041.webp",
-   "alt": "Pontoon interior in cream and blue"
-  },
-  {
-   "id": "g042",
-   "file": "assets/gallery/g042.webp",
-   "thumb": "assets/gallery-thumbs/g042.webp",
-   "alt": "Deck boat interior and dash"
-  },
-  {
-   "id": "g043",
-   "file": "assets/gallery/g043.webp",
-   "thumb": "assets/gallery-thumbs/g043.webp",
-   "alt": "Pontoon interior under cover"
-  },
-  {
-   "id": "g044",
-   "file": "assets/gallery/g044.webp",
-   "thumb": "assets/gallery-thumbs/g044.webp",
-   "alt": "Boat seating in orange and blue"
-  },
-  {
-   "id": "g045",
-   "file": "assets/gallery/g045.webp",
-   "thumb": "assets/gallery-thumbs/g045.webp",
-   "alt": "Pontoon interior with teak decking"
-  },
-  {
-   "id": "g046",
-   "file": "assets/gallery/g046.webp",
-   "thumb": "assets/gallery-thumbs/g046.webp",
-   "alt": "Finished black pontoon on the trailer"
-  },
-  {
-   "id": "g047",
-   "file": "assets/gallery/g047.webp",
-   "thumb": "assets/gallery-thumbs/g047.webp",
-   "alt": "Boat interior in grey and green"
-  },
-  {
-   "id": "g048",
-   "file": "assets/gallery/g048.webp",
-   "thumb": "assets/gallery-thumbs/g048.webp",
-   "alt": "Helm seating in cream"
-  },
-  {
-   "id": "g049",
-   "file": "assets/gallery/g049.webp",
-   "thumb": "assets/gallery-thumbs/g049.webp",
-   "alt": "Bench seat in tan diamond stitch"
-  },
-  {
-   "id": "g050",
-   "file": "assets/gallery/g050.webp",
-   "thumb": "assets/gallery-thumbs/g050.webp",
-   "alt": "Curved aluminium stair railing"
-  },
-  {
-   "id": "g051",
-   "file": "assets/gallery/g051.webp",
-   "thumb": "assets/gallery-thumbs/g051.webp",
-   "alt": "Cut metal wildlife scene sign"
-  },
-  {
-   "id": "g052",
-   "file": "assets/gallery/g052.webp",
-   "thumb": "assets/gallery-thumbs/g052.webp",
-   "alt": "Deck boat interior in tan"
-  },
-  {
-   "id": "g053",
-   "file": "assets/gallery/g053.webp",
-   "thumb": "assets/gallery-thumbs/g053.webp",
-   "alt": "Waterfront walkway railing"
-  },
-  {
-   "id": "g054",
-   "file": "assets/gallery/g054.webp",
-   "thumb": "assets/gallery-thumbs/g054.webp",
-   "alt": "Jon boat with tan bench seating"
-  },
-  {
-   "id": "g055",
-   "file": "assets/gallery/g055.webp",
-   "thumb": "assets/gallery-thumbs/g055.webp",
-   "alt": "Ski boat interior in blue and white"
-  },
-  {
-   "id": "g056",
-   "file": "assets/gallery/g056.webp",
-   "thumb": "assets/gallery-thumbs/g056.webp",
-   "alt": "Boat seating in teal and white"
-  },
-  {
-   "id": "g057",
-   "file": "assets/gallery/g057.webp",
-   "thumb": "assets/gallery-thumbs/g057.webp",
-   "alt": "Bay boat interior in white and yellow"
-  },
-  {
-   "id": "g058",
-   "file": "assets/gallery/g058.webp",
-   "thumb": "assets/gallery-thumbs/g058.webp",
-   "alt": "Bench seating in green and cream"
-  },
-  {
-   "id": "g059",
-   "file": "assets/gallery/g059.webp",
-   "thumb": "assets/gallery-thumbs/g059.webp",
-   "alt": "Aluminium console under fabrication"
-  },
-  {
-   "id": "g060",
-   "file": "assets/gallery/g060.webp",
-   "thumb": "assets/gallery-thumbs/g060.webp",
-   "alt": "Fabricated seat frame with cooler base"
-  },
-  {
-   "id": "g061",
-   "file": "assets/gallery/g061.webp",
-   "thumb": "assets/gallery-thumbs/g061.webp",
-   "alt": "Leaning post with seat and cooler"
-  },
-  {
-   "id": "g062",
-   "file": "assets/gallery/g062.webp",
-   "thumb": "assets/gallery-thumbs/g062.webp",
-   "alt": "Classic car chassis stripped for rebuild"
-  },
-  {
-   "id": "g063",
-   "file": "assets/gallery/g063.webp",
-   "thumb": "assets/gallery-thumbs/g063.webp",
-   "alt": "Pontoon furniture in tan and blue"
-  },
-  {
-   "id": "g064",
-   "file": "assets/gallery/g064.webp",
-   "thumb": "assets/gallery-thumbs/g064.webp",
-   "alt": "Gate with cut steel eagle medallion"
-  },
-  {
-   "id": "g065",
-   "file": "assets/gallery/g065.webp",
-   "thumb": "assets/gallery-thumbs/g065.webp",
-   "alt": "Boat interior in cream and blue"
-  },
-  {
-   "id": "g066",
-   "file": "assets/gallery/g066.webp",
-   "thumb": "assets/gallery-thumbs/g066.webp",
-   "alt": "White gate with cut tree medallion"
-  },
-  {
-   "id": "g067",
-   "file": "assets/gallery/g067.webp",
-   "thumb": "assets/gallery-thumbs/g067.webp",
-   "alt": "Black gate panels in the shop"
-  },
-  {
-   "id": "g068",
-   "file": "assets/gallery/g068.webp",
-   "thumb": "assets/gallery-thumbs/g068.webp",
-   "alt": "Ranch entrance gate with cut horse scene"
-  },
-  {
-   "id": "g069",
-   "file": "assets/gallery/g069.webp",
-   "thumb": "assets/gallery-thumbs/g069.webp",
-   "alt": "Motorhome captain's chair"
-  },
-  {
-   "id": "g070",
-   "file": "assets/gallery/g070.webp",
-   "thumb": "assets/gallery-thumbs/g070.webp",
-   "alt": "White bench seat on fabricated frame"
-  },
-  {
-   "id": "g071",
-   "file": "assets/gallery/g071.webp",
-   "thumb": "assets/gallery-thumbs/g071.webp",
-   "alt": "Pontoon with orange panel detailing"
-  },
-  {
-   "id": "g072",
-   "file": "assets/gallery/g072.webp",
-   "thumb": "assets/gallery-thumbs/g072.webp",
-   "alt": "Working aluminium rail stock in the shop"
-  },
-  {
-   "id": "g073",
-   "file": "assets/gallery/g073.webp",
-   "thumb": "assets/gallery-thumbs/g073.webp",
-   "alt": "Helm chairs in tan diamond stitch"
-  },
-  {
-   "id": "g074",
-   "file": "assets/gallery/g074.webp",
-   "thumb": "assets/gallery-thumbs/g074.webp",
-   "alt": "Finishing work in the FLCC shop"
-  },
-  {
-   "id": "g075",
-   "file": "assets/gallery/g075.webp",
-   "thumb": "assets/gallery-thumbs/g075.webp",
-   "alt": "Aluminium gate panel on the floor"
-  },
-  {
-   "id": "g076",
-   "file": "assets/gallery/g076.webp",
-   "thumb": "assets/gallery-thumbs/g076.webp",
-   "alt": "Tower frame under fabrication"
-  },
-  {
-   "id": "g077",
-   "file": "assets/gallery/g077.webp",
-   "thumb": "assets/gallery-thumbs/g077.webp",
-   "alt": "Black diamond-stitched bench seats"
-  },
-  {
-   "id": "g078",
-   "file": "assets/gallery/g078.webp",
-   "thumb": "assets/gallery-thumbs/g078.webp",
-   "alt": "Pontoon interior in orange with teak decking"
-  },
-  {
-   "id": "g079",
-   "file": "assets/gallery/g079.webp",
-   "thumb": "assets/gallery-thumbs/g079.webp",
-   "alt": "Aluminium tank frame"
-  },
-  {
-   "id": "g080",
-   "file": "assets/gallery/g080.webp",
-   "thumb": "assets/gallery-thumbs/g080.webp",
-   "alt": "Rebuilt pontoon on the trailer"
-  },
-  {
-   "id": "g081",
-   "file": "assets/gallery/g081.webp",
-   "thumb": "assets/gallery-thumbs/g081.webp",
-   "alt": "Aluminium ladder frame"
-  },
-  {
-   "id": "g082",
-   "file": "assets/gallery/g082.webp",
-   "thumb": "assets/gallery-thumbs/g082.webp",
-   "alt": "Formed aluminium console shell"
-  },
-  {
-   "id": "g083",
-   "file": "assets/gallery/g083.webp",
-   "thumb": "assets/gallery-thumbs/g083.webp",
-   "alt": "Pontoon rail panels in the shop"
-  },
-  {
-   "id": "g084",
-   "file": "assets/gallery/g084.webp",
-   "thumb": "assets/gallery-thumbs/g084.webp",
-   "alt": "Boat interior in white and yellow"
-  },
-  {
-   "id": "g085",
-   "file": "assets/gallery/g085.webp",
-   "thumb": "assets/gallery-thumbs/g085.webp",
-   "alt": "Carbon-look diamond-stitched seat cushion"
-  },
-  {
-   "id": "g086",
-   "file": "assets/gallery/g086.webp",
-   "thumb": "assets/gallery-thumbs/g086.webp",
-   "alt": "White hull with fabricated hardtop"
-  },
-  {
-   "id": "g087",
-   "file": "assets/gallery/g087.webp",
-   "thumb": "assets/gallery-thumbs/g087.webp",
-   "alt": "Bow seating in tan diamond stitch"
-  },
-  {
-   "id": "g088",
-   "file": "assets/gallery/g088.webp",
-   "thumb": "assets/gallery-thumbs/g088.webp",
-   "alt": "Helm seat and console in tan"
-  },
-  {
-   "id": "g089",
-   "file": "assets/gallery/g089.webp",
-   "thumb": "assets/gallery-thumbs/g089.webp",
-   "alt": "Classic car interior, doors open"
-  },
-  {
-   "id": "g090",
-   "file": "assets/gallery/g090.webp",
-   "thumb": "assets/gallery-thumbs/g090.webp",
-   "alt": "Large fabricated aluminium box"
-  },
-  {
-   "id": "g091",
-   "file": "assets/gallery/g091.webp",
-   "thumb": "assets/gallery-thumbs/g091.webp",
-   "alt": "Pontoon interior in cream and navy"
-  },
-  {
-   "id": "g092",
-   "file": "assets/gallery/g092.webp",
-   "thumb": "assets/gallery-thumbs/g092.webp",
-   "alt": "Black gate in the shop"
-  },
-  {
-   "id": "g093",
-   "file": "assets/gallery/g093.webp",
-   "thumb": "assets/gallery-thumbs/g093.webp",
-   "alt": "Black pontoon under rebuild"
-  },
-  {
-   "id": "g094",
-   "file": "assets/gallery/g094.webp",
-   "thumb": "assets/gallery-thumbs/g094.webp",
-   "alt": "Pontoon furniture sets ready to fit"
-  },
-  {
-   "id": "g095",
-   "file": "assets/gallery/g095.webp",
-   "thumb": "assets/gallery-thumbs/g095.webp",
-   "alt": "Pontoon table and seating on teak decking"
-  },
-  {
-   "id": "g096",
-   "file": "assets/gallery/g096.webp",
-   "thumb": "assets/gallery-thumbs/g096.webp",
-   "alt": "Outboard on a fabricated jack plate"
-  },
-  {
-   "id": "g097",
-   "file": "assets/gallery/g097.webp",
-   "thumb": "assets/gallery-thumbs/g097.webp",
-   "alt": "Restored panel truck with rebuilt interior"
-  },
-  {
-   "id": "g098",
-   "file": "assets/gallery/g098.webp",
-   "thumb": "assets/gallery-thumbs/g098.webp",
-   "alt": "Aluminium gangway with rollers"
-  },
-  {
-   "id": "g099",
-   "file": "assets/gallery/g099.webp",
-   "thumb": "assets/gallery-thumbs/g099.webp",
-   "alt": "Cut metal sign for a spa at Lakewood Ranch"
-  },
-  {
-   "id": "g100",
-   "file": "assets/gallery/g100.webp",
-   "thumb": "assets/gallery-thumbs/g100.webp",
-   "alt": "Boat interior in white and yellow with tower"
-  },
-  {
-   "id": "g101",
-   "file": "assets/gallery/g101.webp",
-   "thumb": "assets/gallery-thumbs/g101.webp",
-   "alt": "Pontoon interior in tan and brown"
-  },
-  {
-   "id": "g102",
-   "file": "assets/gallery/g102.webp",
-   "thumb": "assets/gallery-thumbs/g102.webp",
-   "alt": "Aluminium gate panel"
-  },
-  {
-   "id": "g103",
-   "file": "assets/gallery/g103.webp",
-   "thumb": "assets/gallery-thumbs/g103.webp",
-   "alt": "Pontoon with orange panels on the trailer"
-  },
-  {
-   "id": "g104",
-   "file": "assets/gallery/g104.webp",
-   "thumb": "assets/gallery-thumbs/g104.webp",
-   "alt": "Leaning post with rod holders"
-  },
-  {
-   "id": "g105",
-   "file": "assets/gallery/g105.webp",
-   "thumb": "assets/gallery-thumbs/g105.webp",
-   "alt": "Boat interior in cream and tan"
-  },
-  {
-   "id": "g106",
-   "file": "assets/gallery/g106.webp",
-   "thumb": "assets/gallery-thumbs/g106.webp",
-   "alt": "Pontoon furniture ready for install"
-  },
-  {
-   "id": "g107",
-   "file": "assets/gallery/g107.webp",
-   "thumb": "assets/gallery-thumbs/g107.webp",
-   "alt": "Classic car rear seating in tan diamond stitch"
-  },
-  {
-   "id": "g108",
-   "file": "assets/gallery/g108.webp",
-   "thumb": "assets/gallery-thumbs/g108.webp",
-   "alt": "Aluminium tower fitted outdoors"
-  },
-  {
-   "id": "g109",
-   "file": "assets/gallery/g109.webp",
-   "thumb": "assets/gallery-thumbs/g109.webp",
-   "alt": "Pontoon rail panel finished in orange"
-  },
-  {
-   "id": "g110",
-   "file": "assets/gallery/g110.webp",
-   "thumb": "assets/gallery-thumbs/g110.webp",
-   "alt": "Boat interior in yellow, grey and white"
-  },
-  {
-   "id": "g111",
-   "file": "assets/gallery/g111.webp",
-   "thumb": "assets/gallery-thumbs/g111.webp",
-   "alt": "Garden walkway with fabricated railing"
-  }
- ]
+  "photos": [
+    {
+      "id": "g001",
+      "file": "assets/gallery/g001.webp",
+      "thumb": "assets/gallery-thumbs/g001.webp",
+      "alt": "Center console boat with fabricated hardtop, in the shop"
+    },
+    {
+      "id": "g002",
+      "file": "assets/gallery/g002.webp",
+      "thumb": "assets/gallery-thumbs/g002.webp",
+      "alt": "Tan diamond-stitched boat seat, close detail"
+    },
+    {
+      "id": "g003",
+      "file": "assets/gallery/g003.webp",
+      "thumb": "assets/gallery-thumbs/g003.webp",
+      "alt": "Cut metal family tree sign"
+    },
+    {
+      "id": "g004",
+      "file": "assets/gallery/g004.webp",
+      "thumb": "assets/gallery-thumbs/g004.webp",
+      "alt": "ATV with grey diamond-stitched seats"
+    },
+    {
+      "id": "g005",
+      "file": "assets/gallery/g005.webp",
+      "thumb": "assets/gallery-thumbs/g005.webp",
+      "alt": "Deck boat interior in tan vinyl"
+    },
+    {
+      "id": "g006",
+      "file": "assets/gallery/g006.webp",
+      "thumb": "assets/gallery-thumbs/g006.webp",
+      "alt": "Rebuilt helm seats in tan and blue"
+    },
+    {
+      "id": "g007",
+      "file": "assets/gallery/g007.webp",
+      "thumb": "assets/gallery-thumbs/g007.webp",
+      "alt": "Railing with cut monogram medallion"
+    },
+    {
+      "id": "g008",
+      "file": "assets/gallery/g008.webp",
+      "thumb": "assets/gallery-thumbs/g008.webp",
+      "alt": "Quad with grey and red diamond-stitched seat"
+    },
+    {
+      "id": "g009",
+      "file": "assets/gallery/g009.webp",
+      "thumb": "assets/gallery-thumbs/g009.webp",
+      "alt": "Center console with green and tan seating"
+    },
+    {
+      "id": "g010",
+      "file": "assets/gallery/g010.webp",
+      "thumb": "assets/gallery-thumbs/g010.webp",
+      "alt": "Black fabricated frame on a jon boat"
+    },
+    {
+      "id": "g011",
+      "file": "assets/gallery/g011.webp",
+      "thumb": "assets/gallery-thumbs/g011.webp",
+      "alt": "Recovered coach sofa in grey"
+    },
+    {
+      "id": "g012",
+      "file": "assets/gallery/g012.webp",
+      "thumb": "assets/gallery-thumbs/g012.webp",
+      "alt": "Aluminium console under fabrication"
+    },
+    {
+      "id": "g013",
+      "file": "assets/gallery/g013.webp",
+      "thumb": "assets/gallery-thumbs/g013.webp",
+      "alt": "Pontoon interior in black and saddle tan"
+    },
+    {
+      "id": "g014",
+      "file": "assets/gallery/g014.webp",
+      "thumb": "assets/gallery-thumbs/g014.webp",
+      "alt": "Aluminium tower fitted to a white hull"
+    },
+    {
+      "id": "g015",
+      "file": "assets/gallery/g015.webp",
+      "thumb": "assets/gallery-thumbs/g015.webp",
+      "alt": "Deck boat interior, tan diamond stitch"
+    },
+    {
+      "id": "g016",
+      "file": "assets/gallery/g016.webp",
+      "thumb": "assets/gallery-thumbs/g016.webp",
+      "alt": "Moulded boat seating in blue and tan"
+    },
+    {
+      "id": "g017",
+      "file": "assets/gallery/g017.webp",
+      "thumb": "assets/gallery-thumbs/g017.webp",
+      "alt": "Aluminium tower frame in the shop"
+    },
+    {
+      "id": "g018",
+      "file": "assets/gallery/g018.webp",
+      "thumb": "assets/gallery-thumbs/g018.webp",
+      "alt": "Aluminium gate frames outdoors"
+    },
+    {
+      "id": "g019",
+      "file": "assets/gallery/g019.webp",
+      "thumb": "assets/gallery-thumbs/g019.webp",
+      "alt": "White railing panels in the shop"
+    },
+    {
+      "id": "g020",
+      "file": "assets/gallery/g020.webp",
+      "thumb": "assets/gallery-thumbs/g020.webp",
+      "alt": "Motorhome captain's chair in cream"
+    },
+    {
+      "id": "g021",
+      "file": "assets/gallery/g021.webp",
+      "thumb": "assets/gallery-thumbs/g021.webp",
+      "alt": "Classic car interior in tan diamond stitch"
+    },
+    {
+      "id": "g022",
+      "file": "assets/gallery/g022.webp",
+      "thumb": "assets/gallery-thumbs/g022.webp",
+      "alt": "Fabricated aluminium tank box"
+    },
+    {
+      "id": "g023",
+      "file": "assets/gallery/g023.webp",
+      "thumb": "assets/gallery-thumbs/g023.webp",
+      "alt": "Jon boat bench seating in tan"
+    },
+    {
+      "id": "g024",
+      "file": "assets/gallery/g024.webp",
+      "thumb": "assets/gallery-thumbs/g024.webp",
+      "alt": "Bow grab rails and seat base"
+    },
+    {
+      "id": "g025",
+      "file": "assets/gallery/g025.webp",
+      "thumb": "assets/gallery-thumbs/g025.webp",
+      "alt": "Side-by-side ATV in the shop"
+    },
+    {
+      "id": "g026",
+      "file": "assets/gallery/g026.webp",
+      "thumb": "assets/gallery-thumbs/g026.webp",
+      "alt": "Long aluminium pontoon fabrication"
+    },
+    {
+      "id": "g027",
+      "file": "assets/gallery/g027.webp",
+      "thumb": "assets/gallery-thumbs/g027.webp",
+      "alt": "Pontoon rebuilt in orange and white"
+    },
+    {
+      "id": "g028",
+      "file": "assets/gallery/g028.webp",
+      "thumb": "assets/gallery-thumbs/g028.webp",
+      "alt": "Wrought iron driveway gate"
+    },
+    {
+      "id": "g029",
+      "file": "assets/gallery/g029.webp",
+      "thumb": "assets/gallery-thumbs/g029.webp",
+      "alt": "Aluminium mesh gate panels"
+    },
+    {
+      "id": "g030",
+      "file": "assets/gallery/g030.webp",
+      "thumb": "assets/gallery-thumbs/g030.webp",
+      "alt": "Welding aluminium in the shop"
+    },
+    {
+      "id": "g031",
+      "file": "assets/gallery/g031.webp",
+      "thumb": "assets/gallery-thumbs/g031.webp",
+      "alt": "Pontoon bench seat in white and navy"
+    },
+    {
+      "id": "g032",
+      "file": "assets/gallery/g032.webp",
+      "thumb": "assets/gallery-thumbs/g032.webp",
+      "alt": "Stone walkway with fabricated railing"
+    },
+    {
+      "id": "g033",
+      "file": "assets/gallery/g033.webp",
+      "thumb": "assets/gallery-thumbs/g033.webp",
+      "alt": "Bass boat interior in red and white"
+    },
+    {
+      "id": "g034",
+      "file": "assets/gallery/g034.webp",
+      "thumb": "assets/gallery-thumbs/g034.webp",
+      "alt": "Center console bench in tan diamond stitch"
+    },
+    {
+      "id": "g035",
+      "file": "assets/gallery/g035.webp",
+      "thumb": "assets/gallery-thumbs/g035.webp",
+      "alt": "Wheel finished in gloss white powder coat"
+    },
+    {
+      "id": "g036",
+      "file": "assets/gallery/g036.webp",
+      "thumb": "assets/gallery-thumbs/g036.webp",
+      "alt": "Pontoon helm chairs in tan diamond stitch"
+    },
+    {
+      "id": "g037",
+      "file": "assets/gallery/g037.webp",
+      "thumb": "assets/gallery-thumbs/g037.webp",
+      "alt": "Aluminium railing around a deck tank"
+    },
+    {
+      "id": "g038",
+      "file": "assets/gallery/g038.webp",
+      "thumb": "assets/gallery-thumbs/g038.webp",
+      "alt": "Bow seating in tan diamond stitch"
+    },
+    {
+      "id": "g039",
+      "file": "assets/gallery/g039.webp",
+      "thumb": "assets/gallery-thumbs/g039.webp",
+      "alt": "Motorhome dinette rebuilt in grey"
+    },
+    {
+      "id": "g040",
+      "file": "assets/gallery/g040.webp",
+      "thumb": "assets/gallery-thumbs/g040.webp",
+      "alt": "Coated frames curing"
+    },
+    {
+      "id": "g041",
+      "file": "assets/gallery/g041.webp",
+      "thumb": "assets/gallery-thumbs/g041.webp",
+      "alt": "Pontoon interior in cream and blue"
+    },
+    {
+      "id": "g042",
+      "file": "assets/gallery/g042.webp",
+      "thumb": "assets/gallery-thumbs/g042.webp",
+      "alt": "Deck boat interior and dash"
+    },
+    {
+      "id": "g043",
+      "file": "assets/gallery/g043.webp",
+      "thumb": "assets/gallery-thumbs/g043.webp",
+      "alt": "Pontoon interior under cover"
+    },
+    {
+      "id": "g044",
+      "file": "assets/gallery/g044.webp",
+      "thumb": "assets/gallery-thumbs/g044.webp",
+      "alt": "Boat seating in orange and blue"
+    },
+    {
+      "id": "g045",
+      "file": "assets/gallery/g045.webp",
+      "thumb": "assets/gallery-thumbs/g045.webp",
+      "alt": "Pontoon interior with teak decking"
+    },
+    {
+      "id": "g046",
+      "file": "assets/gallery/g046.webp",
+      "thumb": "assets/gallery-thumbs/g046.webp",
+      "alt": "Finished black pontoon on the trailer"
+    },
+    {
+      "id": "g047",
+      "file": "assets/gallery/g047.webp",
+      "thumb": "assets/gallery-thumbs/g047.webp",
+      "alt": "Boat interior in grey and green"
+    },
+    {
+      "id": "g048",
+      "file": "assets/gallery/g048.webp",
+      "thumb": "assets/gallery-thumbs/g048.webp",
+      "alt": "Helm seating in cream"
+    },
+    {
+      "id": "g049",
+      "file": "assets/gallery/g049.webp",
+      "thumb": "assets/gallery-thumbs/g049.webp",
+      "alt": "Bench seat in tan diamond stitch"
+    },
+    {
+      "id": "g050",
+      "file": "assets/gallery/g050.webp",
+      "thumb": "assets/gallery-thumbs/g050.webp",
+      "alt": "Curved aluminium stair railing"
+    },
+    {
+      "id": "g051",
+      "file": "assets/gallery/g051.webp",
+      "thumb": "assets/gallery-thumbs/g051.webp",
+      "alt": "Cut metal wildlife scene sign"
+    },
+    {
+      "id": "g052",
+      "file": "assets/gallery/g052.webp",
+      "thumb": "assets/gallery-thumbs/g052.webp",
+      "alt": "Deck boat interior in tan"
+    },
+    {
+      "id": "g053",
+      "file": "assets/gallery/g053.webp",
+      "thumb": "assets/gallery-thumbs/g053.webp",
+      "alt": "Waterfront walkway railing"
+    },
+    {
+      "id": "g054",
+      "file": "assets/gallery/g054.webp",
+      "thumb": "assets/gallery-thumbs/g054.webp",
+      "alt": "Jon boat with tan bench seating"
+    },
+    {
+      "id": "g055",
+      "file": "assets/gallery/g055.webp",
+      "thumb": "assets/gallery-thumbs/g055.webp",
+      "alt": "Ski boat interior in blue and white"
+    },
+    {
+      "id": "g056",
+      "file": "assets/gallery/g056.webp",
+      "thumb": "assets/gallery-thumbs/g056.webp",
+      "alt": "Boat seating in teal and white"
+    },
+    {
+      "id": "g057",
+      "file": "assets/gallery/g057.webp",
+      "thumb": "assets/gallery-thumbs/g057.webp",
+      "alt": "Bay boat interior in white and yellow"
+    },
+    {
+      "id": "g058",
+      "file": "assets/gallery/g058.webp",
+      "thumb": "assets/gallery-thumbs/g058.webp",
+      "alt": "Bench seating in green and cream"
+    },
+    {
+      "id": "g059",
+      "file": "assets/gallery/g059.webp",
+      "thumb": "assets/gallery-thumbs/g059.webp",
+      "alt": "Aluminium console under fabrication"
+    },
+    {
+      "id": "g060",
+      "file": "assets/gallery/g060.webp",
+      "thumb": "assets/gallery-thumbs/g060.webp",
+      "alt": "Fabricated seat frame with cooler base"
+    },
+    {
+      "id": "g061",
+      "file": "assets/gallery/g061.webp",
+      "thumb": "assets/gallery-thumbs/g061.webp",
+      "alt": "Leaning post with seat and cooler"
+    },
+    {
+      "id": "g062",
+      "file": "assets/gallery/g062.webp",
+      "thumb": "assets/gallery-thumbs/g062.webp",
+      "alt": "Classic car chassis stripped for rebuild"
+    },
+    {
+      "id": "g063",
+      "file": "assets/gallery/g063.webp",
+      "thumb": "assets/gallery-thumbs/g063.webp",
+      "alt": "Pontoon furniture in tan and blue"
+    },
+    {
+      "id": "g064",
+      "file": "assets/gallery/g064.webp",
+      "thumb": "assets/gallery-thumbs/g064.webp",
+      "alt": "Gate with cut steel eagle medallion"
+    },
+    {
+      "id": "g065",
+      "file": "assets/gallery/g065.webp",
+      "thumb": "assets/gallery-thumbs/g065.webp",
+      "alt": "Boat interior in cream and blue"
+    },
+    {
+      "id": "g066",
+      "file": "assets/gallery/g066.webp",
+      "thumb": "assets/gallery-thumbs/g066.webp",
+      "alt": "White gate with cut tree medallion"
+    },
+    {
+      "id": "g067",
+      "file": "assets/gallery/g067.webp",
+      "thumb": "assets/gallery-thumbs/g067.webp",
+      "alt": "Black gate panels in the shop"
+    },
+    {
+      "id": "g068",
+      "file": "assets/gallery/g068.webp",
+      "thumb": "assets/gallery-thumbs/g068.webp",
+      "alt": "Ranch entrance gate with cut horse scene"
+    },
+    {
+      "id": "g069",
+      "file": "assets/gallery/g069.webp",
+      "thumb": "assets/gallery-thumbs/g069.webp",
+      "alt": "Motorhome captain's chair"
+    },
+    {
+      "id": "g070",
+      "file": "assets/gallery/g070.webp",
+      "thumb": "assets/gallery-thumbs/g070.webp",
+      "alt": "White bench seat on fabricated frame"
+    },
+    {
+      "id": "g071",
+      "file": "assets/gallery/g071.webp",
+      "thumb": "assets/gallery-thumbs/g071.webp",
+      "alt": "Pontoon with orange panel detailing"
+    },
+    {
+      "id": "g072",
+      "file": "assets/gallery/g072.webp",
+      "thumb": "assets/gallery-thumbs/g072.webp",
+      "alt": "Working aluminium rail stock in the shop"
+    },
+    {
+      "id": "g073",
+      "file": "assets/gallery/g073.webp",
+      "thumb": "assets/gallery-thumbs/g073.webp",
+      "alt": "Helm chairs in tan diamond stitch"
+    },
+    {
+      "id": "g074",
+      "file": "assets/gallery/g074.webp",
+      "thumb": "assets/gallery-thumbs/g074.webp",
+      "alt": "Finishing work in the FLCC shop"
+    },
+    {
+      "id": "g075",
+      "file": "assets/gallery/g075.webp",
+      "thumb": "assets/gallery-thumbs/g075.webp",
+      "alt": "Aluminium gate panel on the floor"
+    },
+    {
+      "id": "g076",
+      "file": "assets/gallery/g076.webp",
+      "thumb": "assets/gallery-thumbs/g076.webp",
+      "alt": "Tower frame under fabrication"
+    },
+    {
+      "id": "g077",
+      "file": "assets/gallery/g077.webp",
+      "thumb": "assets/gallery-thumbs/g077.webp",
+      "alt": "Black diamond-stitched bench seats"
+    },
+    {
+      "id": "g078",
+      "file": "assets/gallery/g078.webp",
+      "thumb": "assets/gallery-thumbs/g078.webp",
+      "alt": "Pontoon interior in orange with teak decking"
+    },
+    {
+      "id": "g079",
+      "file": "assets/gallery/g079.webp",
+      "thumb": "assets/gallery-thumbs/g079.webp",
+      "alt": "Aluminium tank frame"
+    },
+    {
+      "id": "g080",
+      "file": "assets/gallery/g080.webp",
+      "thumb": "assets/gallery-thumbs/g080.webp",
+      "alt": "Rebuilt pontoon on the trailer"
+    },
+    {
+      "id": "g081",
+      "file": "assets/gallery/g081.webp",
+      "thumb": "assets/gallery-thumbs/g081.webp",
+      "alt": "Aluminium ladder frame"
+    },
+    {
+      "id": "g082",
+      "file": "assets/gallery/g082.webp",
+      "thumb": "assets/gallery-thumbs/g082.webp",
+      "alt": "Formed aluminium console shell"
+    },
+    {
+      "id": "g083",
+      "file": "assets/gallery/g083.webp",
+      "thumb": "assets/gallery-thumbs/g083.webp",
+      "alt": "Pontoon rail panels in the shop"
+    },
+    {
+      "id": "g084",
+      "file": "assets/gallery/g084.webp",
+      "thumb": "assets/gallery-thumbs/g084.webp",
+      "alt": "Boat interior in white and yellow"
+    },
+    {
+      "id": "g085",
+      "file": "assets/gallery/g085.webp",
+      "thumb": "assets/gallery-thumbs/g085.webp",
+      "alt": "Carbon-look diamond-stitched seat cushion"
+    },
+    {
+      "id": "g086",
+      "file": "assets/gallery/g086.webp",
+      "thumb": "assets/gallery-thumbs/g086.webp",
+      "alt": "White hull with fabricated hardtop"
+    },
+    {
+      "id": "g087",
+      "file": "assets/gallery/g087.webp",
+      "thumb": "assets/gallery-thumbs/g087.webp",
+      "alt": "Bow seating in tan diamond stitch"
+    },
+    {
+      "id": "g088",
+      "file": "assets/gallery/g088.webp",
+      "thumb": "assets/gallery-thumbs/g088.webp",
+      "alt": "Helm seat and console in tan"
+    },
+    {
+      "id": "g089",
+      "file": "assets/gallery/g089.webp",
+      "thumb": "assets/gallery-thumbs/g089.webp",
+      "alt": "Classic car interior, doors open"
+    },
+    {
+      "id": "g090",
+      "file": "assets/gallery/g090.webp",
+      "thumb": "assets/gallery-thumbs/g090.webp",
+      "alt": "Large fabricated aluminium box"
+    },
+    {
+      "id": "g091",
+      "file": "assets/gallery/g091.webp",
+      "thumb": "assets/gallery-thumbs/g091.webp",
+      "alt": "Pontoon interior in cream and navy"
+    },
+    {
+      "id": "g092",
+      "file": "assets/gallery/g092.webp",
+      "thumb": "assets/gallery-thumbs/g092.webp",
+      "alt": "Black gate in the shop"
+    },
+    {
+      "id": "g093",
+      "file": "assets/gallery/g093.webp",
+      "thumb": "assets/gallery-thumbs/g093.webp",
+      "alt": "Black pontoon under rebuild"
+    },
+    {
+      "id": "g094",
+      "file": "assets/gallery/g094.webp",
+      "thumb": "assets/gallery-thumbs/g094.webp",
+      "alt": "Pontoon furniture sets ready to fit"
+    },
+    {
+      "id": "g095",
+      "file": "assets/gallery/g095.webp",
+      "thumb": "assets/gallery-thumbs/g095.webp",
+      "alt": "Pontoon table and seating on teak decking"
+    },
+    {
+      "id": "g096",
+      "file": "assets/gallery/g096.webp",
+      "thumb": "assets/gallery-thumbs/g096.webp",
+      "alt": "Outboard on a fabricated jack plate"
+    },
+    {
+      "id": "g097",
+      "file": "assets/gallery/g097.webp",
+      "thumb": "assets/gallery-thumbs/g097.webp",
+      "alt": "Restored panel truck with rebuilt interior"
+    },
+    {
+      "id": "g098",
+      "file": "assets/gallery/g098.webp",
+      "thumb": "assets/gallery-thumbs/g098.webp",
+      "alt": "Aluminium gangway with rollers"
+    },
+    {
+      "id": "g099",
+      "file": "assets/gallery/g099.webp",
+      "thumb": "assets/gallery-thumbs/g099.webp",
+      "alt": "Cut metal sign for a spa at Lakewood Ranch"
+    },
+    {
+      "id": "g100",
+      "file": "assets/gallery/g100.webp",
+      "thumb": "assets/gallery-thumbs/g100.webp",
+      "alt": "Boat interior in white and yellow with tower"
+    },
+    {
+      "id": "g101",
+      "file": "assets/gallery/g101.webp",
+      "thumb": "assets/gallery-thumbs/g101.webp",
+      "alt": "Pontoon interior in tan and brown"
+    },
+    {
+      "id": "g102",
+      "file": "assets/gallery/g102.webp",
+      "thumb": "assets/gallery-thumbs/g102.webp",
+      "alt": "Aluminium gate panel"
+    },
+    {
+      "id": "g103",
+      "file": "assets/gallery/g103.webp",
+      "thumb": "assets/gallery-thumbs/g103.webp",
+      "alt": "Pontoon with orange panels on the trailer"
+    },
+    {
+      "id": "g104",
+      "file": "assets/gallery/g104.webp",
+      "thumb": "assets/gallery-thumbs/g104.webp",
+      "alt": "Leaning post with rod holders"
+    },
+    {
+      "id": "g105",
+      "file": "assets/gallery/g105.webp",
+      "thumb": "assets/gallery-thumbs/g105.webp",
+      "alt": "Boat interior in cream and tan"
+    },
+    {
+      "id": "g106",
+      "file": "assets/gallery/g106.webp",
+      "thumb": "assets/gallery-thumbs/g106.webp",
+      "alt": "Pontoon furniture ready for install"
+    },
+    {
+      "id": "g107",
+      "file": "assets/gallery/g107.webp",
+      "thumb": "assets/gallery-thumbs/g107.webp",
+      "alt": "Classic car rear seating in tan diamond stitch"
+    },
+    {
+      "id": "g108",
+      "file": "assets/gallery/g108.webp",
+      "thumb": "assets/gallery-thumbs/g108.webp",
+      "alt": "Aluminium tower fitted outdoors"
+    },
+    {
+      "id": "g109",
+      "file": "assets/gallery/g109.webp",
+      "thumb": "assets/gallery-thumbs/g109.webp",
+      "alt": "Pontoon rail panel finished in orange"
+    },
+    {
+      "id": "g110",
+      "file": "assets/gallery/g110.webp",
+      "thumb": "assets/gallery-thumbs/g110.webp",
+      "alt": "Boat interior in yellow, grey and white"
+    },
+    {
+      "id": "g111",
+      "file": "assets/gallery/g111.webp",
+      "thumb": "assets/gallery-thumbs/g111.webp",
+      "alt": "Garden walkway with fabricated railing"
+    }
+  ]
 }
