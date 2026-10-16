@@ -63,20 +63,19 @@
     "headline": "Set up a call",
     "text": "Tell us what you're building. We'll talk through materials, timeline and cost. No obligation, no runaround.",
     "primary": {
-      "show": true,
-      "label": "Book a Time",
-      "link": {
-        "page": "contact",
-        "anchor": "book"
-      },
-      "style": "sewn"
-    },
-    "secondary": {
-      "show": true,
-      "label": "Send a Message",
+      "label": "Contact Us",
       "link": {
         "page": "contact"
       },
+      "show": true,
+      "style": "sewn"
+    },
+    "secondary": {
+      "label": "Contact Us",
+      "link": {
+        "page": "contact"
+      },
+      "show": false,
       "style": "heat"
     }
   },
