@@ -695,7 +695,7 @@ function drawNav(nav) {
     nav.append(h('h3', {}, group))
     for (const [id, label] of items) {
       const live = !!SCREENS[id]
-      nav.append(h('button', { class: state.screen === id ? 'on' : '', disabled: !live, title: live ? '' : 'Coming soon', onclick: () => go(id) }, label + (live ? '' : '  (soon)')))
+      nav.append(h('button', { class: (state.screen === id ? 'on' : '') + (id === 'addpage' ? ' addbtn' : ''), disabled: !live, title: live ? '' : 'Coming soon', onclick: () => go(id) }, label + (live ? '' : '  (soon)')))
     }
   }
 }
