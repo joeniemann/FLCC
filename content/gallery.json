@@ -1,622 +1,627 @@
 {
- "categories": [
-  {
-   "id": "boat-uph",
-   "label": "Boat Upholstery"
-  },
-  {
-   "id": "boat-fab",
-   "label": "Boat Fabrication"
-  },
-  {
-   "id": "vehicle",
-   "label": "Vehicle Interiors"
-  },
-  {
-   "id": "gates",
-   "label": "Gates & Railings"
-  },
-  {
-   "id": "signs",
-   "label": "Signs & Metal Art"
-  },
-  {
-   "id": "powder",
-   "label": "Powder Coating"
-  },
-  {
-   "id": "shop",
-   "label": "In the Shop"
-  }
- ],
- "groups": [
-  {
-   "id": "fabrication",
-   "label": "Fabrication",
-   "cats": [
-    "boat-fab",
-    "gates",
-    "signs"
-   ]
-  },
-  {
-   "id": "upholstery",
-   "label": "Upholstery",
-   "cats": [
-    "boat-uph",
-    "vehicle"
-   ]
-  },
-  {
-   "id": "coating",
-   "label": "Powder Coating",
-   "cats": [
-    "powder"
-   ]
-  },
-  {
-   "id": "shopwork",
-   "label": "In the Shop",
-   "cats": [
-    "shop"
-   ]
-  }
- ],
- "items": [
-  {
-   "photo": "g001",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g002",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g003",
-   "category": "signs",
-   "hidden": false
-  },
-  {
-   "photo": "g004",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g005",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g006",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g007",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g008",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g009",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g010",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g011",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g012",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g013",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g014",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g015",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g016",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g017",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g018",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g019",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g020",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g021",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g022",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g023",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g024",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g025",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g026",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g027",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g028",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g029",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g030",
-   "category": "shop",
-   "hidden": false
-  },
-  {
-   "photo": "g031",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g032",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g033",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g034",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g035",
-   "category": "powder",
-   "hidden": false
-  },
-  {
-   "photo": "g036",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g037",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g038",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g039",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g040",
-   "category": "powder",
-   "hidden": false
-  },
-  {
-   "photo": "g041",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g042",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g043",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g044",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g045",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g046",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g047",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g048",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g049",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g050",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g051",
-   "category": "signs",
-   "hidden": false
-  },
-  {
-   "photo": "g052",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g053",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g054",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g055",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g056",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g057",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g058",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g059",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g060",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g061",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g062",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g063",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g064",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g065",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g066",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g067",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g068",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g069",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g070",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g071",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g072",
-   "category": "shop",
-   "hidden": false
-  },
-  {
-   "photo": "g073",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g074",
-   "category": "shop",
-   "hidden": false
-  },
-  {
-   "photo": "g075",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g076",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g077",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g078",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g079",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g080",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g081",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g082",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g083",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g084",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g085",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g086",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g087",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g088",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g089",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g090",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g091",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g092",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g093",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g094",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g095",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g096",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g097",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g098",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g099",
-   "category": "signs",
-   "hidden": false
-  },
-  {
-   "photo": "g100",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g101",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g102",
-   "category": "gates",
-   "hidden": false
-  },
-  {
-   "photo": "g103",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g104",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g105",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g106",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g107",
-   "category": "vehicle",
-   "hidden": false
-  },
-  {
-   "photo": "g108",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g109",
-   "category": "boat-fab",
-   "hidden": false
-  },
-  {
-   "photo": "g110",
-   "category": "boat-uph",
-   "hidden": false
-  },
-  {
-   "photo": "g111",
-   "category": "gates",
-   "hidden": false
-  }
- ]
+  "categories": [
+    {
+      "id": "boat-uph",
+      "label": "Boat Upholstery"
+    },
+    {
+      "id": "boat-fab",
+      "label": "Boat Fabrication"
+    },
+    {
+      "id": "vehicle",
+      "label": "Vehicle Interiors"
+    },
+    {
+      "id": "gates",
+      "label": "Gates & Railings"
+    },
+    {
+      "id": "signs",
+      "label": "Signs & Metal Art"
+    },
+    {
+      "id": "powder",
+      "label": "Powder Coating"
+    },
+    {
+      "id": "shop",
+      "label": "In the Shop"
+    }
+  ],
+  "groups": [
+    {
+      "id": "fabrication",
+      "label": "Fabrication",
+      "cats": [
+        "boat-fab",
+        "gates",
+        "signs"
+      ]
+    },
+    {
+      "id": "upholstery",
+      "label": "Upholstery",
+      "cats": [
+        "boat-uph",
+        "vehicle"
+      ]
+    },
+    {
+      "id": "coating",
+      "label": "Powder Coating",
+      "cats": [
+        "powder"
+      ]
+    },
+    {
+      "id": "shopwork",
+      "label": "In the Shop",
+      "cats": [
+        "shop"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "photo": "g112",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g001",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g002",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g003",
+      "category": "signs",
+      "hidden": false
+    },
+    {
+      "photo": "g004",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g005",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g006",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g007",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g008",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g009",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g010",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g011",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g012",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g013",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g014",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g015",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g016",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g017",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g018",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g019",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g020",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g021",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g022",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g023",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g024",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g025",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g026",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g027",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g028",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g029",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g030",
+      "category": "shop",
+      "hidden": false
+    },
+    {
+      "photo": "g031",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g032",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g033",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g034",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g035",
+      "category": "powder",
+      "hidden": false
+    },
+    {
+      "photo": "g036",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g037",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g038",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g039",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g040",
+      "category": "powder",
+      "hidden": false
+    },
+    {
+      "photo": "g041",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g042",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g043",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g044",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g045",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g046",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g047",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g048",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g049",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g050",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g051",
+      "category": "signs",
+      "hidden": false
+    },
+    {
+      "photo": "g052",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g053",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g054",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g055",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g056",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g057",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g058",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g059",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g060",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g061",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g062",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g063",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g064",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g065",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g066",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g067",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g068",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g069",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g070",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g071",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g072",
+      "category": "shop",
+      "hidden": false
+    },
+    {
+      "photo": "g073",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g074",
+      "category": "shop",
+      "hidden": false
+    },
+    {
+      "photo": "g075",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g076",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g077",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g078",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g079",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g080",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g081",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g082",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g083",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g084",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g085",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g086",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g087",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g088",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g089",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g090",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g091",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g092",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g093",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g094",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g095",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g096",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g097",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g098",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g099",
+      "category": "signs",
+      "hidden": false
+    },
+    {
+      "photo": "g100",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g101",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g102",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g103",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g104",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g105",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g106",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g107",
+      "category": "vehicle",
+      "hidden": false
+    },
+    {
+      "photo": "g108",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g109",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
+      "photo": "g110",
+      "category": "boat-uph",
+      "hidden": false
+    },
+    {
+      "photo": "g111",
+      "category": "gates",
+      "hidden": false
+    }
+  ]
 }
