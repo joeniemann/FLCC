@@ -489,6 +489,13 @@
         }
         /* only the contact form is a Netlify form; others just show the message */
         if (form.getAttribute("data-send") !== "netlify") { done(); return; }
+        /* Netlify uses a field named "subject" as the email subject line */
+        var subj = form.elements["subject"];
+        if (subj) {
+          var who = (form.elements["name"] || {}).value || "";
+          var what = (form.elements["service"] || {}).value || "";
+          subj.value = "New request" + (who ? " from " + who.trim() : "") + (what ? ": " + what : "");
+        }
         var body = new URLSearchParams(new FormData(form)).toString();
         status.setAttribute("data-state", "ok");
         status.textContent = "Sending...";
