@@ -68,7 +68,7 @@
         "page": "contact"
       },
       "show": true,
-      "style": "heat"
+      "style": "line"
     },
     "secondary": {
       "label": "Contact Us",
