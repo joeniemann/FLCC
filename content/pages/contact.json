@@ -11,7 +11,8 @@
       "eyebrow": "Get in touch",
       "headline": "Tell us what\nyou're building",
       "intro": "Drop by the shop, call, or send the details and photos. We'll come back with materials, a timeline and a number. No obligation.",
-      "factsFromHours": true
+      "factsFromHours": true,
+      "facts": []
     },
     {
       "type": "contactSection",
@@ -36,7 +37,8 @@
           "Something else / not sure yet"
         ],
         "messageHint": "What is it, what shape is it in, and when do you need it? Make, model and year help if you have them.",
-        "buttonLabel": "Send Request"
+        "buttonLabel": "Send Request",
+        "errorMessage": "Error! Something went wrong please try again."
       }
     }
   ]
