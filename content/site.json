@@ -67,7 +67,7 @@
       "link": {
         "page": "contact"
       },
-      "show": false
+      "show": true
     },
     "secondary": {
       "label": "Contact Us",
