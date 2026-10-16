@@ -10,7 +10,7 @@
 //   {{> name}}          partial, resolved by the caller
 
 const esc = s => String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-const escAttr = s => esc(s).replace(/"/g, '&quot;');
+const escAttr = s => esc(s).replace(/"/g, '&quot;').replace(/'/g, '&#39;');
 
 function tokenize(src) {
   const out = [];

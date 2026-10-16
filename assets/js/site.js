@@ -488,7 +488,7 @@
           $$(".field", form).forEach(function (f) { f.setAttribute("data-invalid", "false"); });
         }
         /* only the contact form is a Netlify form; others just show the message */
-        if (!form.hasAttribute("data-netlify")) { done(); return; }
+        if (form.getAttribute("data-send") !== "netlify") { done(); return; }
         var body = new URLSearchParams(new FormData(form)).toString();
         status.setAttribute("data-state", "ok");
         status.textContent = "Sending...";
