@@ -37,7 +37,7 @@
         ],
         "messageHint": "What is it, what shape is it in, and when do you need it? Make, model and year help if you have them.",
         "buttonLabel": "Send Request",
-        "errorMessage": "Error! Something went "
+        "errorMessage": "Error! Something went wrong please try again."
       }
     }
   ]
