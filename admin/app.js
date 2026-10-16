@@ -556,6 +556,72 @@ async function setArchived(page, on) {
   touch(pagePath(page.id))
 }
 
+
+// ---------- delete a removed page for good ----------
+// Finds every place in the editable content that links to this page.
+async function findLinksTo(page, schema) {
+  const found = []
+  const file = page.id + '.html'
+  const where = (label, ctxLabel) => found.push(label + (ctxLabel ? ': "' + ctxLabel + '"' : ''))
+  const scan = (node, label, ctx) => {
+    if (Array.isArray(node)) { node.forEach((n) => scan(n, label, ctx)); return }
+    if (!node || typeof node !== 'object') return
+    const here = typeof node.label === 'string' ? node.label : typeof node.title === 'string' ? node.title : ctx
+    if (node.page === page.id) where(label, typeof node.label === 'string' ? node.label : ctx)
+    for (const v of Object.values(node)) {
+      if (typeof v === 'string') {
+        if (v.includes('href="' + file) || v === file || v.startsWith(file + '#')) where(label, 'a link in the text')
+      } else scan(v, label, here)
+    }
+  }
+  const others = PAGES.filter((p) => p.id !== page.id)
+  for (const p of others) {
+    const d = await loadFile(pagePath(p.id))
+    ;(d.blocks || []).forEach((b) => scan(b, navLabel(p) + ' page, ' + (((schema.blocks[b.type] || {}).name) || b.type) + ' section', ''))
+  }
+  const site = await loadFile('content/site.json')
+  scan(site.callBand, 'Call band', '')
+  scan(site.footer, 'Footer', '')
+  ;(site.menu.items || []).forEach((it) => { if (it.page === page.id) found.push('Menu: "' + (it.label || navLabel(page)) + '"') })
+  return [...new Set(found)]
+}
+
+function confirmDelete(page, links) {
+  return new Promise((resolve) => {
+    const overlay = h('div', { class: 'overlay' })
+    const done = (v) => { overlay.remove(); resolve(v) }
+    const list = links.length
+      ? h('div', {}, h('p', { class: 'hint warn' }, 'These places still point to this page. They will go nowhere until you change them:'),
+          h('ul', { class: 'linklist' }, ...links.map((t) => h('li', {}, t))))
+      : h('p', { class: 'hint' }, 'Nothing else on the site points to this page.')
+    const yes = h('button', { type: 'button', class: 'btn danger', onclick: () => done(true) }, 'Delete for good')
+    overlay.append(h('div', { class: 'modal small' },
+      h('div', { class: 'mhead' }, h('strong', {}, 'Are you sure?')),
+      h('p', {}, 'This deletes "' + navLabel(page) + '" completely. It cannot be brought back from the editor.'),
+      list,
+      h('div', { class: 'blockactions' }, h('button', { type: 'button', class: 'btn plain', onclick: () => done(false) }, 'Cancel'), yes)))
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) done(false) })
+    document.body.append(overlay)
+  })
+}
+
+async function deletePageForGood(p) {
+  const schema = await loadSchema()
+  const links = await findLinksTo(p, schema)
+  if (!(await confirmDelete(p, links))) return false
+  setStatus('Deleting the page...')
+  const path = pagePath(p.id)
+  const f = state.files[path]
+  if (f) clearTimeout(f.timer)
+  await api('/.netlify/functions/page-delete', { method: 'POST', body: JSON.stringify({ id: p.id }) })
+  delete state.files[path]
+  delete SCREENS[p.id]
+  markWaiting(true)
+  await loadPages()
+  setStatus('Page deleted. It leaves the live site when you click Make it live.', 'ok')
+  return true
+}
+
 function customControls(page, changed) {
   const cb = h('input', { type: 'checkbox' })
   cb.checked = page.published !== false
@@ -652,9 +718,13 @@ function pagesScreen() {
         const st = p.archived ? ['Removed', 'off'] : p.published === false ? ['Not on the site yet', 'wait'] : ['On the site', 'ok']
         const kind = (schema.pageTypes[p.type] || {}).name || (p.type === 'home' ? 'Home page' : 'Page')
         const act = p.archived
-          ? h('button', { type: 'button', class: 'btn plain small', onclick: async () => {
-              try { const page = await loadFile(pagePath(p.id)); await setArchived(page, false); await loadPages(); go('pages') } catch (err) { setStatus(err.message, 'bad') }
-            } }, 'Bring it back')
+          ? h('span', { class: 'rowacts' },
+              h('button', { type: 'button', class: 'btn plain small', onclick: async () => {
+                try { const page = await loadFile(pagePath(p.id)); await setArchived(page, false); await loadPages(); go('pages') } catch (err) { setStatus(err.message, 'bad') }
+              } }, 'Bring it back'),
+              p.custom ? h('button', { type: 'button', class: 'btn plain small danger-text', onclick: async () => {
+                try { if (await deletePageForGood(p)) go('pages') } catch (err) { setStatus(err.message, 'bad') }
+              } }, 'Delete for good') : null)
           : h('button', { type: 'button', class: 'btn plain small', disabled: !SCREENS[p.id], onclick: () => go(p.id) }, 'Edit')
         root.append(h('div', { class: 'pagerow' + (p.archived ? ' off' : '') },
           h('div', { class: 'pi' }, h('strong', {}, navLabel(p)), h('span', { class: 'chip ' + st[1] }, st[0]), h('span', { class: 'ptype' }, kind)), act))
