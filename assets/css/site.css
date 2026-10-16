@@ -184,6 +184,21 @@ a{color:inherit}
 .nav-links a:hover{color:#08090A}
 .nav-links a:hover::before{transform:scaleX(1)}
 .nav-links a[aria-current="page"]{color:var(--molten)}
+.nav-item{position:relative;display:flex;align-items:center}
+.nav-item.has-sub > a{padding-right:6px}
+.sub-toggle{position:relative;z-index:1;background:none;border:0;color:#C9CDD3;cursor:pointer;font-size:9px;padding:10px 12px 10px 4px;transition:color .3s,transform .3s}
+.sub-toggle:hover{color:#F6F1E9}
+.nav-item.open .sub-toggle{transform:rotate(180deg)}
+.nav-item.has-current > a{color:var(--molten)}
+.sub{
+  position:absolute;top:100%;left:0;min-width:220px;z-index:950;
+  display:flex;flex-direction:column;gap:0;padding:6px;
+  background:linear-gradient(180deg,#2F343A,#1B1E22);border:1px solid #454A51;border-radius:2px;
+  box-shadow:0 14px 30px rgba(0,0,0,.45);
+  opacity:0;visibility:hidden;transform:translateY(-4px);transition:opacity .22s,transform .22s,visibility .22s;
+}
+.sub a{padding:12px 14px;white-space:nowrap}
+.nav-item:hover .sub,.nav-item:focus-within .sub,.nav-item.open .sub{opacity:1;visibility:visible;transform:none}
 .nav-cta{margin-left:14px}
 .nav-cta .btn{padding:12px 20px}
 .nav-toggle{
@@ -208,6 +223,7 @@ a{color:inherit}
 }
 .nav-drawer a[aria-current="page"]{color:var(--molten)}
 .nav-drawer .btn{margin-top:20px;justify-content:center}
+.nav-drawer a.sub-link{font-size:13px;color:#C9CDD3;padding:12px 0 12px 22px}
 
 /* ---------- page header ---------- */
 .phead{position:relative;overflow:hidden;border-bottom:1px solid var(--rule)}

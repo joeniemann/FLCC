@@ -34,6 +34,11 @@ function compile(siteDir, ov) {
   const photoById = Object.fromEntries(photoList.map(p => [p.id, p]));
   const warnings = [];
 
+  // the menu as the site shows it: top-level items, each with the items tucked under it
+  const shownItems = menuFixed.items.filter(i => i.show !== false);
+  const menuTree = shownItems.filter(i => !i.parent).map(i =>
+    Object.assign({}, i, { children: shownItems.filter(c => c.parent && c.parent !== c.page && c.parent === i.page) }));
+
   // ---------- derived values ----------
   const b = site.business;
   const digits = b.phone.replace(/\D/g, '');
@@ -135,7 +140,7 @@ function compile(siteDir, ov) {
   const out = [];
 
   for (const page of pages) {
-    const root = Object.assign({}, site, { menu: menuFixed }, derived, {
+    const root = Object.assign({}, site, { menu: menuFixed, menuTree }, derived, {
       title: page.title, description: page.description, showCallBand: page.showCallBand !== false,
       hasHero: page.blocks.some(x => x.type === 'homeHero'),
       hasGallery: page.blocks.some(x => x.type === 'galleryBrowser')

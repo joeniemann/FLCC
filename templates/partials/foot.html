@@ -11,7 +11,7 @@
 
       <div>
         <h4>Explore</h4>
-        {{#each menu.items}}{{#if show}}<a href="{{href this}}">{{#if footerLabel}}{{footerLabel}}{{else}}{{label}}{{/if}}</a>{{/if}}
+        {{#each menuTree}}<a href="{{href this}}">{{#if footerLabel}}{{footerLabel}}{{else}}{{label}}{{/if}}</a>
         {{/each}}
       </div>
 

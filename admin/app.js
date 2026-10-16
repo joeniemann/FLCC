@@ -161,7 +161,8 @@ const PAGE_CHOICES = [['home', 'The Home page'], ['services', 'The Services page
 
 // ---------- the list of pages (so new pages show up everywhere) ----------
 let PAGES = []
-const navLabel = (p) => String(p.title || p.id).split('|')[0].trim()
+const BASE_LABELS = { home: 'Home', services: 'Services', about: 'About', gallery: 'Gallery', contact: 'Contact' }
+const navLabel = (p) => BASE_LABELS[p.id] || String(p.title || p.id).split('|')[0].trim()
 async function loadPages() {
   await flushAll()
   try { PAGES = (await api('/.netlify/functions/pages-list')).pages } catch (e) { PAGES = PAGE_CHOICES.map(([id, name]) => ({ id, title: name, type: id, file: id + '.html', published: true, archived: false, custom: false })) }
@@ -539,18 +540,15 @@ const pagePath = (id) => 'content/pages/' + id + '.json'
 const setListed = (page, patch) => { const m = PAGES.find((x) => x.id === page.id); if (m) Object.assign(m, patch) }
 
 async function setPublished(page, on) {
-  const site = await loadFile('content/site.json')
-  const items = site.menu.items
-  const i = items.findIndex((it) => it.page === page.id)
-  if (on) { if (i < 0) items.push({ label: navLabel(page).slice(0, 18), page: page.id, show: true }); else items[i].show = true }
-  else if (i >= 0) items[i].show = false
   page.published = on
   setListed(page, { published: on })
-  touch('content/site.json')
 }
 async function setArchived(page, on) {
   const site = await loadFile('content/site.json')
-  if (on) site.menu.items = site.menu.items.filter((it) => it.page !== page.id)
+  if (on) {
+    site.menu.items.forEach((it) => { if (it.parent === page.id) delete it.parent })
+    site.menu.items = site.menu.items.filter((it) => it.page !== page.id)
+  }
   page.archived = on
   page.published = false
   setListed(page, { archived: on, published: false })
@@ -571,7 +569,8 @@ function customControls(page, changed) {
   } }, 'Remove this page')
   return h('div', {},
     h('div', { class: 'field' }, h('label', { class: 'switch' }, cb, 'Show this page on the site'),
-      h('p', { class: 'hint' }, 'Off keeps it hidden. When it is on and you click Make it live, the page appears on the site and in the menu.')),
+      h('p', { class: 'hint' }, 'Off keeps it hidden. When it is on and you click Make it live, the page appears on the site. To put it in the menu, use the Menu screen.'),
+      h('button', { type: 'button', class: 'btn plain small', onclick: () => go('menu') }, 'Open the Menu screen')),
     h('div', { class: 'blockactions' }, rm),
     h('p', { class: 'hint' }, 'Removing hides the page and takes it out of the menu. You can bring it back from All pages.'))
 }
@@ -718,36 +717,74 @@ async function go(id) {
   }
 }
 
-function renderMenu(root, site) {
+async function renderMenu(root, site) {
+  await loadPages()
   const m = site.menu
   const changed = () => touch('content/site.json')
   root.append(
     h('h1', {}, 'Menu'),
-    h('p', { class: 'lead' }, 'These are the words across the top of every page. Change a word, use the arrows to move it, or switch it off to hide it.'),
+    h('p', { class: 'lead' }, 'These are the words across the top of every page. Move an item with the arrows, switch it off to hide it, or tuck it under another item to make a drop-down.'),
   )
   const list = h('div')
+  const more = h('div')
+  const chipFor = (it) => {
+    const p = PAGES.find((x) => x.id === it.page)
+    return p && (p.published === false || p.archived) ? h('span', { class: 'chip wait', title: 'This item will not show until its page is switched on.' }, 'Page not on the site yet') : null
+  }
   function draw() {
+    // an item tucked under something that is not a top-level item goes back to the top level
+    m.items.forEach((it) => {
+      if (it.parent && (it.parent === it.page || !m.items.some((o) => o.page === it.parent && !o.parent))) { delete it.parent; changed() }
+    })
     list.textContent = ''
-    m.items.forEach((it, i) => {
+    const sibs = (parent) => m.items.map((it, i) => [it, i]).filter(([it]) => (it.parent || '') === (parent || '')).map(([, i]) => i)
+    const hasKids = (it) => m.items.some((o) => o.parent === it.page)
+    const row = (it) => {
+      const idx = m.items.indexOf(it)
+      const S = sibs(it.parent)
+      const pos = S.indexOf(idx)
+      const move = (d) => { const j = S[pos + d]; [m.items[idx], m.items[j]] = [m.items[j], m.items[idx]]; changed(); draw() }
       const input = h('input', { type: 'text', value: it.label, maxlength: 18, 'aria-label': 'Menu word' })
       input.addEventListener('input', () => { it.label = input.value; changed() })
       const cb = h('input', { type: 'checkbox', 'aria-label': 'Show in menu' })
       cb.checked = it.show !== false
-      const row = h('div', { class: 'menurow' + (cb.checked ? '' : ' off') })
-      cb.addEventListener('change', () => { it.show = cb.checked; row.classList.toggle('off', !cb.checked); changed() })
-      const move = (d) => { const j = i + d; [m.items[i], m.items[j]] = [m.items[j], m.items[i]]; changed(); draw() }
-      row.append(
+      const el = h('div', { class: 'menurow' + (it.parent ? ' child' : '') + (cb.checked ? '' : ' off') })
+      cb.addEventListener('change', () => { it.show = cb.checked; el.classList.toggle('off', !cb.checked); changed() })
+      const sel = h('select', { 'aria-label': 'Sits under', title: hasKids(it) ? 'Move its drop-down items out first' : '', disabled: hasKids(it) })
+      sel.append(h('option', { value: '', selected: !it.parent }, 'Top level'))
+      m.items.filter((o) => !o.parent && o.page !== it.page).forEach((o) => sel.append(h('option', { value: o.page, selected: it.parent === o.page }, 'Under ' + o.label)))
+      sel.addEventListener('change', () => { if (sel.value) it.parent = sel.value; else delete it.parent; changed(); draw() })
+      let armed = false
+      const rm = h('button', { type: 'button', class: 'btn plain small', onclick: () => {
+        if (!armed) { armed = true; rm.textContent = 'Click again'; setTimeout(() => { armed = false; rm.textContent = 'Remove' }, 3000); return }
+        m.items.forEach((o) => { if (o.parent === it.page) delete o.parent })
+        m.items.splice(m.items.indexOf(it), 1); changed(); draw()
+      } }, 'Remove')
+      el.append(
         h('span', { class: 'arrows' },
-          h('button', { type: 'button', disabled: i === 0, title: 'Move up', onclick: () => move(-1) }, '▲'),
-          h('button', { type: 'button', disabled: i === m.items.length - 1, title: 'Move down', onclick: () => move(1) }, '▼')),
-        input,
+          h('button', { type: 'button', disabled: pos === 0, title: 'Move up', onclick: () => move(-1) }, '▲'),
+          h('button', { type: 'button', disabled: pos === S.length - 1, title: 'Move down', onclick: () => move(1) }, '▼')),
+        h('div', { class: 'menumain' }, input, chipFor(it), h('label', { class: 'under' }, 'Sits under', sel)),
         h('label', { class: 'switch' }, cb, 'Show'),
+        rm,
       )
-      list.append(row)
+      return el
+    }
+    m.items.filter((it) => !it.parent).forEach((it) => {
+      list.append(row(it))
+      m.items.filter((c) => c.parent === it.page).forEach((c) => list.append(row(c)))
     })
+    more.textContent = ''
+    const out = PAGES.filter((p) => !p.archived && p.id !== 'home' && !m.items.some((it) => it.page === p.id))
+    more.append(h('h2', { class: 'subhead' }, 'Pages not in the menu'))
+    if (!out.length) more.append(h('p', { class: 'hint' }, 'Every page is already in the menu.'))
+    out.forEach((p) => more.append(h('div', { class: 'pagerow' },
+      h('div', { class: 'pi' }, h('strong', {}, navLabel(p)),
+        h('span', { class: 'chip ' + (p.published === false ? 'wait' : 'ok') }, p.published === false ? 'Not on the site yet' : 'On the site')),
+      h('button', { type: 'button', class: 'btn small', onclick: () => { m.items.push({ label: navLabel(p).slice(0, 18), page: p.id, show: true }); changed(); draw() } }, 'Add to menu'))))
   }
   draw()
-  root.append(list)
+  root.append(list, more)
   root.append(h('div', { class: 'group' },
     textField('Words on the header button', m.button.label, { max: 20, hint: 'The red button at the end of the menu.' }, (v) => { m.button.label = v; changed() })))
 }

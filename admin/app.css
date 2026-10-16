@@ -155,3 +155,12 @@ body.app-mode .card { display:none; }
 .sidenav button.addbtn { background:var(--brand); color:#fff; font-weight:700; text-align:center; margin:10px 0 4px; }
 .sidenav button.addbtn:hover { background:var(--brand-dark); }
 .sidenav button.addbtn.on { background:var(--brand-dark); }
+
+/* menu screen */
+.menurow.child { margin-left:28px; }
+.menurow .menumain { flex:1; display:flex; flex-direction:column; gap:6px; min-width:0; }
+.menurow .menumain input[type=text] { width:100%; }
+.menurow .under { display:flex; align-items:center; gap:8px; font-size:13px; color:var(--muted); white-space:nowrap; }
+.menurow .under select { font-size:14px; padding:5px 8px; border:2px solid var(--line); border-radius:8px; background:#fff; color:var(--ink); max-width:190px; }
+.menurow .under select:disabled { opacity:.5; }
+.subhead { font-size:17px; margin:26px 0 10px; }

@@ -520,6 +520,17 @@
     });
   })();
 
+  /* ---------- drop-down menus ---------- */
+  (function subnav() {
+    $$(".nav-item.has-sub").forEach(function (item) {
+      var btn = $(".sub-toggle", item);
+      function set(open) { item.classList.toggle("open", open); btn.setAttribute("aria-expanded", String(open)); }
+      btn.addEventListener("click", function (e) { e.stopPropagation(); set(!item.classList.contains("open")); });
+      document.addEventListener("click", function (e) { if (!item.contains(e.target)) set(false); });
+      document.addEventListener("keydown", function (e) { if (e.key === "Escape") set(false); });
+    });
+  })();
+
   /* ---------- mark current page in the nav ---------- */
   (function currentPage() {
     var here = location.pathname.split("/").pop() || "index.html";
@@ -527,5 +538,6 @@
       var href = (a.getAttribute("href") || "").split("/").pop();
       if (href && href === here) a.setAttribute("aria-current", "page");
     });
+    $$(".nav-item .sub a[aria-current]").forEach(function (a) { a.closest(".nav-item").classList.add("has-current"); });
   })();
 })();
