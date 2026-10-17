@@ -47,6 +47,15 @@
           }
         },
         {
+          "label": "Upholstery",
+          "title": "Marine-grade interiors",
+          "text": "Boats, cars, ATVs and RVs. Diamond stitch, piping and full rebuilds in materials that survive a Florida summer.",
+          "link": {
+            "page": "services",
+            "anchor": "upholstery"
+          }
+        },
+        {
           "label": "Powder Coating",
           "title": "A finish that outlasts paint",
           "text": "Blasted, coated and cured in-house. Resists chips, corrosion and UV, and needs almost no upkeep.",
