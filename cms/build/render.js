@@ -212,6 +212,9 @@ function build(siteDir, outDir) {
   fs.mkdirSync(path.join(outDir, 'assets/data'), { recursive: true });
   fs.writeFileSync(path.join(outDir, 'assets/data/gallery.js'), r.galleryJs);
   written.push('assets/data/gallery.js');
+  // browsers ask for /favicon.ico at the site root even when the page names another icon
+  const ico = path.join(siteDir, 'assets/icons/favicon.ico');
+  if (fs.existsSync(ico)) { fs.copyFileSync(ico, path.join(outDir, 'favicon.ico')); written.push('favicon.ico'); }
   Object.keys(r.extras).forEach(name => {
     if (!r.extras[name]) return; // nothing to say (for example, no site address set yet)
     fs.writeFileSync(path.join(outDir, name), r.extras[name]);
