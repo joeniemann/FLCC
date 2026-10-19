@@ -5,9 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{attr description}}">
-<meta property="og:title" content="{{attr title}}">
-<meta property="og:description" content="{{attr description}}">
-<meta property="og:type" content="website">
+{{{seoHead}}}
 <meta name="theme-color" content="#08090A">
 <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
 <link rel="stylesheet" href="assets/css/site.css">
@@ -17,6 +15,7 @@
 .skip{position:absolute;left:-9999px;top:0;z-index:1100;background:#F6F1E9;color:#08090A;padding:12px 18px;font-weight:700;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none}
 .skip:focus{left:8px;top:8px}</style>
 <script>if(/[#&](invite_token|recovery_token|confirmation_token|email_change_token)=/.test(location.hash)){location.replace("/admin/"+location.hash)}</script>
+{{{jsonLd}}}
 </head>
 <body>
 {{> nav}}

@@ -124,6 +124,12 @@
           "kind": "paragraph",
           "max": 220
         },
+        "searchLine": {
+          "label": "Line for Google and screen readers",
+          "kind": "text",
+          "max": 90,
+          "note": "Not shown on the page. Say what the shop does and where, like Custom fabrication and marine upholstery in Central Florida."
+        },
         "buttons": {
           "label": "Buttons",
           "kind": "list",

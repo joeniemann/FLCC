@@ -7,6 +7,7 @@
 const fs = require('fs');
 const path = require('path');
 const { parse, tokenize, renderNodes, esc, escAttr } = require('./engine');
+const seo = require('./seo');
 
 function arg(name, def) {
   const i = process.argv.indexOf('--' + name);
@@ -137,11 +138,25 @@ function compile(siteDir, ov) {
     });
   }
 
+  // The gallery is drawn by site.js, but the tiles are also written into the page so search
+  // engines and AI tools that do not run scripts can still see every photo and its alt text.
+  function galleryTiles() {
+    return gallery.items.filter(i => !i.hidden).map((i, n) => {
+      const ph = photoOf(i.photo);
+      const alt = escAttr(ph.alt);
+      return '<button class="tile in" type="button" aria-label="Open image: ' + alt + '" data-i="' + n + '">' +
+        '<img src="' + escAttr(ph.thumb || ph.file) + '" alt="' + alt + '" loading="' + (n < 12 ? 'eager' : 'lazy') + '" decoding="async">' +
+        '<figcaption>' + esc(ph.alt) + '</figcaption></button>';
+    }).join('\n');
+  }
+
   const out = [];
 
   for (const page of pages) {
+    const imageUrl = seo.shareImageUrl(site, page, photoById, gallery.items);
     const root = Object.assign({}, site, { menu: menuFixed, menuTree }, derived, {
       title: page.title, description: page.description, showCallBand: page.showCallBand !== false,
+      seoHead: seo.headTags(site, page, imageUrl), jsonLd: seo.jsonLd(site, page, imageUrl),
       hasHero: page.blocks.some(x => x.type === 'homeHero'),
       hasGallery: page.blocks.some(x => x.type === 'galleryBrowser')
     });
@@ -157,6 +172,7 @@ function compile(siteDir, ov) {
         prev = 'dark';
       }
       ctx.facts = resolveFacts(block);
+      if (block.type === 'galleryBrowser') ctx.staticTiles = galleryTiles();
       const tpl = loadTemplate(blockTemplate(block));
       html += renderNodes(tpl, [{ ctx: root }, { ctx }], env);
       if (!html.endsWith('\n')) html += '\n';
@@ -164,8 +180,15 @@ function compile(siteDir, ov) {
     root.blocks = html;
     let doc = renderNodes(loadTemplate('templates/page.html'), [{ ctx: root }], env);
     doc = doc.replace(/<!--[\s\S]*?-->/g, '');
-    out.push({ id: page.id, file: page.file, html: doc, live: isLive(page) });
+    out.push({ id: page.id, file: page.file, html: doc, live: isLive(page), seo: page.seo });
   }
+  const livePages = pages.filter(isLive);
+  const extras = {
+    'sitemap.xml': seo.sitemap(site, livePages),
+    'robots.txt': seo.robots(site),
+    'llms.txt': seo.llms(site, livePages),
+    '_redirects': seo.redirects(site)
+  };
 
   // gallery data for the browser script
   const items = gallery.items.filter(i => !i.hidden).map(i =>
@@ -174,7 +197,7 @@ function compile(siteDir, ov) {
     'window.FLCC_GALLERY = [\n' + items.join(',\n') + '\n];\n\n' +
     'window.FLCC_CATEGORIES = ' + JSON.stringify([{ id: 'all', label: 'All Work' }].concat(gallery.categories)) + ';\n\n' +
     'window.FLCC_GROUPS = ' + JSON.stringify(gallery.groups) + ';\n';
-  return { pages: out, galleryJs: g, warnings };
+  return { pages: out, galleryJs: g, extras, warnings };
 }
 
 function build(siteDir, outDir) {
@@ -189,6 +212,11 @@ function build(siteDir, outDir) {
   fs.mkdirSync(path.join(outDir, 'assets/data'), { recursive: true });
   fs.writeFileSync(path.join(outDir, 'assets/data/gallery.js'), r.galleryJs);
   written.push('assets/data/gallery.js');
+  Object.keys(r.extras).forEach(name => {
+    if (!r.extras[name]) return; // nothing to say (for example, no site address set yet)
+    fs.writeFileSync(path.join(outDir, name), r.extras[name]);
+    written.push(name);
+  });
   return { written, warnings: r.warnings };
 }
 

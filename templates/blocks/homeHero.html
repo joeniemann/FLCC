@@ -148,15 +148,16 @@
 
     <h1 class="big">
       <span class="row">
-        <span class="t-steel" aria-hidden="true">FinishLines</span>
-        <span class="t-hot"   aria-hidden="true">FinishLines</span>
+        <span class="t-steel" aria-hidden="true" data-t="FinishLines"></span>
+        <span class="t-hot"   aria-hidden="true" data-t="FinishLines"></span>
         <span class="t-soft">FinishLines</span>
       </span>
       <span class="row">
-        <span class="t-steel" aria-hidden="true">Creative Concepts</span>
-        <span class="t-hot"   aria-hidden="true">Creative Concepts</span>
+        <span class="t-steel" aria-hidden="true" data-t="Creative Concepts"></span>
+        <span class="t-hot"   aria-hidden="true" data-t="Creative Concepts"></span>
         <span class="t-soft">Creative Concepts</span>
-      </span>
+      </span>{{#if searchLine}}
+      <span class="sr-only">, {{searchLine}}</span>{{/if}}
     </h1>
     <p class="sub"><b>{{leadIn}}</b> {{text}}</p>
     <div class="cta">

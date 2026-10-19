@@ -86,5 +86,12 @@
     "newsletterPlaceholder": "EMAIL ADDRESS",
     "newsletterSuccess": "You're on the list. Now FAFO!",
     "newsletterError": "Something went wrong. Please try again, or call us."
+  },
+  "seo": {
+    "siteUrl": "https://finishlinescreativeconcepts.com",
+    "serviceArea": "Central Florida",
+    "shareImage": "",
+    "allowAiCrawlers": true,
+    "redirects": []
   }
 }
