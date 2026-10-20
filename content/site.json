@@ -90,12 +90,6 @@
   "seo": {
     "allowAiCrawlers": true,
     "serviceArea": [],
-    "redirects": [
-      {
-        "from": "/test-old",
-        "to": "/services.html",
-        "status": "301"
-      }
-    ]
+    "redirects": []
   }
 }
