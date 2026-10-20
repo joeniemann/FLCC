@@ -16,7 +16,7 @@
      powder     Powder Coating
      shop       In the Shop
    ============================================================ */
-window.FLCC_GALLERY = [
+window.CMS_GALLERY = [
   {f:"g001", cat:"boat-fab", alt:"Center console boat with fabricated hardtop, in the shop"},
   {f:"g002", cat:"boat-uph", alt:"Tan diamond-stitched boat seat, close detail"},
   {f:"g003", cat:"signs",    alt:"Cut metal family tree sign"},
@@ -130,7 +130,7 @@ window.FLCC_GALLERY = [
   {f:"g111", cat:"gates",    alt:"Garden walkway with fabricated railing"}
 ];
 
-window.FLCC_CATEGORIES = [
+window.CMS_CATEGORIES = [
   {id:"all",      label:"All Work"},
   {id:"boat-uph", label:"Boat Upholstery"},
   {id:"boat-fab", label:"Boat Fabrication"},
@@ -150,7 +150,7 @@ window.FLCC_CATEGORIES = [
 
    These double as deep-link targets: gallery.html#fabrication.
    ------------------------------------------------------------------ */
-window.FLCC_GROUPS = [
+window.CMS_GROUPS = [
   {id:"fabrication", label:"Fabrication", cats:["boat-fab","gates","signs"]},
   {id:"upholstery",  label:"Upholstery",  cats:["boat-uph","vehicle"]},
   {id:"coating",     label:"Powder Coating", cats:["powder"]},

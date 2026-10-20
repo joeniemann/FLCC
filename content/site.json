@@ -88,8 +88,41 @@
     "newsletterError": "Something went wrong. Please try again, or call us."
   },
   "seo": {
+    "siteUrl": "https://finishlinescreativeconcepts.com",
+    "serviceRegion": "Central Florida",
+    "serviceArea": [
+      "Orlando",
+      "Apopka",
+      "Lake Mary",
+      "Clermont",
+      "Groveland",
+      "Mount Dora",
+      "Ocoee",
+      "Altamonte Springs",
+      "Winter Garden",
+      "Maitland",
+      "Winter Park",
+      "Sanford",
+      "Windermere",
+      "Tavares",
+      "Eustis",
+      "Kissimmee",
+      "Forest City",
+      "Paradise Heights",
+      "Clarcona",
+      "Wekiva Springs",
+      "Lockhart",
+      "Zellwood",
+      "Mount Plymouth",
+      "Eastonville",
+      "Deltona",
+      "DeLand",
+      "Leesburg",
+      "Bithlo",
+      "St. Cloud"
+    ],
+    "shareImage": "",
     "allowAiCrawlers": true,
-    "serviceArea": [],
     "redirects": []
   }
 }

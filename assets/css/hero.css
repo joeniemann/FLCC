@@ -185,6 +185,7 @@ h1.big{
 .row{position:relative;display:block;height:1em}
 .row span{position:absolute;inset:0;white-space:nowrap}
 /* legibility now comes from the type, not from drowning the photo */
+.t-steel::before,.t-hot::before{content:attr(data-t)}
 .t-soft{
   color:var(--bone);
   clip-path:polygon(calc(var(--seam) + var(--slant)) 0,100% 0,100% 100%,calc(var(--seam) - var(--slant)) 100%);
