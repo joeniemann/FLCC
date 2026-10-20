@@ -1,5 +1,5 @@
 [build]
-  command = "npx cms build"
+  command = "rm -rf node_modules && npm install --no-audit --no-fund && npx cms build"
   publish = "dist"
 
 [build.environment]
