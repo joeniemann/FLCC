@@ -6,6 +6,6 @@
   "dependencies": {
     "@netlify/functions": "^5.2.0",
     "@netlify/identity": "2.0.0",
-    "@joeniemann/cms": "github:joeniemann/cms#v0.2.1"
+    "@joeniemann/cms": "github:joeniemann/cms#v0.3.0"
   }
 }
