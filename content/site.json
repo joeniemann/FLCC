@@ -92,8 +92,8 @@
     "serviceArea": [],
     "redirects": [
       {
-        "from": "",
-        "to": "",
+        "from": "/test-old",
+        "to": "/services.html",
         "status": "301"
       }
     ]
