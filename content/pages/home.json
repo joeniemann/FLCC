@@ -11,6 +11,7 @@
       "eyebrow": "Upholstery × Metal Fab · Apopka, Florida · Family-Run",
       "leadIn": "Fabrication & Upholstery Services.",
       "text": "From custom designs to complete restorations, we bring versatility, professionalism, and quality craftsmanship to every project, big or small.",
+      "searchLine": "Custom fabrication and marine upholstery in Central Florida",
       "buttons": [
         {
           "label": "Start a Build",
@@ -107,7 +108,8 @@
       "photo": {
         "id": "g097",
         "alt": "Restored panel truck with a rebuilt tan diamond-stitched interior"
-      }
+      },
+      "factsAlign": "center"
     }
   ]
 }
