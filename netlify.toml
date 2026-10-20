@@ -1,9 +1,9 @@
 [build]
-  command = "rm -rf dist && mkdir -p dist/assets dist/admin && cp -r assets/. dist/assets/ && cp -r admin/. dist/admin/ && cp cms/schema/blocks.json dist/admin/blocks.json && cp style-guide.html dist/ && node cms/build/render.js --site . --out dist"
+  command = "npx cms build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "22"
 
 [functions]
-  included_files = ["templates/**", "content/**"]
+  included_files = ["templates/**", "content/**", "cms/blocks.json", "cms.config.json"]

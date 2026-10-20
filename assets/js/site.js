@@ -245,10 +245,10 @@
   /* ---------- gallery ---------- */
   (function gallery() {
     var grid = $("#masonry");
-    if (!grid || !window.FLCC_GALLERY) return;
-    var data = window.FLCC_GALLERY,
-        cats = window.FLCC_CATEGORIES || [],
-        groups = window.FLCC_GROUPS || [],
+    if (!grid || !window.CMS_GALLERY) return;
+    var data = window.CMS_GALLERY,
+        cats = window.CMS_CATEGORIES || [],
+        groups = window.CMS_GROUPS || [],
         bar = $("#gal-filters"),
         subBar = $("#gal-subfilters"),
         countEl = $("#gal-count"),
@@ -307,7 +307,7 @@
 
     /* Tier 1: the three trades the Services page sells, plus shop shots.
        A trade spans several photo categories, so "Fabrication" is not the
-       same as "Boat Fabrication" — see FLCC_GROUPS in gallery.js. */
+       same as "Boat Fabrication" — see CMS_GROUPS in gallery.js. */
     if (bar) {
       bar.appendChild(chip("all", "All Work"));
       groups.forEach(function (g) {
