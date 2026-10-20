@@ -86,5 +86,16 @@
     "newsletterPlaceholder": "EMAIL ADDRESS",
     "newsletterSuccess": "You're on the list. Let's Go!",
     "newsletterError": "Something went wrong. Please try again, or call us."
+  },
+  "seo": {
+    "allowAiCrawlers": true,
+    "serviceArea": [],
+    "redirects": [
+      {
+        "from": "",
+        "to": "",
+        "status": "301"
+      }
+    ]
   }
 }
