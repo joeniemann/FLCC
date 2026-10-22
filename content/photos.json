@@ -683,6 +683,12 @@
       "file": "assets/gallery/g114.webp",
       "thumb": "assets/gallery-thumbs/g114.webp",
       "alt": "Welding Custom Aluminum Helm"
+    },
+    {
+      "id": "g115",
+      "file": "assets/gallery/g115.webp",
+      "thumb": "assets/gallery-thumbs/g115.webp",
+      "alt": "Aluminum Helm"
     }
   ]
 }
