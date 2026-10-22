@@ -671,6 +671,12 @@
       "file": "assets/gallery/g112.webp",
       "thumb": "assets/gallery-thumbs/g112.webp",
       "alt": "Aluminum Fuel Tank"
+    },
+    {
+      "id": "g113",
+      "file": "assets/gallery/g113.webp",
+      "thumb": "assets/gallery-thumbs/g113.webp",
+      "alt": "Custom Aluminum Helm"
     }
   ]
 }
