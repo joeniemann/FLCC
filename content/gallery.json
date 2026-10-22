@@ -64,6 +64,11 @@
   ],
   "items": [
     {
+      "photo": "g115",
+      "category": "boat-fab",
+      "hidden": false
+    },
+    {
       "photo": "g114",
       "category": "boat-fab",
       "hidden": false
