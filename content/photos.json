@@ -665,6 +665,120 @@
       "file": "assets/gallery/g111.webp",
       "thumb": "assets/gallery-thumbs/g111.webp",
       "alt": "Garden walkway with fabricated railing"
+    },
+    {
+      "id": "g112",
+      "file": "assets/gallery/g112.webp",
+      "thumb": "assets/gallery-thumbs/g112.webp",
+      "alt": "Aluminum Fuel Tank"
+    },
+    {
+      "id": "g113",
+      "file": "assets/gallery/g113.webp",
+      "thumb": "assets/gallery-thumbs/g113.webp",
+      "alt": "Custom Aluminum Helm"
+    },
+    {
+      "id": "g114",
+      "file": "assets/gallery/g114.webp",
+      "thumb": "assets/gallery-thumbs/g114.webp",
+      "alt": "Welding Custom Aluminum Helm"
+    },
+    {
+      "id": "g115",
+      "file": "assets/gallery/g115.webp",
+      "thumb": "assets/gallery-thumbs/g115.webp",
+      "alt": "Aluminum Helm"
+    },
+    {
+      "id": "g116",
+      "file": "assets/gallery/g116.webp",
+      "thumb": "assets/gallery-thumbs/g116.webp",
+      "alt": "Rolling a large aluminum tube in the shop"
+    },
+    {
+      "id": "g117",
+      "file": "assets/gallery/g117.webp",
+      "thumb": "assets/gallery-thumbs/g117.webp",
+      "alt": "Welding in the shop"
+    },
+    {
+      "id": "g118",
+      "file": "assets/gallery/g118.webp",
+      "thumb": "assets/gallery-thumbs/g118.webp",
+      "alt": "Custom black steel double gate with vertical picket design"
+    },
+    {
+      "id": "g119",
+      "file": "assets/gallery/g119.webp",
+      "thumb": "assets/gallery-thumbs/g119.webp",
+      "alt": "Custom black steel double gate with square lattice pattern"
+    },
+    {
+      "id": "g120",
+      "file": "assets/gallery/g120.webp",
+      "thumb": "assets/gallery-thumbs/g120.webp",
+      "alt": "Custom black steel prison gate with horizontal bar infill"
+    },
+    {
+      "id": "g121",
+      "file": "assets/gallery/g121.webp",
+      "thumb": "assets/gallery-thumbs/g121.webp",
+      "alt": "Custom black steel prison gate with horizontal slat panels"
+    },
+    {
+      "id": "g122",
+      "file": "assets/gallery/g122.webp",
+      "thumb": "assets/gallery-thumbs/g122.webp",
+      "alt": "Custom black steel prison gate with round-bar slat design"
+    },
+    {
+      "id": "g123",
+      "file": "assets/gallery/g123.webp",
+      "thumb": "assets/gallery-thumbs/g123.webp",
+      "alt": "Custom raw aluminum ranch-style gate with X bracing"
+    },
+    {
+      "id": "g124",
+      "file": "assets/gallery/g124.webp",
+      "thumb": "assets/gallery-thumbs/g124.webp",
+      "alt": "Custom aluminum walk gate with wire mesh panel and picket top"
+    },
+    {
+      "id": "g125",
+      "file": "assets/gallery/g125.webp",
+      "thumb": "assets/gallery-thumbs/g125.webp",
+      "alt": "Custom white aluminum double driveway gate with arched top and round center ring"
+    },
+    {
+      "id": "g126",
+      "file": "assets/gallery/g126.webp",
+      "thumb": "assets/gallery-thumbs/g126.webp",
+      "alt": "Custom white arched gate with horse-head cutout in a round ring"
+    },
+    {
+      "id": "g127",
+      "file": "assets/gallery/g127.webp",
+      "thumb": "assets/gallery-thumbs/g127.webp",
+      "alt": "Custom white arched gate with horse-head ring and solid lower panel"
+    },
+    {
+      "id": "g128",
+      "file": "assets/gallery/g128.webp",
+      "thumb": "assets/gallery-thumbs/g128.webp",
+      "alt": "Custom white arched picket gate with solid lower panel"
+    },
+    {
+      "id": "g129",
+      "file": "assets/gallery/g129.webp",
+      "thumb": "assets/gallery-thumbs/g129.webp",
+      "alt": "Custom white arched driveway gate with eagle emblem"
+    },
+    {
+      "id": "g130",
+      "file": "assets/gallery/g130.webp",
+      "thumb": "assets/gallery-thumbs/g130.webp",
+      "alt": "Custom aluminum double gate with square lattice pattern"
     }
   ]
 }
