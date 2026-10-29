@@ -707,6 +707,18 @@
       "file": "assets/gallery/g118.webp",
       "thumb": "assets/gallery-thumbs/g118.webp",
       "alt": "Custom black steel double gate with vertical picket design"
+    },
+    {
+      "id": "g119",
+      "file": "assets/gallery/g119.webp",
+      "thumb": "assets/gallery-thumbs/g119.webp",
+      "alt": "Custom black steel double gate with square lattice pattern"
+    },
+    {
+      "id": "g120",
+      "file": "assets/gallery/g120.webp",
+      "thumb": "assets/gallery-thumbs/g120.webp",
+      "alt": "Custom black steel prison gate with horizontal bar infill"
     }
   ]
 }
