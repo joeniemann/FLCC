@@ -767,6 +767,12 @@
       "file": "assets/gallery/g128.webp",
       "thumb": "assets/gallery-thumbs/g128.webp",
       "alt": "Custom white arched picket gate with solid lower panel"
+    },
+    {
+      "id": "g129",
+      "file": "assets/gallery/g129.webp",
+      "thumb": "assets/gallery-thumbs/g129.webp",
+      "alt": "Custom white arched driveway gate with eagle emblem"
     }
   ]
 }
