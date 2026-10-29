@@ -755,6 +755,12 @@
       "file": "assets/gallery/g126.webp",
       "thumb": "assets/gallery-thumbs/g126.webp",
       "alt": "Custom white arched gate with horse-head cutout in a round ring"
+    },
+    {
+      "id": "g127",
+      "file": "assets/gallery/g127.webp",
+      "thumb": "assets/gallery-thumbs/g127.webp",
+      "alt": "Custom white arched gate with horse-head ring and solid lower panel"
     }
   ]
 }
