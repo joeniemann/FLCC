@@ -749,6 +749,12 @@
       "file": "assets/gallery/g125.webp",
       "thumb": "assets/gallery-thumbs/g125.webp",
       "alt": "Custom white aluminum double driveway gate with arched top and round center ring"
+    },
+    {
+      "id": "g126",
+      "file": "assets/gallery/g126.webp",
+      "thumb": "assets/gallery-thumbs/g126.webp",
+      "alt": "Custom white arched gate with horse-head cutout in a round ring"
     }
   ]
 }
