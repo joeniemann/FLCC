@@ -79,11 +79,6 @@
       "hidden": false
     },
     {
-      "photo": "g131",
-      "category": "gates",
-      "hidden": false
-    },
-    {
       "photo": "g130",
       "category": "gates",
       "hidden": false
@@ -716,16 +711,6 @@
     {
       "photo": "g108",
       "category": "boat-fab",
-      "hidden": false
-    },
-    {
-      "photo": "g109",
-      "category": "boat-fab",
-      "hidden": false
-    },
-    {
-      "photo": "g110",
-      "category": "boat-uph",
       "hidden": false
     }
   ]
