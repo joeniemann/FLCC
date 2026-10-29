@@ -779,6 +779,24 @@
       "file": "assets/gallery/g130.webp",
       "thumb": "assets/gallery-thumbs/g130.webp",
       "alt": "Custom aluminum double gate with square lattice pattern"
+    },
+    {
+      "id": "g131",
+      "file": "assets/gallery/g131.webp",
+      "thumb": "assets/gallery-thumbs/g131.webp",
+      "alt": "Custom black metal handrails curving along a stone path"
+    },
+    {
+      "id": "g132",
+      "file": "assets/gallery/g132.webp",
+      "thumb": "assets/gallery-thumbs/g132.webp",
+      "alt": "Custom curved black metal handrails for a stone patio"
+    },
+    {
+      "id": "g133",
+      "file": "assets/gallery/g133.webp",
+      "thumb": "assets/gallery-thumbs/g133.webp",
+      "alt": "Custom green iron gate with rust-colored horse art on top"
     }
   ]
 }
