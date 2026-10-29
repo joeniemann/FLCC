@@ -689,6 +689,18 @@
       "file": "assets/gallery/g115.webp",
       "thumb": "assets/gallery-thumbs/g115.webp",
       "alt": "Aluminum Helm"
+    },
+    {
+      "id": "g116",
+      "file": "assets/gallery/g116.webp",
+      "thumb": "assets/gallery-thumbs/g116.webp",
+      "alt": "Rolling a large aluminum tube in the shop"
+    },
+    {
+      "id": "g117",
+      "file": "assets/gallery/g117.webp",
+      "thumb": "assets/gallery-thumbs/g117.webp",
+      "alt": "Welding in the shop"
     }
   ]
 }
