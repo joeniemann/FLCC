@@ -773,6 +773,12 @@
       "file": "assets/gallery/g129.webp",
       "thumb": "assets/gallery-thumbs/g129.webp",
       "alt": "Custom white arched driveway gate with eagle emblem"
+    },
+    {
+      "id": "g130",
+      "file": "assets/gallery/g130.webp",
+      "thumb": "assets/gallery-thumbs/g130.webp",
+      "alt": "Custom aluminum double gate with square lattice pattern"
     }
   ]
 }
