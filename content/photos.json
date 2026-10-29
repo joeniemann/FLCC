@@ -743,6 +743,12 @@
       "file": "assets/gallery/g124.webp",
       "thumb": "assets/gallery-thumbs/g124.webp",
       "alt": "Custom aluminum walk gate with wire mesh panel and picket top"
+    },
+    {
+      "id": "g125",
+      "file": "assets/gallery/g125.webp",
+      "thumb": "assets/gallery-thumbs/g125.webp",
+      "alt": "Custom white aluminum double driveway gate with arched top and round center ring"
     }
   ]
 }
