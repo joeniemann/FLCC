@@ -701,6 +701,12 @@
       "file": "assets/gallery/g117.webp",
       "thumb": "assets/gallery-thumbs/g117.webp",
       "alt": "Welding in the shop"
+    },
+    {
+      "id": "g118",
+      "file": "assets/gallery/g118.webp",
+      "thumb": "assets/gallery-thumbs/g118.webp",
+      "alt": "Custom black steel double gate with vertical picket design"
     }
   ]
 }
