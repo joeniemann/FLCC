@@ -761,6 +761,12 @@
       "file": "assets/gallery/g127.webp",
       "thumb": "assets/gallery-thumbs/g127.webp",
       "alt": "Custom white arched gate with horse-head ring and solid lower panel"
+    },
+    {
+      "id": "g128",
+      "file": "assets/gallery/g128.webp",
+      "thumb": "assets/gallery-thumbs/g128.webp",
+      "alt": "Custom white arched picket gate with solid lower panel"
     }
   ]
 }
