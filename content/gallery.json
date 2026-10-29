@@ -64,7 +64,17 @@
   ],
   "items": [
     {
+      "photo": "g133",
+      "category": "gates",
+      "hidden": false
+    },
+    {
       "photo": "g132",
+      "category": "gates",
+      "hidden": false
+    },
+    {
+      "photo": "g131",
       "category": "gates",
       "hidden": false
     },
@@ -716,11 +726,6 @@
     {
       "photo": "g110",
       "category": "boat-uph",
-      "hidden": false
-    },
-    {
-      "photo": "g111",
-      "category": "gates",
       "hidden": false
     }
   ]
