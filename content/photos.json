@@ -731,6 +731,12 @@
       "file": "assets/gallery/g122.webp",
       "thumb": "assets/gallery-thumbs/g122.webp",
       "alt": "Custom black steel prison gate with round-bar slat design"
+    },
+    {
+      "id": "g123",
+      "file": "assets/gallery/g123.webp",
+      "thumb": "assets/gallery-thumbs/g123.webp",
+      "alt": "Custom raw aluminum ranch-style gate with X bracing"
     }
   ]
 }
