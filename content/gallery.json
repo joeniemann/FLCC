@@ -64,6 +64,11 @@
   ],
   "items": [
     {
+      "photo": "g123",
+      "category": "gates",
+      "hidden": false
+    },
+    {
       "photo": "g122",
       "category": "gates",
       "hidden": false
