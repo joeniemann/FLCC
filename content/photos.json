@@ -719,6 +719,12 @@
       "file": "assets/gallery/g120.webp",
       "thumb": "assets/gallery-thumbs/g120.webp",
       "alt": "Custom black steel prison gate with horizontal bar infill"
+    },
+    {
+      "id": "g121",
+      "file": "assets/gallery/g121.webp",
+      "thumb": "assets/gallery-thumbs/g121.webp",
+      "alt": "Custom black steel prison gate with horizontal slat panels"
     }
   ]
 }
