@@ -737,6 +737,12 @@
       "file": "assets/gallery/g123.webp",
       "thumb": "assets/gallery-thumbs/g123.webp",
       "alt": "Custom raw aluminum ranch-style gate with X bracing"
+    },
+    {
+      "id": "g124",
+      "file": "assets/gallery/g124.webp",
+      "thumb": "assets/gallery-thumbs/g124.webp",
+      "alt": "Custom aluminum walk gate with wire mesh panel and picket top"
     }
   ]
 }
